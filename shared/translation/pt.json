@@ -1,0 +1,299 @@
+{
+	"on": "Ligado",
+	"off": "Desligado",
+	"select": "Selecionar",
+	"success": "Sucesso",
+	"ok": "OK",
+	"cancel": "Cancelar",
+	"sound_volume": "Volume do som",
+	"skip_media": "Atalho pular mídia",
+	"skip_alert": "Atalho pular alerta",
+	"authorization": {
+		"title": "Autorização",
+		"code": "Solicitar código",
+		"sign_in": "Entrar",
+		"phone": "Número de telefone",
+		"telegram_code": "Código do Telegram",
+		"your_code": "Seu código",
+		"2fa_password": "Senha 2FA",
+		"password": "Senha"
+	},
+	"error": {
+		"wrong_lots_format": "Formato de lots incorreto",
+		"not_connected": "Não conectado",
+		"request_error": "Erro na solicitação"
+	},
+	"updater": {
+		"title": "Atualização",
+		"description": "Uma nova versão do aplicativo está disponível. Deseja atualizar?",
+		"update": "Atualizar",
+		"later": "Depois",
+		"downloading": "Baixando..."
+	},
+	"media": {
+		"title": "Mídia",
+		"youtube": "Youtube",
+		"twitch": "Twitch",
+		"tiktok": "Tiktok"
+	},
+	"integration": {
+		"tribute": "Mostrar mensagens de tributo"
+	},
+	"auction": {
+		"lots": "Lots",
+		"wheel": "Roda",
+		"settings": "Configurações"
+	},
+	"maption": {
+		"set_point": "Definir ponto",
+		"meter_price": "Preço por 1 metro",
+		"amount": "Quantia",
+		"finish": "Concluir",
+		"lat_error": "A latitude deve estar entre -90 e 90",
+		"lng_error": "A longitude deve estar entre -180 e 180",
+		"rules": "Para que o ponteiro mude automaticamente de posição na mensagem, deve haver apenas uma palavra de:"
+	},
+	"media_settings": {
+		"enabled": "Ativado",
+		"min_amount": "Quantia mínima",
+		"video_volume": "Volume do vídeo",
+		"min_views": "Visualizações mínimas"
+	},
+	"dashboard": {
+		"messages": "Mensagens",
+		"settings": "Configurações",
+		"services": "Serviços",
+		"alerts": "Alertas",
+		"media": "Mídia",
+		"goals": "Metas",
+		"auction": "Leilão",
+		"maption": "Maption",
+		"fighter": "Lutador"
+	},
+	"messages": {
+		"title": "Últimas mensagens"
+	},
+	"message": {
+		"skip": "Pular",
+		"replay": "Reproduzir novamente",
+		"donated": "{{user_name}} doou {{amount}}{{currency}}",
+		"followed": "{{user_name}} seguiu",
+		"subscribed": "{{user_name}} se inscreveu",
+		"gifted_subscriptions": "{{user_name}} presenteou {{total}} inscrições",
+		"raided_with": "{{user_name}} raidou com {{viewers}} espectadores"
+	},
+	"filter": {
+		"title": "Filtrar mensagens",
+		"exclude_donations": "Excluir doações",
+		"exclude_follows": "Excluir follows",
+		"exclude_subscriptions": "Excluir inscrições",
+		"exclude_raids": "Excluir raids"
+	},
+	"settings": {
+		"title": "Configurações",
+		"pause": "Pausar mensagens de alerta",
+		"moderation_duration": "Duração da moderação",
+		"black_list": "Lista negra",
+		"remove_links": "Remover links",
+		"language": "Idioma",
+		"sec": "Seg",
+		"currency": "Moeda"
+	},
+	"wheel": {
+		"normal": "Normal",
+		"dropout": "Dropout",
+		"spin": "Girar",
+		"speed": "Velocidade da roda"
+	},
+	"timer": {
+		"continue": "Continuar",
+		"pause": "Pausar",
+		"reset": "Reiniciar",
+		"add_time": "Adicionar tempo",
+		"reduce_time": "Reduzir tempo",
+		"add_timex2": "Adicionar tempo x2"
+	},
+	"fighter": {
+		"title": "Lutador",
+		"match": "Partida",
+		"final": "Final",
+		"game": "Jogo",
+		"cancel": "Cancelar jogo",
+		"winner": "Vencedor",
+		"settings": "Configurações",
+		"create_game": "Criar jogo a partir dos lots",
+		"start": "Iniciar",
+		"pause": "Pausar",
+		"rematch": "Revancha",
+		"resume": "Retomar"
+	},
+	"lot": {
+		"name": "Nome",
+		"delete": "Excluir",
+		"add": "Adicionar quantia"
+	},
+	"bid": {
+		"delete": "Excluir",
+		"to_lot": "Para o lot",
+		"new": "Novo",
+		"add_to_random_slot": "Adicionar a lot aleatório"
+	},
+	"lots": {
+		"add": "Adicionar",
+		"new_lot_name": "Novo nome de lot",
+		"search": "Buscar lot",
+		"total": "Total"
+	},
+	"auction_settings": {
+		"leader_change": "Mudança de líder",
+		"new_lot": "Novo lot",
+		"new_donation": "Nova doação",
+		"show_odds": "Mostrar probabilidades",
+		"show_total_sum": "Mostrar soma total",
+		"greater_timer_adding_time": "Adicionar tempo ao timer maior",
+		"not_add_time_if": "Não adicionar tempo se",
+		"adding_time": "Tempo"
+	},
+	"lots_options": {
+		"import_lots": "Importar lots",
+		"clear_lots": "Limpar lots"
+	},
+	"auc_fighter_settings": {
+		"round_duration": "Duração da rodada",
+		"add_players": "Adicionar jogadores"
+	},
+	"alerts": {
+		"title": "Alertas",
+		"group": "Grupo"
+	},
+	"services": {
+		"title": "Serviços",
+		"tribute": "Tributo",
+		"streamelements": "StreamElements",
+		"connect": "Conectar",
+		"integrations": "Integrações",
+		"sign_out": "Sair",
+		"confirm_sign_out": "Tem certeza de que deseja sair deste serviço?"
+	},
+	"twitch": {
+		"device_code_expired": "Código do dispositivo expirou. Tente novamente.",
+		"user_code": "Código do usuário",
+		"authorize_with_code": "Autorizar com código",
+		"waiting_authorization": "Aguardando autorização..."
+	},
+	"twitch_service_settings": {
+		"title": "Configurações do Twitch",
+		"points_currency_ratio": "Relação pontos/moeda",
+		"rewards_name": "Nome das recompensas",
+		"rewards_list": "Lista de recompensas",
+		"add_reward": "Adicionar recompensa",
+		"cost": "Custo",
+		"color": "Cor"
+	},
+	"alert": {
+		"image": "Imagem",
+		"audio": "Áudio",
+		"view": "Visualização",
+		"title": "Título",
+		"message": "Mensagem",
+		"test_name": "Teste",
+		"test_text": "Este é um alerta de teste!",
+		"configure": "Configurar",
+		"test": "Testar",
+		"add_new_variant": "Adicionar nova variante",
+		"new_variant": "Nova variante",
+		"variant_title": "Título da variante",
+		"variant_group": "Grupo da variante",
+		"status": "Status",
+		"variation_condition": "Condição da variação",
+		"group": "Grupo",
+		"Random": "Aleatório",
+		"AmountIsGreater": "Quantia é maior",
+		"AmountIsEqual": "Quantia é igual",
+		"delete": "Excluir",
+		"sure_delete": "Tem certeza de que deseja excluir esta variação?",
+		"type": "Tipo",
+		"Donation": "Doação",
+		"Subscription": "Inscrição",
+		"Follow": "Follow",
+		"Raid": "Raid"
+	},
+	"general": "Geral",
+	"goals": {
+		"title": "Metas",
+		"create": "Criar nova meta"
+	},
+	"goal": {
+		"new": "Nova meta",
+		"goal": "Visualização",
+		"type": "Tipo",
+		"elements": "Elementos",
+		"progress": "Progresso",
+		"goal_title": "Título da meta",
+		"amount_raise": "Quantia a arrecadar",
+		"start_raising": "Iniciar arrecadação a partir de",
+		"end_date": "Data de término da meta",
+		"bar_height": "Altura da barra",
+		"rounding_radius": "Raio de arredondamento",
+		"bar_stroke_thickness": "Espessura do contorno da barra",
+		"background_bar_color": "Cor da barra de fundo",
+		"progress_bar_color": "Cor da barra de progresso",
+		"goal_progress_bar": "Barra de progresso da meta",
+		"progress_bar_layout": "Layout da barra de progresso",
+		"remaining_time": "Tempo restante",
+		"goal_amount_limits": "Limites de quantia da meta",
+		"widget_background": "Fundo do widget",
+		"background_color": "Cor de fundo",
+		"OnTop": "No topo",
+		"Inside": "Dentro",
+		"Below": "Abaixo",
+		"DoNotDisplay": "Não exibir",
+		"title": "Título",
+		"limits": "limites",
+		"raised": "Arrecadado",
+		"days_left": "Dias restantes",
+		"finish_goal": "Concluir meta",
+		"sure_finish": "Tem certeza de que deseja concluir esta meta?",
+		"Donation": "Doação",
+		"TwitchSubscription": "Inscrição Twitch",
+		"TwitchFollow": "Follow Twitch",
+		"goal_not_finished": "Você tem uma meta inacabada deste tipo."
+	},
+	"save": "Salvar",
+	"back": "Voltar",
+	"widget": {
+		"copy": "Copiar",
+		"launch": "Iniciar",
+		"url": "URL do widget",
+		"obs_dock_url": "URL do dock OBS"
+	},
+	"view": {
+		"top": "Imagem no topo, texto abaixo",
+		"bottom": "Imagem abaixo, texto no topo",
+		"left": "Imagem à esquerda, texto à direita",
+		"right": "Imagem à direita, texto à esquerda",
+		"overlay": "Texto sobre a imagem"
+	},
+	"image": {
+		"show": "Mostrar imagem"
+	},
+	"text": {
+		"font": "Fonte",
+		"font_size": "Tamanho da fonte",
+		"text_color": "Cor do texto",
+		"bold": "Negrito",
+		"italics": "Itálico",
+		"underline": "Sublinhado",
+		"transformation": "Transformação",
+		"letter_spacing": "Espaçamento de letras",
+		"word_spacing": "Espaçamento de palavras",
+		"horizontal_alignment": "Alinhamento horizontal",
+		"vertical_alignment": "Alinhamento vertical",
+		"text_preview": "Esta é uma pré-visualização!",
+		"name": "Nome"
+	},
+	"audio": {
+		"play": "Reproduzir",
+		"stop": "Parar"
+	}
+}

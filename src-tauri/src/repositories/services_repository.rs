@@ -1,0 +1,108 @@
+use entity::service::*;
+
+use crate::services::DatabaseService;
+use async_trait::async_trait;
+use sea_orm::{ActiveModelTrait, ActiveValue::Set, EntityTrait, QuerySelect};
+#[async_trait]
+pub trait ServicesRepository: Send + Sync {
+    async fn get_services(&self) -> Result<Vec<Model>, String>;
+    async fn get_service_by_id(&self, id: ServiceType) -> Result<Option<Model>, String>;
+    async fn get_service_with_auth_by_id(&self, id: ServiceType) -> Result<Option<Model>, String>;
+    async fn update_service_settings(
+        &self,
+        id: ServiceType,
+        settings: ServiceSettings,
+    ) -> Result<(), String>;
+    async fn update_service_auth(
+        &self,
+        id: ServiceType,
+        auth: Option<ServiceAuth>,
+        authorized: bool,
+    ) -> Result<(), String>;
+}
+
+#[async_trait]
+impl ServicesRepository for DatabaseService {
+    async fn get_services(&self) -> Result<Vec<Model>, String> {
+        Entity::find()
+            .select_only()
+            .column(Column::Id)
+            .column(Column::Settings)
+            .column(Column::Authorized)
+            .all(&self.connection)
+            .await
+            .map_err(|e| {
+                log::error!("Get services error: {}", e.to_string());
+                e.to_string()
+            })
+    }
+    async fn get_service_by_id(&self, id: ServiceType) -> Result<Option<Model>, String> {
+        Entity::find_by_id(id)
+            .select_only()
+            .column(Column::Id)
+            .column(Column::Settings)
+            .column(Column::Authorized)
+            .one(&self.connection)
+            .await
+            .map_err(|e| {
+                log::error!("Get service by id error: {}", e.to_string());
+                e.to_string()
+            })
+    }
+    async fn get_service_with_auth_by_id(&self, id: ServiceType) -> Result<Option<Model>, String> {
+        Entity::find_by_id(id)
+            .one(&self.connection)
+            .await
+            .map_err(|e| {
+                log::error!("Get service with auth by id error: {}", e.to_string());
+                e.to_string()
+            })
+    }
+
+    async fn update_service_settings(
+        &self,
+        id: ServiceType,
+        settings: ServiceSettings,
+    ) -> Result<(), String> {
+        let pear = self.get_service_by_id(id).await?;
+        if let Some(pear) = pear {
+            let mut pear: ActiveModel = pear.into();
+            pear.settings = Set(Some(settings));
+            pear.update(&self.connection).await.map_err(|e| {
+                log::error!("Update service settings error: {}", e.to_string());
+                e.to_string()
+            })?;
+        }
+
+        Ok(())
+    }
+
+    async fn update_service_auth(
+        &self,
+        id: ServiceType,
+        auth: Option<ServiceAuth>,
+        authorized: bool,
+    ) -> Result<(), String> {
+        let service = Entity::find_by_id(id)
+            .one(&self.connection)
+            .await
+            .map_err(|e| {
+                log::error!("{}", e.to_string());
+                e.to_string()
+            })?;
+        if let Some(service) = service {
+            let mut service_active_model: ActiveModel = service.into();
+            service_active_model.auth = Set(auth);
+            service_active_model.authorized = Set(authorized);
+            service_active_model
+                .update(&self.connection)
+                .await
+                .map_err(|e| {
+                    log::error!("Update service auth error: {}", e.to_string());
+                    e.to_string()
+                })?;
+            return Ok(());
+        }
+        Err("Service not found".to_string())
+    }
+}

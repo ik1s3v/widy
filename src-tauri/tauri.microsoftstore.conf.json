@@ -1,0 +1,74 @@
+{
+	"$schema": "https://schema.tauri.app/config/2",
+	"version": "0.2.0",
+	"productName": "Widy",
+	"identifier": "fun.widy.app",
+	"build": {
+		"beforeDevCommand": "npm run dev",
+		"devUrl": "http://localhost:1420",
+		"beforeBuildCommand": "npm run build",
+		"frontendDist": "../dist"
+	},
+	"app": {
+		"withGlobalTauri": true,
+		"windows": [
+			{
+				"title": "Widy",
+				"width": 800,
+				"height": 600
+			}
+		],
+		"security": {
+			"csp": {
+				"default-src": "'self' ipc: http://ipc.localhost asset: http://asset.localhost ",
+				"connect-src": "'self' data: wss://realtime.streamelements.com ipc: http://ipc.localhost https://maps.googleapis.com https://*.googleapis.com https://*.google.com https://*.gstatic.com",
+				"script-src": "'self' 'unsafe-inline' 'unsafe-eval' ipc: http://ipc.localhost https://maps.googleapis.com",
+				"style-src": "'self' 'unsafe-inline' asset: http://asset.localhost https://fonts.googleapis.com",
+				"font-src": "'self' https://fonts.gstatic.com",
+				"media-src": "'self' asset: http://asset.localhost",
+				"img-src": "'self' data: asset: http://asset.localhost https://*.googleapis.com https://*.gstatic.com https://*.google.com",
+				"worker-src": "'self' blob:"
+			},
+			"assetProtocol": {
+				"enable": true,
+				"scope": [
+					"$APPLOCALDATA/static/*"
+				]
+			}
+		}
+	},
+	"bundle": {
+		"windows": {
+			"webviewInstallMode": {
+				"type": "offlineInstaller"
+			}
+		},
+		"publisher": "Widy Inc.",
+		"createUpdaterArtifacts": true,
+		"active": true,
+		"targets": "all",
+		"resources": [
+			"dist-widget/*",
+			"auc-fighter/**/*",
+			"assets/*"
+		],
+		"icon": [
+			"icons/32x32.png",
+			"icons/128x128.png",
+			"icons/128x128@2x.png",
+			"icons/icon.icns",
+			"icons/icon.ico"
+		]
+	},
+	"plugins": {
+		"updater": {
+			"windows": {
+				"installMode": "basicUi"
+			},
+			"pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDE3QzY2N0VFQkI0QUYzMkMKUldRczgwcTc3bWZHRjVpakY5SEVFcUpKWkhnVXRhaGNUYXRmYnFCOFY2MFhTQkRIMjl6Sm1nV2sK",
+			"endpoints": [
+				"https://github.com/ik1s3v/widy/releases/download/latest/latest.json"
+			]
+		}
+	}
+}

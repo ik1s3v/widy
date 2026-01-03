@@ -1,0 +1,299 @@
+{
+	"on": "Ein",
+	"off": "Aus",
+	"select": "Auswählen",
+	"success": "Erfolg",
+	"ok": "OK",
+	"cancel": "Abbrechen",
+	"sound_volume": "Lautstärke",
+	"skip_media": "Medien überspringen (Shortcut)",
+	"skip_alert": "Alert überspringen (Shortcut)",
+	"authorization": {
+		"title": "Autorisierung",
+		"code": "Code anfordern",
+		"sign_in": "Anmelden",
+		"phone": "Telefonnummer",
+		"telegram_code": "Code von Telegram",
+		"your_code": "Dein Code",
+		"2fa_password": "2FA-Passwort",
+		"password": "Passwort"
+	},
+	"error": {
+		"wrong_lots_format": "Falsches Lots-Format",
+		"not_connected": "Nicht verbunden",
+		"request_error": "Anfragefehler"
+	},
+	"updater": {
+		"title": "Update",
+		"description": "Eine neue Version der App ist verfügbar. Möchtest du aktualisieren?",
+		"update": "Aktualisieren",
+		"later": "Später",
+		"downloading": "Wird heruntergeladen..."
+	},
+	"media": {
+		"title": "Medien",
+		"youtube": "Youtube",
+		"twitch": "Twitch",
+		"tiktok": "Tiktok"
+	},
+	"integration": {
+		"tribute": "Tribute-Nachrichten anzeigen"
+	},
+	"auction": {
+		"lots": "Lots",
+		"wheel": "Rad",
+		"settings": "Einstellungen"
+	},
+	"maption": {
+		"set_point": "Punkt setzen",
+		"meter_price": "Preis pro Meter",
+		"amount": "Betrag",
+		"finish": "Abschließen",
+		"lat_error": "Breitengrad muss zwischen -90 und 90 liegen",
+		"lng_error": "Längengrad muss zwischen -180 und 180 liegen",
+		"rules": "Damit sich die Zeigerposition in der Nachricht automatisch ändert, darf nur ein Wort aus der Liste vorhanden sein:"
+	},
+	"media_settings": {
+		"enabled": "Aktiviert",
+		"min_amount": "Mindestbetrag",
+		"video_volume": "Videolautstärke",
+		"min_views": "Mindestanzahl Views"
+	},
+	"dashboard": {
+		"messages": "Nachrichten",
+		"settings": "Einstellungen",
+		"services": "Dienste",
+		"alerts": "Alerts",
+		"media": "Medien",
+		"goals": "Ziele",
+		"auction": "Auktion",
+		"maption": "Maption",
+		"fighter": "Kämpfer"
+	},
+	"messages": {
+		"title": "Letzte Nachrichten"
+	},
+	"message": {
+		"skip": "Überspringen",
+		"replay": "Wiederholen",
+		"donated": "{{user_name}} hat {{amount}}{{currency}} gespendet",
+		"followed": "{{user_name}} folgt jetzt",
+		"subscribed": "{{user_name}} hat abonniert",
+		"gifted_subscriptions": "{{user_name}} hat {{total}} Abos verschenkt",
+		"raided_with": "{{user_name}} hat mit {{viewers}} Zuschauern geraidet"
+	},
+	"filter": {
+		"title": "Nachrichten filtern",
+		"exclude_donations": "Spenden ausschließen",
+		"exclude_follows": "Follows ausschließen",
+		"exclude_subscriptions": "Abonnements ausschließen",
+		"exclude_raids": "Raids ausschließen"
+	},
+	"settings": {
+		"title": "Einstellungen",
+		"pause": "Alert-Nachrichten pausieren",
+		"moderation_duration": "Moderationsdauer",
+		"black_list": "Blacklist",
+		"remove_links": "Links entfernen",
+		"language": "Sprache",
+		"sec": "Sek.",
+		"currency": "Währung"
+	},
+	"wheel": {
+		"normal": "Normal",
+		"dropout": "Dropout",
+		"spin": "Drehen",
+		"speed": "Radgeschwindigkeit"
+	},
+	"timer": {
+		"continue": "Fortsetzen",
+		"pause": "Pausieren",
+		"reset": "Zurücksetzen",
+		"add_time": "Zeit hinzufügen",
+		"reduce_time": "Zeit reduzieren",
+		"add_timex2": "Zeit x2 hinzufügen"
+	},
+	"fighter": {
+		"title": "Kämpfer",
+		"match": "Match",
+		"final": "Finale",
+		"game": "Spiel",
+		"cancel": "Spiel abbrechen",
+		"winner": "Gewinner",
+		"settings": "Einstellungen",
+		"create_game": "Spiel aus Lots erstellen",
+		"start": "Start",
+		"pause": "Pausieren",
+		"rematch": "Rematch",
+		"resume": "Fortsetzen"
+	},
+	"lot": {
+		"name": "Name",
+		"delete": "Löschen",
+		"add": "Betrag hinzufügen"
+	},
+	"bid": {
+		"delete": "Löschen",
+		"to_lot": "Zum Lot",
+		"new": "Neu",
+		"add_to_random_slot": "Zu zufälligem Lot hinzufügen"
+	},
+	"lots": {
+		"add": "Hinzufügen",
+		"new_lot_name": "Neuer Lot-Name",
+		"search": "Lot suchen",
+		"total": "Gesamt"
+	},
+	"auction_settings": {
+		"leader_change": "Führungswechsel",
+		"new_lot": "Neues Lot",
+		"new_donation": "Neue Spende",
+		"show_odds": "Quoten anzeigen",
+		"show_total_sum": "Gesamtsumme anzeigen",
+		"greater_timer_adding_time": "Zeit hinzufügen bei Überschreitung",
+		"not_add_time_if": "Keine Zeit hinzufügen, wenn",
+		"adding_time": "Zeit"
+	},
+	"lots_options": {
+		"import_lots": "Lots importieren",
+		"clear_lots": "Lots löschen"
+	},
+	"auc_fighter_settings": {
+		"round_duration": "Rundendauer",
+		"add_players": "Spieler hinzufügen"
+	},
+	"alerts": {
+		"title": "Alerts",
+		"group": "Gruppe"
+	},
+	"services": {
+		"title": "Dienste",
+		"tribute": "Tribute",
+		"streamelements": "StreamElements",
+		"connect": "Verbinden",
+		"integrations": "Integrationen",
+		"sign_out": "Abmelden",
+		"confirm_sign_out": "Bist du sicher, dass du dich von diesem Dienst abmelden möchtest?"
+	},
+	"twitch": {
+		"device_code_expired": "Gerätecode abgelaufen. Bitte erneut versuchen.",
+		"user_code": "Benutzercode",
+		"authorize_with_code": "Mit Code autorisieren",
+		"waiting_authorization": "Warte auf Autorisierung..."
+	},
+	"twitch_service_settings": {
+		"title": "Twitch-Einstellungen",
+		"points_currency_ratio": "Punkte-Währungs-Verhältnis",
+		"rewards_name": "Belohnungsname",
+		"rewards_list": "Belohnungsliste",
+		"add_reward": "Belohnung hinzufügen",
+		"cost": "Kosten",
+		"color": "Farbe"
+	},
+	"alert": {
+		"image": "Bild",
+		"audio": "Audio",
+		"view": "Ansicht",
+		"title": "Titel",
+		"message": "Nachricht",
+		"test_name": "Test",
+		"test_text": "Das ist ein Test-Alert!",
+		"configure": "Konfigurieren",
+		"test": "Testen",
+		"add_new_variant": "Neue Variante hinzufügen",
+		"new_variant": "Neue Variante",
+		"variant_title": "Variantentitel",
+		"variant_group": "Variantengruppe",
+		"status": "Status",
+		"variation_condition": "Variationsbedingung",
+		"group": "Gruppe",
+		"Random": "Zufällig",
+		"AmountIsGreater": "Betrag ist größer",
+		"AmountIsEqual": "Betrag ist gleich",
+		"delete": "Löschen",
+		"sure_delete": "Bist du sicher, dass du diese Variante löschen möchtest?",
+		"type": "Typ",
+		"Donation": "Spende",
+		"Subscription": "Abonnement",
+		"Follow": "Follow",
+		"Raid": "Raid"
+	},
+	"general": "Allgemein",
+	"goals": {
+		"title": "Ziele",
+		"create": "Neues Ziel erstellen"
+	},
+	"goal": {
+		"new": "Neues Ziel",
+		"goal": "Ansicht",
+		"type": "Typ",
+		"elements": "Elemente",
+		"progress": "Fortschritt",
+		"goal_title": "Zieltitel",
+		"amount_raise": "Zu sammelnder Betrag",
+		"start_raising": "Startbetrag",
+		"end_date": "Ziel-Enddatum",
+		"bar_height": "Balkenhöhe",
+		"rounding_radius": "Abrundungsradius",
+		"bar_stroke_thickness": "Balkenrahmenstärke",
+		"background_bar_color": "Hintergrundbalkenfarbe",
+		"progress_bar_color": "Fortschrittsbalkenfarbe",
+		"goal_progress_bar": "Ziel-Fortschrittsbalken",
+		"progress_bar_layout": "Fortschrittsbalken-Layout",
+		"remaining_time": "Verbleibende Zeit",
+		"goal_amount_limits": "Zielbetragsgrenzen",
+		"widget_background": "Widget-Hintergrund",
+		"background_color": "Hintergrundfarbe",
+		"OnTop": "Oben",
+		"Inside": "Innen",
+		"Below": "Unten",
+		"DoNotDisplay": "Nicht anzeigen",
+		"title": "Titel",
+		"limits": "Grenzen",
+		"raised": "Gesammelt",
+		"days_left": "Verbleibende Tage",
+		"finish_goal": "Ziel abschließen",
+		"sure_finish": "Bist du sicher, dass du dieses Ziel abschließen möchtest?",
+		"Donation": "Spende",
+		"TwitchSubscription": "Twitch-Abonnement",
+		"TwitchFollow": "Twitch-Follow",
+		"goal_not_finished": "Du hast ein unvollendetes Ziel dieses Typs."
+	},
+	"save": "Speichern",
+	"back": "Zurück",
+	"widget": {
+		"copy": "Kopieren",
+		"launch": "Starten",
+		"url": "Widget-URL",
+		"obs_dock_url": "OBS-Dock-URL"
+	},
+	"view": {
+		"top": "Bild oben, Text unten",
+		"bottom": "Bild unten, Text oben",
+		"left": "Bild links, Text rechts",
+		"right": "Bild rechts, Text links",
+		"overlay": "Text über Bild"
+	},
+	"image": {
+		"show": "Bild anzeigen"
+	},
+	"text": {
+		"font": "Schriftart",
+		"font_size": "Schriftgröße",
+		"text_color": "Textfarbe",
+		"bold": "Fett",
+		"italics": "Kursiv",
+		"underline": "Unterstrichen",
+		"transformation": "Transformation",
+		"letter_spacing": "Buchstabenabstand",
+		"word_spacing": "Wortabstand",
+		"horizontal_alignment": "Horizontale Ausrichtung",
+		"vertical_alignment": "Vertikale Ausrichtung",
+		"text_preview": "Das ist eine Vorschau!",
+		"name": "Name"
+	},
+	"audio": {
+		"play": "Abspielen",
+		"stop": "Stoppen"
+	}
+}

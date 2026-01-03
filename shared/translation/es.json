@@ -1,0 +1,299 @@
+{
+	"on": "Encendido",
+	"off": "Apagado",
+	"select": "Seleccionar",
+	"success": "Éxito",
+	"ok": "Aceptar",
+	"cancel": "Cancelar",
+	"sound_volume": "Volumen de sonido",
+	"skip_media": "Atajo para saltar medios",
+	"skip_alert": "Atajo para saltar alerta",
+	"authorization": {
+		"title": "Autorización",
+		"code": "Solicitar código",
+		"sign_in": "Iniciar sesión",
+		"phone": "Número de teléfono",
+		"telegram_code": "Código de Telegram",
+		"your_code": "Tu código",
+		"2fa_password": "Contraseña 2FA",
+		"password": "Contraseña"
+	},
+	"error": {
+		"wrong_lots_format": "Formato de lotes incorrecto",
+		"not_connected": "No conectado",
+		"request_error": "Error en la solicitud"
+	},
+	"updater": {
+		"title": "Actualización",
+		"description": "Hay una nueva versión de la aplicación disponible. ¿Quieres actualizar?",
+		"update": "Actualizar",
+		"later": "Más tarde",
+		"downloading": "Descargando..."
+	},
+	"media": {
+		"title": "Medios",
+		"youtube": "Youtube",
+		"twitch": "Twitch",
+		"tiktok": "Tiktok"
+	},
+	"integration": {
+		"tribute": "Mostrar mensajes de tributo"
+	},
+	"auction": {
+		"lots": "Lotes",
+		"wheel": "Rueda",
+		"settings": "Configuración"
+	},
+	"maption": {
+		"set_point": "Establecer punto",
+		"meter_price": "Precio por 1 metro",
+		"amount": "Cantidad",
+		"finish": "Finalizar",
+		"lat_error": "La latitud debe estar entre -90 y 90",
+		"lng_error": "La longitud debe estar entre -180 y 180",
+		"rules": "Para que el puntero cambie automáticamente la posición en el mensaje, debe haber solo una palabra de:"
+	},
+	"media_settings": {
+		"enabled": "Activado",
+		"min_amount": "Cantidad mínima",
+		"video_volume": "Volumen del video",
+		"min_views": "Vistas mínimas"
+	},
+	"dashboard": {
+		"messages": "Mensajes",
+		"settings": "Configuración",
+		"services": "Servicios",
+		"alerts": "Alertas",
+		"media": "Medios",
+		"goals": "Metas",
+		"auction": "Subasta",
+		"maption": "Maption",
+		"fighter": "Luchador"
+	},
+	"messages": {
+		"title": "Últimos mensajes"
+	},
+	"message": {
+		"skip": "Saltar",
+		"replay": "Reproducir",
+		"donated": "{{user_name}} donó {{amount}}{{currency}}",
+		"followed": "{{user_name}} te siguió",
+		"subscribed": "{{user_name}} se suscribió",
+		"gifted_subscriptions": "{{user_name}} regaló {{total}} suscripciones",
+		"raided_with": "{{user_name}} atacó con {{viewers}} espectadores"
+	},
+	"filter": {
+		"title": "Filtrar mensajes",
+		"exclude_donations": "Excluir donaciones",
+		"exclude_follows": "Excluir follows",
+		"exclude_subscriptions": "Excluir suscripciones",
+		"exclude_raids": "Excluir raids"
+	},
+	"settings": {
+		"title": "Configuración",
+		"pause": "Pausar mensajes de alerta",
+		"moderation_duration": "Duración de moderación",
+		"black_list": "Lista negra",
+		"remove_links": "Eliminar enlaces",
+		"language": "Idioma",
+		"sec": "Seg",
+		"currency": "Moneda"
+	},
+	"wheel": {
+		"normal": "Normal",
+		"dropout": "Abandono",
+		"spin": "Girar",
+		"speed": "Velocidad de la rueda"
+	},
+	"timer": {
+		"continue": "Continuar",
+		"pause": "Pausar",
+		"reset": "Reiniciar",
+		"add_time": "Agregar tiempo",
+		"reduce_time": "Reducir tiempo",
+		"add_timex2": "Agregar tiempo x2"
+	},
+	"fighter": {
+		"title": "Luchador",
+		"match": "Partido",
+		"final": "Final",
+		"game": "Juego",
+		"cancel": "Cancelar juego",
+		"winner": "Ganador",
+		"settings": "Configuración",
+		"create_game": "Crear juego desde lotes",
+		"start": "Iniciar",
+		"pause": "Pausar",
+		"rematch": "Revancha",
+		"resume": "Reanudar"
+	},
+	"lot": {
+		"name": "Nombre",
+		"delete": "Eliminar",
+		"add": "Agregar cantidad"
+	},
+	"bid": {
+		"delete": "Eliminar",
+		"to_lot": "Al lote",
+		"new": "Nuevo",
+		"add_to_random_slot": "Agregar a lote aleatorio"
+	},
+	"lots": {
+		"add": "Agregar",
+		"new_lot_name": "Nuevo nombre de lote",
+		"search": "Buscar lote",
+		"total": "Total"
+	},
+	"auction_settings": {
+		"leader_change": "Cambio de líder",
+		"new_lot": "Nuevo lote",
+		"new_donation": "Nueva donación",
+		"show_odds": "Mostrar probabilidades",
+		"show_total_sum": "Mostrar suma total",
+		"greater_timer_adding_time": "Agregar tiempo al temporizador mayor",
+		"not_add_time_if": "No agregar tiempo si",
+		"adding_time": "Tiempo"
+	},
+	"lots_options": {
+		"import_lots": "Importar lotes",
+		"clear_lots": "Limpiar lotes"
+	},
+	"auc_fighter_settings": {
+		"round_duration": "Duración de la ronda",
+		"add_players": "Agregar jugadores"
+	},
+	"alerts": {
+		"title": "Alertas",
+		"group": "Grupo"
+	},
+	"services": {
+		"title": "Servicios",
+		"tribute": "Tributo",
+		"streamelements": "StreamElements",
+		"connect": "Conectar",
+		"integrations": "Integraciones",
+		"sign_out": "Cerrar sesión",
+		"confirm_sign_out": "¿Estás seguro de que quieres cerrar sesión de este servicio?"
+	},
+	"twitch": {
+		"device_code_expired": "Código de dispositivo caducado. Intenta de nuevo.",
+		"user_code": "Código de usuario",
+		"authorize_with_code": "Autorizar con código",
+		"waiting_authorization": "Esperando autorización..."
+	},
+	"twitch_service_settings": {
+		"title": "Configuración de Twitch",
+		"points_currency_ratio": "Relación puntos-moneda",
+		"rewards_name": "Nombre de recompensas",
+		"rewards_list": "Lista de recompensas",
+		"add_reward": "Agregar recompensa",
+		"cost": "Costo",
+		"color": "Color"
+	},
+	"alert": {
+		"image": "Imagen",
+		"audio": "Audio",
+		"view": "Vista",
+		"title": "Título",
+		"message": "Mensaje",
+		"test_name": "Prueba",
+		"test_text": "¡Esta es una alerta de prueba!",
+		"configure": "Configurar",
+		"test": "Probar",
+		"add_new_variant": "Agregar nueva variante",
+		"new_variant": "Nueva variante",
+		"variant_title": "Título de variante",
+		"variant_group": "Grupo de variante",
+		"status": "Estado",
+		"variation_condition": "Condición de variación",
+		"group": "Grupo",
+		"Random": "Aleatorio",
+		"AmountIsGreater": "Cantidad es mayor",
+		"AmountIsEqual": "Cantidad es igual",
+		"delete": "Eliminar",
+		"sure_delete": "¿Estás seguro de que quieres eliminar esta variación?",
+		"type": "Tipo",
+		"Donation": "Donación",
+		"Subscription": "Suscripción",
+		"Follow": "Seguir",
+		"Raid": "Raid"
+	},
+	"general": "General",
+	"goals": {
+		"title": "Metas",
+		"create": "Crear nueva meta"
+	},
+	"goal": {
+		"new": "Nueva meta",
+		"goal": "Ver",
+		"type": "Tipo",
+		"elements": "Elementos",
+		"progress": "Progreso",
+		"goal_title": "Título de la meta",
+		"amount_raise": "Cantidad a recaudar",
+		"start_raising": "Iniciar recaudación desde",
+		"end_date": "Fecha de fin de la meta",
+		"bar_height": "Altura de la barra",
+		"rounding_radius": "Radio de redondeo",
+		"bar_stroke_thickness": "Grosor del borde de la barra",
+		"background_bar_color": "Color de la barra de fondo",
+		"progress_bar_color": "Color de la barra de progreso",
+		"goal_progress_bar": "Barra de progreso de la meta",
+		"progress_bar_layout": "Diseño de la barra de progreso",
+		"remaining_time": "Tiempo restante",
+		"goal_amount_limits": "Límites de cantidad de la meta",
+		"widget_background": "Fondo del widget",
+		"background_color": "Color de fondo",
+		"OnTop": "Arriba",
+		"Inside": "Dentro",
+		"Below": "Abajo",
+		"DoNotDisplay": "No mostrar",
+		"title": "Título",
+		"limits": "límites",
+		"raised": "Recaudado",
+		"days_left": "Días restantes",
+		"finish_goal": "Finalizar meta",
+		"sure_finish": "¿Estás seguro de que quieres finalizar esta meta?",
+		"Donation": "Donación",
+		"TwitchSubscription": "Suscripción de Twitch",
+		"TwitchFollow": "Seguir en Twitch",
+		"goal_not_finished": "Tienes una meta de este tipo sin finalizar."
+	},
+	"save": "Guardar",
+	"back": "Atrás",
+	"widget": {
+		"copy": "Copiar",
+		"launch": "Lanzar",
+		"url": "URL del widget",
+		"obs_dock_url": "URL del dock de OBS"
+	},
+	"view": {
+		"top": "Imagen arriba, texto abajo",
+		"bottom": "Imagen abajo, texto arriba",
+		"left": "Imagen izquierda, texto derecha",
+		"right": "Imagen derecha, texto izquierda",
+		"overlay": "Texto sobre la imagen"
+	},
+	"image": {
+		"show": "Mostrar imagen"
+	},
+	"text": {
+		"font": "Fuente",
+		"font_size": "Tamaño de fuente",
+		"text_color": "Color del texto",
+		"bold": "Negrita",
+		"italics": "Cursiva",
+		"underline": "Subrayado",
+		"transformation": "Transformación",
+		"letter_spacing": "Espaciado de letras",
+		"word_spacing": "Espaciado de palabras",
+		"horizontal_alignment": "Alineación horizontal",
+		"vertical_alignment": "Alineación vertical",
+		"text_preview": "¡Esta es una vista previa!",
+		"name": "Nombre"
+	},
+	"audio": {
+		"play": "Reproducir",
+		"stop": "Detener"
+	}
+}
