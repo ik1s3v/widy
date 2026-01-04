@@ -38,6 +38,12 @@
 		}
 	},
 	"bundle": {
+		"windows": {
+			"webviewInstallMode": {
+				"type": "offlineInstaller"
+			}
+		},
+		"publisher": "Widy Inc.",
 		"createUpdaterArtifacts": true,
 		"active": true,
 		"targets": "all",
