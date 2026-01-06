@@ -39,11 +39,14 @@
 	},
 	"bundle": {
 		"windows": {
+			"certificateThumbprint": "67AADD8C88BE293F01F3D4A46F36FB0033D52265",
+			"digestAlgorithm": "sha256",
+			"timestampUrl": "http://timestamp.comodoca.com",
 			"webviewInstallMode": {
 				"type": "offlineInstaller"
 			}
 		},
-		"publisher": "Widy Inc.",
+		"publisher": "ik1s3v",
 		"createUpdaterArtifacts": true,
 		"active": true,
 		"targets": "all",
