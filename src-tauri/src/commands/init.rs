@@ -25,20 +25,20 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     let config_service = ConfigService::new(&app)?;
     app.manage(config_service.clone());
 
+    let axum_service = AxumService::new(
+        config_service.widget_path.clone(),
+        config_service.static_path.clone(),
+        config_service.auc_fighter_path.clone(),
+    );
+
+    axum_service.run(app.clone()).await?;
+    app.manage(axum_service);
     copy_assets_to_static(&config_service.assets_path, &config_service.static_path)?;
     let database_service = DatabaseService::new(&config_service.db_path, &version).await?;
     app.manage(database_service);
 
     let websocket_broadcaster = WebSocketBroadcaster::new();
     app.manage(websocket_broadcaster);
-
-    let axum_service = AxumService::new(
-        config_service.widget_path.clone(),
-        config_service.static_path.clone(),
-        config_service.auc_fighter_path.clone(),
-    );
-    axum_service.run(app.clone()).await?;
-    app.manage(axum_service);
 
     let language_detector = LanguageDetectorBuilder::from_languages(&[
         English, French, German, Spanish, Russian, Ukrainian, Portuguese, Hindi, Chinese, Arabic,
