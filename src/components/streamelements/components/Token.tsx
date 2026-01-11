@@ -1,25 +1,32 @@
 import { Button, TextField } from "@mui/material";
 import type { SerializedError } from "@reduxjs/toolkit";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { AlertSeverity, ServiceType } from "../../../../shared/enums";
 import { showSnackBar } from "../../../../shared/slices/snackBarSlice";
-import {
-	useGetServiceByIdQuery,
-	useUpdateServiceAuthMutation,
-} from "../../../api/servicesApi";
+import { useGetServiceByIdQuery } from "../../../api/servicesApi";
 import useStreamElementsSocketService from "../../../hooks/useStreamElementsService";
 
 const Token = () => {
 	const { t } = useTranslation();
 	const { data } = useGetServiceByIdQuery({ id: ServiceType.Streamelements });
 	const [token, setToken] = useState("");
-	const [updateServiceAuth] = useUpdateServiceAuthMutation();
 	const streamElementsSocketService = useStreamElementsSocketService();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		const unsubscribe = streamElementsSocketService.subscribe<boolean>(
+			"authenticated",
+			() => {
+				navigate(-1);
+			},
+		);
+
+		return () => unsubscribe();
+	}, [navigate, streamElementsSocketService]);
 
 	return (
 		<>
@@ -38,13 +45,7 @@ const Token = () => {
 								if (!token) {
 									return;
 								}
-								await updateServiceAuth({
-									authorized: true,
-									id: ServiceType.Streamelements,
-									auth: { jwt_token: token },
-								}).unwrap();
 								await streamElementsSocketService.signIn(token);
-								navigate(-1);
 							} catch (error) {
 								const err = error as SerializedError;
 								dispatch(

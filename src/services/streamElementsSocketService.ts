@@ -1,5 +1,6 @@
 import { io, Socket } from "socket.io-client";
 import { ServiceType, StreamElementsEventType } from "../../shared/enums";
+import Subscriptions from "../../shared/services/subscriptions";
 import {
 	IService,
 	IStreamElementsAuth,
@@ -11,11 +12,11 @@ import { servicesApi } from "../api/servicesApi";
 import { streamElementsApi } from "../api/streamElementsApi";
 import { store } from "../store";
 
-export default class StreamElementsSocketService {
+export default class StreamElementsSocketService extends Subscriptions {
 	socket: Socket;
-	isAuthorized: boolean = false;
 
 	constructor() {
+		super();
 		this.socket = io("https://realtime.streamelements.com", {
 			transports: ["websocket"],
 		});
@@ -25,6 +26,7 @@ export default class StreamElementsSocketService {
 		});
 
 		this.socket.on("authenticated", async (_: IStreamElementsAuthenticated) => {
+			console.log("authenticated:");
 			const { data } = await store.dispatch(
 				servicesApi.endpoints.getServiceWithAuthById.initiate(
 					{
@@ -34,12 +36,11 @@ export default class StreamElementsSocketService {
 				),
 			);
 			const service = data as IService<IStreamElementsAuth, undefined>;
-			if (!service.authorized && service?.auth?.jwt_token) {
-				await this.setAuthorized({
-					authorized: true,
-					auth: { jwt_token: service.auth.jwt_token },
-				});
-			}
+			await this.setAuthorized({
+				authorized: true,
+				auth: { jwt_token: service.auth.jwt_token },
+			});
+			this.notifySubscribers("authenticated", true);
 		});
 
 		this.socket.on("event", (data: IStreamElementsEvent<unknown>) => {
@@ -84,7 +85,6 @@ export default class StreamElementsSocketService {
 		authorized: boolean;
 		auth?: IStreamElementsAuth;
 	}) {
-		this.isAuthorized = true;
 		await store
 			.dispatch(
 				servicesApi.endpoints.updateServiceAuth.initiate({
@@ -103,6 +103,9 @@ export default class StreamElementsSocketService {
 				jwt_token: token,
 			},
 		});
+		if (this.socket.connected) {
+			this.socket.disconnect();
+		}
 		this.socket.connect();
 	}
 
