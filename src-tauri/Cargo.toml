@@ -1,6 +1,6 @@
 [package]
 name = "widy"
-version = "0.2.0"
+version = "0.2.1"
 description = "Widy is a unified alert and widget service for streamers that works across multiple platforms."
 authors = ["ik1s3v"]
 edition = "2021"

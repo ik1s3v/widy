@@ -7,7 +7,7 @@ It aggregates events from different sources, normalizes them into a single forma
 
 Here’s a preview of the application:
 
-![Messages Screenshot](screenshots/1.png)
+![Messages Screenshot](shared/screenshots/1.png)
 
 
 ## Development
