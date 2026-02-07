@@ -50,11 +50,19 @@ tower-http = { version = "0.6.6", features = ["fs", "cors"] }
 tauri-plugin-opener = "2"
 tauri-plugin-websocket = "2"
 dotenvy = "0.15.7"
+anchor-lang = "0.32.1"
+anchor-client = { version = "0.32.1", features = ["async"] }
+solana-sdk = "3.0.0"
+openssl-sys = { version = "0.9.111", features = ["vendored"] }
+tauri-plugin-deep-link = "2"
+serde_qs = "0.15"
 
 [target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
 tauri-plugin-global-shortcut = "2"
-tauri-plugin-single-instance = "2"
 tauri-plugin-updater = "2"
+
+[target."cfg(any(target_os = \"macos\", windows, target_os = \"linux\"))".dependencies]
+tauri-plugin-single-instance = { version = "2.0.0", features = ["deep-link"] }
 
 [dev-dependencies]
 tempfile = "3.19.1"

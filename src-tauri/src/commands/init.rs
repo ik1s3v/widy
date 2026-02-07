@@ -1,6 +1,7 @@
 use crate::services::{
     AxumService, ConfigService, DatabaseService, ExchangeRatesService, MediaService,
     StreamElementsService, TTSService, TelegramService, TwitchService, WebSocketBroadcaster,
+    WidySolService,
 };
 use crate::utils::copy_assets_to_static;
 use grammers_client::types::{LoginToken, PasswordToken};
@@ -58,6 +59,11 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
 
     let media_service = MediaService::new();
     app.manage(media_service);
+
+    let widy_sol_service = WidySolService::new();
+    widy_sol_service.on_deep_link(&app);
+    widy_sol_service.connect(&app).await?;
+    app.manage(widy_sol_service);
 
     let twitch_service = TwitchService::new(config_service.client_id);
     twitch_service.connect(app.clone()).await?;

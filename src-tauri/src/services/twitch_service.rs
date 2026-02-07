@@ -1,11 +1,18 @@
 use crate::{
     enums::AppEvent,
-    repositories::{FollowsRepository,  RaidsRepository, ServicesRepository, SubscriptionsRepository},
-    services::{DatabaseService, EventMessage, WebSocketBroadcaster}, utils::goal_handler,
+    repositories::{
+        FollowsRepository, RaidsRepository, ServicesRepository, SubscriptionsRepository,
+    },
+    services::{DatabaseService, EventMessage, WebSocketBroadcaster},
+    utils::goal_handler,
 };
 use chrono::Utc;
 use entity::{
-    follow::Follow, message::{ClientMessage, MessageType}, raid, service::{ServiceAuth, ServiceType, TwitchAuth, TwitchIntegrationReward}, subscription::{self}
+    follow::Follow,
+    message::{ClientMessage, MessageType},
+    raid,
+    service::{ServiceAuth, ServiceType, TwitchAuth, TwitchIntegrationReward},
+    subscription::{self},
 };
 use futures::{lock::Mutex, StreamExt};
 use serde::{Deserialize, Serialize};
@@ -350,7 +357,7 @@ pub enum Payload {
 
 #[derive(Clone, Debug)]
 pub struct TwitchService {
-    is_close_connection:Arc<Mutex<bool>>,
+    is_close_connection: Arc<Mutex<bool>>,
     client_id: String,
     scopes: String,
     websocket_eventsub_url: String,
@@ -362,7 +369,7 @@ pub struct TwitchService {
 }
 
 impl TwitchService {
-    pub fn new(client_id:String) -> Self {
+    pub fn new(client_id: String) -> Self {
         #[cfg(not(debug_assertions))]
         let auth_endpoint = "https://id.twitch.tv/oauth2".to_string();
         #[cfg(debug_assertions)]
@@ -402,7 +409,6 @@ impl TwitchService {
     }
 
     pub async fn check_auth(&self, app: &AppHandle) -> Result<TwitchAuth, String> {
-    
         let database_service = app.state::<DatabaseService>();
 
         let auth = self.get_existing_auth(&database_service).await?;
@@ -446,15 +452,20 @@ impl TwitchService {
                     expires_in: old_auth.expires_in,
                     user_id: old_auth.user_id.clone(),
                 };
-                self.set_authorized(database_service, Some(ServiceAuth::Twitch(new_auth.clone())),
-                        true,false).await?;
+                self.set_authorized(
+                    database_service,
+                    Some(ServiceAuth::Twitch(new_auth.clone())),
+                    true,
+                    false,
+                )
+                .await?;
                 Ok(new_auth)
             }
             Err(e) => {
                 log::warn!("Token refresh failed, clearing auth: {}", e);
 
                 if let Err(update_err) = self
-                    .set_authorized(database_service, None, false,true)
+                    .set_authorized(database_service, None, false, true)
                     .await
                 {
                     log::error!("Failed to clear invalid auth: {}", update_err);
@@ -673,12 +684,12 @@ impl TwitchService {
                 log::info!("Connecting to Twitch EventSub: {}", current_url);
                 match connect_async(&current_url).await {
                     Ok((mut socket, _)) => {
-
                         log::info!("WebSocket connected.");
                         while let Some(msg_result) = socket.next().await {
-                            let mut is_close_connection = twitch_service.is_close_connection.lock().await;
+                            let mut is_close_connection =
+                                twitch_service.is_close_connection.lock().await;
                             if *is_close_connection {
-                                *is_close_connection=false;
+                                *is_close_connection = false;
                                 break 'connection_loop;
                             }
                             drop(is_close_connection);
@@ -695,16 +706,22 @@ impl TwitchService {
                                             let auth = twitch_service.check_auth(&app).await;
                                             if let Ok(auth) = auth {
                                                 twitch_service
-                                                    .create_subscriptions (
+                                                    .create_subscriptions(
                                                         &session_id,
                                                         &auth.access_token,
                                                         &auth.user_id,
                                                     )
                                                     .await;
-                                            }
-                                            else {
-                                                let _=twitch_service.set_authorized(&database_service, None, false, false).await;
-                                                break 'connection_loop; 
+                                            } else {
+                                                let _ = twitch_service
+                                                    .set_authorized(
+                                                        &database_service,
+                                                        None,
+                                                        false,
+                                                        false,
+                                                    )
+                                                    .await;
+                                                break 'connection_loop;
                                             }
                                         }
                                         WebSocketInstruction::Notification(message) => {
@@ -1134,7 +1151,7 @@ impl TwitchService {
         session_id: &String,
         access_token: &String,
         user_id: &String,
-    )  {
+    ) {
         let transport = Transport {
             method: "websocket".to_string(),
             session_id: session_id.clone(),
@@ -1145,13 +1162,61 @@ impl TwitchService {
             "channel.subscription.message",
         ];
         for subscribe_type in subscribes_types {
-          let _=  self.create_subscription(
+            let _ = self
+                .create_subscription(
+                    &access_token,
+                    SubscriptionRequestBody {
+                        r#type: subscribe_type.to_string(),
+                        version: "1".to_string(),
+                        condition: Condition::Subscription({
+                            SubscriptionCondition {
+                                broadcaster_user_id: user_id.clone(),
+                            }
+                        }),
+                        transport: transport.clone(),
+                    },
+                )
+                .await;
+        }
+        let _ = self
+            .create_subscription(
                 &access_token,
                 SubscriptionRequestBody {
-                    r#type: subscribe_type.to_string(),
+                    r#type: "channel.follow".to_string(),
+                    version: "2".to_string(),
+                    condition: Condition::Follow({
+                        FollowCondition {
+                            broadcaster_user_id: user_id.clone(),
+                            moderator_user_id: user_id.clone(),
+                        }
+                    }),
+                    transport: transport.clone(),
+                },
+            )
+            .await;
+        let _ = self
+            .create_subscription(
+                &access_token,
+                SubscriptionRequestBody {
+                    r#type: "channel.raid".to_string(),
                     version: "1".to_string(),
-                    condition: Condition::Subscription({
-                        SubscriptionCondition {
+                    condition: Condition::Raid({
+                        RaidCondition {
+                            to_broadcaster_user_id: user_id.clone(),
+                        }
+                    }),
+                    transport: transport.clone(),
+                },
+            )
+            .await;
+        let _ = self
+            .create_subscription(
+                &access_token,
+                SubscriptionRequestBody {
+                    r#type: "channel.cheer".to_string(),
+                    version: "1".to_string(),
+                    condition: Condition::Cheer({
+                        CheerCondition {
                             broadcaster_user_id: user_id.clone(),
                         }
                     }),
@@ -1159,52 +1224,6 @@ impl TwitchService {
                 },
             )
             .await;
-        }
-     let _=  self.create_subscription(
-            &access_token,
-            SubscriptionRequestBody {
-                r#type: "channel.follow".to_string(),
-                version: "2".to_string(),
-                condition: Condition::Follow({
-                    FollowCondition {
-                        broadcaster_user_id: user_id.clone(),
-                        moderator_user_id: user_id.clone(),
-                    }
-                }),
-                transport: transport.clone(),
-            },
-        )
-        .await;
-     let _=   self.create_subscription(
-            &access_token,
-            SubscriptionRequestBody {
-                r#type: "channel.raid".to_string(),
-                version: "1".to_string(),
-                condition: Condition::Raid({
-                    RaidCondition {
-                        to_broadcaster_user_id: user_id.clone(),
-                    }
-                }),
-                transport: transport.clone(),
-            },
-        )
-        .await;
-      let _=  self.create_subscription(
-            &access_token,
-            SubscriptionRequestBody {
-                r#type: "channel.cheer".to_string(),
-                version: "1".to_string(),
-                condition: Condition::Cheer({
-                    CheerCondition {
-                        broadcaster_user_id: user_id.clone(),
-                    }
-                }),
-                transport: transport.clone(),
-            },
-        )
-        .await;
-
-       
     }
 
     async fn create_subscription(
@@ -1272,7 +1291,13 @@ impl TwitchService {
         Ok(())
     }
 
-    pub async fn set_authorized(&self, database_service: &DatabaseService,auth:Option<ServiceAuth>, authorized: bool,is_close_connection:bool) -> Result<(), String> {
+    pub async fn set_authorized(
+        &self,
+        database_service: &DatabaseService,
+        auth: Option<ServiceAuth>,
+        authorized: bool,
+        is_close_connection: bool,
+    ) -> Result<(), String> {
         let mut is_close_connection_guard = self.is_close_connection.lock().await;
         *is_close_connection_guard = is_close_connection;
         drop(is_close_connection_guard);
@@ -1282,9 +1307,9 @@ impl TwitchService {
     }
 
     pub async fn sign_out(&self, app: &AppHandle) -> Result<(), String> {
-        let database_service=app.state::<DatabaseService>();
-        self.set_authorized(&database_service, None,false,true).await?;
+        let database_service = app.state::<DatabaseService>();
+        self.set_authorized(&database_service, None, false, true)
+            .await?;
         Ok(())
     }
-
 }

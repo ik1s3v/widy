@@ -181,6 +181,13 @@
 		"authorize_with_code": "Authorize with code",
 		"waiting_authorization": "Waiting for authorization..."
 	},
+	"widy": {
+		"donation_account_name": "Name of donation account",
+		"donation_url": "Donation url",
+		"create_donation_account": "Create Widy donation account",
+		"connect_to_existing_account": "Connect to existing account",
+		"create_donation_account_pending": "Creating donation account..."
+	},
 	"twitch_service_settings": {
 		"title": "Twitch settings",
 		"points_currency_ratio": "Points currency ratio",

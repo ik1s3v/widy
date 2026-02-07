@@ -19,6 +19,7 @@ pub trait ServicesRepository: Send + Sync {
         auth: Option<ServiceAuth>,
         authorized: bool,
     ) -> Result<(), String>;
+    async fn update_service(&self, service: Model) -> Result<(), String>;
 }
 
 #[async_trait]
@@ -74,6 +75,22 @@ impl ServicesRepository for DatabaseService {
             })?;
         }
 
+        Ok(())
+    }
+
+    async fn update_service(&self, service: Model) -> Result<(), String> {
+        Entity::update(ActiveModel {
+            id: Set(service.id),
+            authorized: Set(service.authorized),
+            settings: Set(service.settings),
+            auth: Set(service.auth),
+        })
+        .exec(&self.connection)
+        .await
+        .map_err(|e| {
+            log::error!("Update service error: {}", e);
+            e.to_string()
+        })?;
         Ok(())
     }
 

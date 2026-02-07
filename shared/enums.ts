@@ -51,6 +51,7 @@ export enum AppEvent {
 	TestAlert = "TestAlert",
 	Goal = "Goal",
 	TwitchRewardRedemptionAdd = "TwitchRewardRedemptionAdd",
+	CreateDonationAccount = "CreateDonationAccount",
 }
 export enum StreamElementsEvent {
 	Connect = "Connect",
@@ -103,6 +104,7 @@ export enum ServiceType {
 	TributeBot = "TributeBot",
 	Streamelements = "Streamelements",
 	Twitch = "Twitch",
+	WidySol = "WidySol",
 }
 
 export enum StreamElementsEventType {

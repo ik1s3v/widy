@@ -35,6 +35,7 @@ pub enum AppEvent {
     TestAlert,
     TwitchRewardRedemptionAdd,
     Goal,
+    CreateDonationAccount,
 }
 impl AppEvent {
     pub fn as_str(e: AppEvent) -> &'static str {
@@ -72,6 +73,7 @@ impl AppEvent {
             AppEvent::TestAlert => "TestAlert",
             AppEvent::Goal => "Goal",
             AppEvent::TwitchRewardRedemptionAdd => "TwitchRewardRedemptionAdd",
+            AppEvent::CreateDonationAccount => "CreateDonationAccount",
         }
     }
 }

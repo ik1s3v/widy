@@ -26,7 +26,6 @@ export default class StreamElementsSocketService extends Subscriptions {
 		});
 
 		this.socket.on("authenticated", async (_: IStreamElementsAuthenticated) => {
-			console.log("authenticated:");
 			const { data } = await store.dispatch(
 				servicesApi.endpoints.getServiceWithAuthById.initiate(
 					{

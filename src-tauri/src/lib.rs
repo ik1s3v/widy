@@ -6,12 +6,14 @@ pub mod services;
 pub mod utils;
 use crate::commands::*;
 use crate::enums::*;
+use tauri_plugin_deep_link::DeepLinkExt;
 use tokio::sync::Mutex;
 use utils::register_shortcuts;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     let mut builder = tauri::Builder::default()
+        .plugin(tauri_plugin_deep_link::init())
         .plugin(tauri_plugin_websocket::init())
         .plugin(tauri_plugin_opener::init());
 
@@ -33,6 +35,7 @@ pub fn run() {
     builder
         .setup(|app: &mut tauri::App| {
             register_shortcuts(app)?;
+            app.deep_link().register("widy")?;
             Ok(())
         })
         .plugin(tauri_plugin_updater::Builder::new().build())
@@ -82,6 +85,8 @@ pub fn run() {
             get_service_with_auth_by_id,
             tribute_bot_sign_out,
             twitch_sign_out,
+            get_widy_sol_nonce,
+            widy_sol_sign_out,
             init
         ])
         .run(tauri::generate_context!())

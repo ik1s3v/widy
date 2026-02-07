@@ -45,11 +45,19 @@ export const api = createApi({
 			query: () => ({
 				command: "tribute_bot_sign_out",
 			}),
+			invalidatesTags: ["Services"],
 		}),
 		twitchSignOut: builder.mutation<void, void>({
 			query: () => ({
 				command: "twitch_sign_out",
 			}),
+			invalidatesTags: ["Services"],
+		}),
+		widySolSignOut: builder.mutation<void, void>({
+			query: () => ({
+				command: "widy_sol_sign_out",
+			}),
+			invalidatesTags: ["Services"],
 		}),
 	}),
 });
@@ -58,4 +66,5 @@ export const {
 	useInitMutation,
 	useTributeBotSignOutMutation,
 	useTwitchSignOutMutation,
+	useWidySolSignOutMutation,
 } = api;

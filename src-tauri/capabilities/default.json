@@ -11,6 +11,12 @@
 			"allow": [
 				{
 					"url": "https://www.twitch.tv/activate?device-code=*"
+				},
+				{
+					"url": "http://localhost:3000/create-donation-account?nonce=*"
+				},
+				{
+					"url": "https://widy.fun/create-donation-account?nonce=*"
 				}
 			]
 		},
@@ -24,6 +30,7 @@
 		"fs:allow-applocaldata-meta-recursive",
 		"fs:scope-applocaldata-recursive",
 		"dialog:default",
-		"log:default"
+		"log:default",
+		"deep-link:default"
 	]
 }

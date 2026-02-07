@@ -15,6 +15,7 @@ import StreamElements from "./components/streamelements/StreamElements";
 import TelegramAuthorization from "./components/telegram-authorization/TelegramAuthorization";
 import Twitch from "./components/twitch/Twitch";
 import UpdaterDialog from "./components/UpdaterDialog";
+import Widy from "./components/widy/Widy";
 import { setSettings } from "./store/slices/settingsSlice";
 
 function App() {
@@ -97,6 +98,7 @@ function App() {
 					/>
 					<Route path="/streamelements/*" element={<StreamElements />} />
 					<Route path="/twitch/*" element={<Twitch />} />
+					<Route path="/widy/*" element={<Widy />} />
 					<Route path="/dashboard/*" element={<Dashboard />} />
 					<Route path="/services-settings/*" element={<ServicesSettings />} />
 				</Routes>

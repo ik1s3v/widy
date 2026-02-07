@@ -19,19 +19,25 @@ const initialState: ServicesState = {
 			active: false,
 			color: "#2701fb",
 			authPath: "/streamelements/token",
-			settingsPath: "/streamelements/token",
+			settingsPath: "",
 		},
 		[ServiceType.TributeBot]: {
 			active: false,
 			color: "#2693ff",
 			authPath: "/telegram-authorization/request-code",
-			settingsPath: "/telegram-authorization/request-code",
+			settingsPath: "",
 		},
 		[ServiceType.Twitch]: {
 			active: false,
 			color: "#9147ff",
 			authPath: "/twitch/device-code",
 			settingsPath: "/services-settings/twitch",
+		},
+		[ServiceType.WidySol]: {
+			active: false,
+			color: "#370161",
+			authPath: "/widy/create-donation-account",
+			settingsPath: "",
 		},
 	},
 };

@@ -64,6 +64,13 @@
 		]
 	},
 	"plugins": {
+		"deep-link": {
+			"desktop": {
+				"schemes": [
+					"widy"
+				]
+			}
+		},
 		"updater": {
 			"windows": {
 				"installMode": "basicUi"
