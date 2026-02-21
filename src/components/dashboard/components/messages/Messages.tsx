@@ -1,9 +1,10 @@
 import { useTranslation } from "react-i18next";
 import InfiniteMessages from "../../../../../shared/components/InfiniteMessages";
-import { ServiceType } from "../../../../../shared/enums";
+import { ServiceType, WidyNetwork } from "../../../../../shared/enums";
 import type { IWidySolAuth } from "../../../../../shared/types";
 import { useGetMessagesInfiniteQuery } from "../../../../api/messagesApi";
 import { useGetServiceWithAuthByIdQuery } from "../../../../api/servicesApi";
+import getDonationUrl from "../../../../helpers/getDonationUrl";
 import CreateDonationAccount from "../../../widy/components/CreateDonationAccount";
 import WidgetUrl from "../alerts/components/WidgetUrl";
 
@@ -21,11 +22,14 @@ const Messages = () => {
 			/>
 			{data?.authorized && auth ? (
 				<WidgetUrl
-					widgetUrl={`${import.meta.env.VITE_WIDY_BASE_URL}/d/${auth.donation_account_name}`}
+					widgetUrl={getDonationUrl({
+						network: WidyNetwork.Sol,
+						donation_account_name: auth.donation_account_name,
+					})}
 					text={t("widy.donation_url")}
 				/>
 			) : (
-				<CreateDonationAccount isNavigate={false} />
+				<CreateDonationAccount isNavigate={false} network={WidyNetwork.Sol} />
 			)}
 
 			<div>{t("skip_alert")} - ctrl+F1</div>

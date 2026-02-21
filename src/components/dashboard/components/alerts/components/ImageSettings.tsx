@@ -10,7 +10,6 @@ import OnOffSwitch from "../../../../OnOffSwitch";
 
 const ImageSettings = () => {
 	const { alert } = useSelector((state: AppState) => state.alertsState);
-	console.log("alert:", alert);
 	const dispatch = useDispatch();
 	const { appDataDir } = useSelector((state: AppState) => state.mainState);
 	const { t } = useTranslation();

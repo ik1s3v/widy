@@ -2,9 +2,9 @@ use crate::{
     enums::AppEvent,
     services::{EventMessage, WebSocketBroadcaster},
 };
-use tauri::{App, Manager};
+use tauri::{AppHandle, Manager};
 
-pub fn register_shortcuts(app: &mut App) -> Result<(), Box<dyn std::error::Error>> {
+pub fn register_shortcuts(app: &AppHandle) -> Result<(), Box<dyn std::error::Error>> {
     #[cfg(desktop)]
     {
         use tauri_plugin_global_shortcut::{
@@ -13,7 +13,7 @@ pub fn register_shortcuts(app: &mut App) -> Result<(), Box<dyn std::error::Error
 
         let ctrl_f1_shortcut = Shortcut::new(Some(Modifiers::CONTROL), Code::F1);
         let ctrl_f2_shortcut = Shortcut::new(Some(Modifiers::CONTROL), Code::F2);
-        app.handle().plugin(
+        app.plugin(
             tauri_plugin_global_shortcut::Builder::new()
                 .with_handler(move |app_handle, shortcut, event| {
                     let app_handle = app_handle.clone();

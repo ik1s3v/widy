@@ -59,6 +59,12 @@ export const api = createApi({
 			}),
 			invalidatesTags: ["Services"],
 		}),
+		widyTonSignOut: builder.mutation<void, void>({
+			query: () => ({
+				command: "widy_ton_sign_out",
+			}),
+			invalidatesTags: ["Services"],
+		}),
 	}),
 });
 
@@ -67,4 +73,5 @@ export const {
 	useTributeBotSignOutMutation,
 	useTwitchSignOutMutation,
 	useWidySolSignOutMutation,
+	useWidyTonSignOutMutation,
 } = api;

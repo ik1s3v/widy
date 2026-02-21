@@ -3,52 +3,71 @@ import { openUrl } from "@tauri-apps/plugin-opener";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import { AppEvent, ServiceType } from "../../../../shared/enums";
+import { AppEvent, ServiceType, WidyNetwork } from "../../../../shared/enums";
 import useWebSocket from "../../../../shared/hooks/useWebSocket";
+import type { IDeepLinkQueryParams } from "../../../../shared/types";
 import {
 	useGetServicesQuery,
 	useGetServiceWithAuthByIdQuery,
 } from "../../../api/servicesApi";
-import { useGetWidySolNonceMutation } from "../../../api/widyApi";
+import { useGetWidyNonceMutation } from "../../../api/widyApi";
+import getCreateDonationAccountUrl from "../../../helpers/getCreateDonationAccountUrl";
 
 const CreateDonationAccount = ({
 	isNavigate = true,
+	network,
 }: {
 	isNavigate?: boolean;
+	network: WidyNetwork;
 }) => {
 	const { t } = useTranslation();
 	const [isPending, setIsPending] = useState(false);
-	const [getWidyNonce] = useGetWidySolNonceMutation();
+	const [getWidyNonce] = useGetWidyNonceMutation();
 	const websocketService = useWebSocket();
 	const navigate = useNavigate();
 	const { refetch } = useGetServicesQuery();
-	const { refetch: refetchWidyService } = useGetServiceWithAuthByIdQuery({
+	const { refetch: refetchWidySolService } = useGetServiceWithAuthByIdQuery({
 		id: ServiceType.WidySol,
+	});
+	const { refetch: refetchWidyTonService } = useGetServiceWithAuthByIdQuery({
+		id: ServiceType.WidyTon,
 	});
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<string>(
+		const unsubscribe = websocketService.subscribe<IDeepLinkQueryParams>(
 			AppEvent.CreateDonationAccount,
-			async (_) => {
+			async (params) => {
 				await refetch().unwrap();
-				await refetchWidyService().unwrap();
+				switch (params.network) {
+					case WidyNetwork.Sol:
+						await refetchWidySolService().unwrap();
+						break;
+					case WidyNetwork.Ton:
+						await refetchWidyTonService().unwrap();
+						break;
+				}
 				if (isNavigate) {
 					navigate(-1);
 				}
 			},
 		);
 		return () => unsubscribe();
-	}, [websocketService, navigate, refetch, isNavigate, refetchWidyService]);
+	}, [
+		websocketService,
+		navigate,
+		refetch,
+		isNavigate,
+		refetchWidySolService,
+		refetchWidyTonService,
+	]);
 	return (
 		<Button
 			variant="contained"
 			disabled={isPending}
 			onClick={async () => {
 				setIsPending(true);
-				const nonce = await getWidyNonce().unwrap();
-				openUrl(
-					`${import.meta.env.VITE_WIDY_BASE_URL}/create-donation-account?nonce=${nonce}`,
-				);
+				const nonce = await getWidyNonce({ network }).unwrap();
+				openUrl(getCreateDonationAccountUrl({ nonce, network }));
 			}}
 		>
 			{isPending

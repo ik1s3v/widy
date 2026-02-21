@@ -40,6 +40,8 @@ pub enum ServiceType {
     Twitch,
     #[sea_orm(string_value = "WidySol")]
     WidySol,
+    #[sea_orm(string_value = "WidyTon")]
+    WidyTon,
 }
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, FromJsonQueryResult)]
 #[serde(untagged)]
@@ -54,7 +56,7 @@ pub enum ServiceSettings {
 pub enum ServiceAuth {
     Twitch(TwitchAuth),
     StreamElements(StreamElementsAuth),
-    WidySol(WidySolAuth),
+    Widy(WidyAuth),
 }
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -64,8 +66,9 @@ pub struct TwitchIntegrationSettings {
     pub rewards: Vec<TwitchIntegrationReward>,
 }
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-pub struct WidySolAuth {
+pub struct WidyAuth {
     pub donation_account_name: String,
+    pub donation_account_address: String,
     pub user: String,
 }
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]

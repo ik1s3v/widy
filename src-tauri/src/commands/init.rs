@@ -1,7 +1,9 @@
+use std::sync::Arc;
+
 use crate::services::{
-    AxumService, ConfigService, DatabaseService, ExchangeRatesService, MediaService,
-    StreamElementsService, TTSService, TelegramService, TwitchService, WebSocketBroadcaster,
-    WidySolService,
+    AxumService, ConfigService, DatabaseService, DeepLinkDispatcherService, ExchangeRatesService,
+    MediaService, StreamElementsService, TTSService, TelegramService, TwitchService,
+    WebSocketBroadcaster, WidySolService, WidyTonService,
 };
 use crate::utils::copy_assets_to_static;
 use grammers_client::types::{LoginToken, PasswordToken};
@@ -60,10 +62,13 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     let media_service = MediaService::new();
     app.manage(media_service);
 
-    let widy_sol_service = WidySolService::new();
-    widy_sol_service.on_deep_link(&app);
+    let widy_sol_service = Arc::new(WidySolService::new());
     widy_sol_service.connect(&app).await?;
-    app.manage(widy_sol_service);
+    app.manage(widy_sol_service.clone());
+
+    let widy_ton_service = Arc::new(WidyTonService::new());
+    widy_ton_service.connect(&app).await?;
+    app.manage(widy_ton_service.clone());
 
     let twitch_service = TwitchService::new(config_service.client_id);
     twitch_service.connect(app.clone()).await?;
@@ -87,6 +92,11 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
         TelegramService::new(config_service.api_id, config_service.api_hash, session_path);
     telegram_service.connect(app.clone()).await?;
     app.manage(telegram_service);
+
+    let mut deep_link_dispatcher_service = DeepLinkDispatcherService::new();
+    deep_link_dispatcher_service.register(widy_sol_service);
+    deep_link_dispatcher_service.register(widy_ton_service);
+    app.manage(deep_link_dispatcher_service);
 
     Ok(())
 }

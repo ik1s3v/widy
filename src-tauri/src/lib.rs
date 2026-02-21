@@ -6,6 +6,7 @@ pub mod services;
 pub mod utils;
 use crate::commands::*;
 use crate::enums::*;
+use tauri::Manager;
 use tauri_plugin_deep_link::DeepLinkExt;
 use tokio::sync::Mutex;
 use utils::register_shortcuts;
@@ -34,8 +35,16 @@ pub fn run() {
 
     builder
         .setup(|app: &mut tauri::App| {
-            register_shortcuts(app)?;
+            let app_handle = app.handle().clone();
+            register_shortcuts(&app_handle)?;
             app.deep_link().register("widy")?;
+            app.deep_link().on_open_url(move |event| {
+                let deep_link_dispatcher_service =
+                    app_handle.state::<services::DeepLinkDispatcherService>();
+                for url in event.urls() {
+                    deep_link_dispatcher_service.dispatch(&url, &app_handle);
+                }
+            });
             Ok(())
         })
         .plugin(tauri_plugin_updater::Builder::new().build())
@@ -85,8 +94,9 @@ pub fn run() {
             get_service_with_auth_by_id,
             tribute_bot_sign_out,
             twitch_sign_out,
-            get_widy_sol_nonce,
+            get_widy_nonce,
             widy_sol_sign_out,
+            widy_ton_sign_out,
             init
         ])
         .run(tauri::generate_context!())

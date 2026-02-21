@@ -1,12 +1,14 @@
+import { WidyNetwork } from "./../../shared/enums";
 import { api } from ".";
 
-export const widySolApi = api.injectEndpoints({
+export const widyApi = api.injectEndpoints({
 	endpoints: (builder) => ({
-		getWidySolNonce: builder.mutation<string, void>({
-			query: () => ({
-				command: "get_widy_sol_nonce",
+		getWidyNonce: builder.mutation<string, { network: WidyNetwork }>({
+			query: (args) => ({
+				command: "get_widy_nonce",
+				args,
 			}),
 		}),
 	}),
 });
-export const { useGetWidySolNonceMutation } = widySolApi;
+export const { useGetWidyNonceMutation } = widyApi;

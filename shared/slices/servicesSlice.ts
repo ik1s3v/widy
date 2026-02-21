@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ServiceType } from "../enums";
+import { ServiceType, WidyNetwork } from "../enums";
 
 interface ServicesState {
 	services: Record<
@@ -23,7 +23,7 @@ const initialState: ServicesState = {
 		},
 		[ServiceType.TributeBot]: {
 			active: false,
-			color: "#2693ff",
+			color: "#2692ffb2",
 			authPath: "/telegram-authorization/request-code",
 			settingsPath: "",
 		},
@@ -36,7 +36,13 @@ const initialState: ServicesState = {
 		[ServiceType.WidySol]: {
 			active: false,
 			color: "#370161",
-			authPath: "/widy/create-donation-account",
+			authPath: `/widy/create-donation-account/${WidyNetwork.Sol}`,
+			settingsPath: "",
+		},
+		[ServiceType.WidyTon]: {
+			active: false,
+			color: "#0098ea",
+			authPath: `/widy/create-donation-account/${WidyNetwork.Ton}`,
 			settingsPath: "",
 		},
 	},

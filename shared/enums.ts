@@ -105,6 +105,7 @@ export enum ServiceType {
 	Streamelements = "Streamelements",
 	Twitch = "Twitch",
 	WidySol = "WidySol",
+	WidyTon = "WidyTon",
 }
 
 export enum StreamElementsEventType {
@@ -121,4 +122,9 @@ export enum GoalType {
 	Donation = "Donation",
 	TwitchSubscription = "TwitchSubscription",
 	TwitchFollow = "TwitchFollow",
+}
+
+export enum WidyNetwork {
+	Sol = "sol",
+	Ton = "ton",
 }

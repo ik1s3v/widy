@@ -10,6 +10,7 @@ import type {
 	ServiceType,
 	StreamElementsEventType,
 	ViewType,
+	WidyNetwork,
 } from "./enums";
 
 export interface IClientMessage {
@@ -369,6 +370,14 @@ export interface ITwitchIntegrationReward {
 	subscription_id: string | null;
 	cost: number;
 	color: string;
+}
+
+export interface IDeepLinkQueryParams {
+	nonce: string | null;
+	donation_account_name: string;
+	donation_account_address: string;
+	user: string;
+	network: WidyNetwork;
 }
 
 export type MatchId = string;

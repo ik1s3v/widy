@@ -4,21 +4,20 @@ use anchor_client::{
 };
 use anchor_lang::prelude::*;
 use anchor_lang::{AnchorDeserialize, AnchorSerialize};
-use entity::service::{ServiceAuth, ServiceType, WidySolAuth};
-use serde::Deserialize;
+use entity::service::{ServiceAuth, ServiceType, WidyAuth};
+use serde::{Deserialize, Serialize};
 use serde_qs;
 use std::{
     env,
     sync::{Arc, Mutex},
 };
 use tauri::{AppHandle, Manager};
-use tauri_plugin_deep_link::DeepLinkExt;
 use tokio::sync::broadcast;
 
 use crate::{
     enums::AppEvent,
     repositories::ServicesRepository,
-    services::{DatabaseService, EventMessage, WebSocketBroadcaster},
+    services::{DatabaseService, DeepLinkHandler, EventMessage, WebSocketBroadcaster},
     utils::on_new_donation,
 };
 
@@ -34,17 +33,99 @@ pub enum WidyProgramEvent {
     Donation(DonationEvent),
 }
 
-#[derive(Debug, Deserialize)]
-struct DeepLinkQueryParams {
-    nonce: String,
-    donation_account_name: String,
-    user: String,
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[serde(rename_all = "lowercase")]
+pub enum WidyNetwork {
+    Ton,
+    Sol,
 }
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+pub struct DeepLinkQueryParams {
+    pub nonce: String,
+    pub donation_account_name: String,
+    pub donation_account_address: String,
+    pub user: String,
+    pub network: WidyNetwork,
+}
+
 pub struct WidySolService {
     pub nonce: Arc<Mutex<Option<String>>>,
     sign_out_sender: broadcast::Sender<()>,
 }
+impl DeepLinkHandler for WidySolService {
+    fn can_handle(&self, url: &url::Url) -> bool {
+        let Some(query) = url.query() else {
+            return false;
+        };
+        let Ok(query_params) = serde_qs::from_str::<DeepLinkQueryParams>(query) else {
+            return false;
+        };
 
+        url.host_str() == Some("create-donation-account")
+            && query_params.network == WidyNetwork::Sol
+    }
+
+    fn handle(&self, url: &url::Url, app: &AppHandle) {
+        let Some(query) = url.query() else {
+            return;
+        };
+
+        let Ok(query_params) = serde_qs::from_str::<DeepLinkQueryParams>(query) else {
+            ::log::error!("Failed to parse deep link query params");
+            return;
+        };
+
+        let nonce: Arc<Mutex<Option<String>>> = self.nonce.clone();
+
+        let is_nonce_valid = {
+            let mut nonce_guard = nonce.lock().unwrap();
+            if nonce_guard.as_ref() == Some(&query_params.nonce) {
+                *nonce_guard = None;
+                true
+            } else {
+                false
+            }
+        };
+
+        if !is_nonce_valid {
+            return;
+        }
+
+        let app_clone = app.clone();
+
+        tauri::async_runtime::spawn(async move {
+            let widy_sol_service = app_clone.state::<Arc<WidySolService>>();
+            let database_service = app_clone.state::<DatabaseService>();
+            let websocket_broadcaster = app_clone.state::<WebSocketBroadcaster>();
+
+            let _ = database_service
+                .update_service(entity::service::Model {
+                    id: ServiceType::WidySol,
+                    auth: Some(ServiceAuth::Widy(WidyAuth {
+                        donation_account_name: query_params.donation_account_name.clone(),
+                        user: query_params.user.clone(),
+                        donation_account_address: query_params.donation_account_address.clone(),
+                    })),
+                    settings: None,
+                    authorized: true,
+                })
+                .await;
+
+            if let Err(e) = widy_sol_service.connect(&app_clone).await {
+                ::log::error!("Service connection error: {}", e);
+                return;
+            }
+
+            websocket_broadcaster
+                .broadcast_event_message(&EventMessage {
+                    event: AppEvent::CreateDonationAccount,
+                    data: query_params,
+                })
+                .await;
+        });
+    }
+}
 impl WidySolService {
     pub fn new() -> Self {
         let (tx, _) = broadcast::channel(1);
@@ -52,70 +133,6 @@ impl WidySolService {
             nonce: Arc::new(Mutex::new(None)),
             sign_out_sender: tx,
         }
-    }
-    pub fn on_deep_link(&self, app: &AppHandle) {
-        let nonce: Arc<Mutex<Option<String>>> = self.nonce.clone();
-        let app_clone = app.clone();
-        app.deep_link().on_open_url(move |event| {
-            for url in event.urls() {
-                if url.host_str() != Some("create-donation-account") {
-                    return;
-                }
-
-                let Some(query) = url.query() else { return };
-
-                let Ok(query_params) = serde_qs::from_str::<DeepLinkQueryParams>(query) else {
-                    ::log::error!("Failed to parse deep link query params");
-                    return;
-                };
-
-                let is_nonce_valid = {
-                    let mut nonce_guard = nonce.lock().unwrap();
-                    if nonce_guard.as_ref() == Some(&query_params.nonce) {
-                        *nonce_guard = None;
-                        true
-                    } else {
-                        false
-                    }
-                };
-
-                if !is_nonce_valid {
-                    return;
-                }
-
-                let app_clone = app_clone.clone();
-
-                tauri::async_runtime::spawn(async move {
-                    let widy_sol_service = app_clone.state::<WidySolService>();
-                    let database_service = app_clone.state::<DatabaseService>();
-                    let websocket_broadcaster = app_clone.state::<WebSocketBroadcaster>();
-
-                    let _ = database_service
-                        .update_service(entity::service::Model {
-                            id: ServiceType::WidySol,
-                            auth: Some(ServiceAuth::WidySol(WidySolAuth {
-                                donation_account_name: query_params.donation_account_name.clone(),
-                                user: query_params.user,
-                            })),
-                            settings: None,
-                            authorized: true,
-                        })
-                        .await;
-
-                    if let Err(e) = widy_sol_service.connect(&app_clone).await {
-                        ::log::error!("Service connection error: {}", e);
-                        return;
-                    }
-
-                    websocket_broadcaster
-                        .broadcast_event_message(&EventMessage {
-                            event: AppEvent::CreateDonationAccount,
-                            data: query_params.donation_account_name,
-                        })
-                        .await;
-                });
-            }
-        });
     }
 
     pub async fn connect(&self, app: &AppHandle) -> core::result::Result<(), String> {
@@ -125,7 +142,7 @@ impl WidySolService {
             .await?;
         if let Some(entity::service::Model {
             authorized: true,
-            auth: Some(ServiceAuth::WidySol(auth)),
+            auth: Some(ServiceAuth::Widy(auth)),
             ..
         }) = service
         {
@@ -143,7 +160,7 @@ impl WidySolService {
         app: AppHandle,
         user: String,
     ) -> core::result::Result<(), Box<dyn std::error::Error>> {
-        let widy_sol_service = app.state::<WidySolService>();
+        let widy_sol_service = app.state::<Arc<WidySolService>>();
         let mut sign_out_receiver = widy_sol_service.sign_out_sender.subscribe();
         let payer = Keypair::new();
         #[cfg(debug_assertions)]
