@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, type SxProps, type Theme } from "@mui/material";
 import { openUrl } from "@tauri-apps/plugin-opener";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -16,9 +16,11 @@ import getCreateDonationAccountUrl from "../../../helpers/getCreateDonationAccou
 const CreateDonationAccount = ({
 	isNavigate = true,
 	network,
+	sx,
 }: {
 	isNavigate?: boolean;
 	network: WidyNetwork;
+	sx?: SxProps<Theme>;
 }) => {
 	const { t } = useTranslation();
 	const [isPending, setIsPending] = useState(false);
@@ -62,6 +64,7 @@ const CreateDonationAccount = ({
 	]);
 	return (
 		<Button
+			sx={sx}
 			variant="contained"
 			disabled={isPending}
 			onClick={async () => {

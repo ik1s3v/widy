@@ -4,9 +4,11 @@ import { Box, IconButton } from "@mui/material";
 const WidgetUrl = ({
 	widgetUrl,
 	text,
+	color,
 }: {
 	widgetUrl: string;
 	text: string;
+	color?: string;
 }) => {
 	return (
 		<div
@@ -20,7 +22,7 @@ const WidgetUrl = ({
 			<span>{text}:</span>
 			<Box
 				sx={(theme) => ({
-					color: theme.palette.primary.main,
+					color: color ?? theme.palette.primary.main,
 				})}
 			>
 				{widgetUrl}

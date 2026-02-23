@@ -15,6 +15,7 @@ use tauri::{AppHandle, Manager};
 use tokio::sync::broadcast;
 
 use crate::{
+    constants::USDT_MULTIPLICATION,
     enums::AppEvent,
     repositories::ServicesRepository,
     services::{DatabaseService, DeepLinkHandler, EventMessage, WebSocketBroadcaster},
@@ -194,7 +195,7 @@ impl WidySolService {
                             ServiceType::WidySol,
                             name,
                             entity::settings::Currency::USD,
-                            amount as f64 / 1_000_000.00,
+                            amount as f64 / USDT_MULTIPLICATION,
                             message.clone(),
                             app,
                         )

@@ -359,8 +359,9 @@ export interface ITwitchIntegrationSettings {
 	rewards: ITwitchIntegrationReward[];
 }
 
-export interface IWidySolAuth {
+export interface IWidyAuth {
 	donation_account_name: string;
+	donation_account_address: string;
 	user: string;
 }
 

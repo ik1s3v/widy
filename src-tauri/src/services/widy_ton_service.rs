@@ -1,24 +1,57 @@
-use std::{
-    sync::{Arc, Mutex},
-    time::Duration,
-};
-
-use entity::service::{ServiceAuth, ServiceType, WidyAuth};
-use eventsource_client::{self as es, Client};
-use futures::{Stream, StreamExt, TryStreamExt};
-use reqwest::blocking::Response;
-use serde::{Deserialize, Serialize};
-use tauri::{AppHandle, Manager};
-use tokio::{pin, sync::broadcast};
-
 use crate::{
+    constants::USDT_MULTIPLICATION,
     enums::AppEvent,
     repositories::ServicesRepository,
     services::{
         DatabaseService, DeepLinkHandler, DeepLinkQueryParams, EventMessage, WebSocketBroadcaster,
         WidyNetwork,
     },
+    utils::on_new_donation,
 };
+use entity::service::{ServiceAuth, ServiceType, WidyAuth};
+use eventsource_client::{self as es, Client};
+use futures::{StreamExt, TryStreamExt};
+use serde::Deserialize;
+use serde_json::Value;
+use std::{
+    sync::{Arc, Mutex},
+    time::Duration,
+};
+use tauri::{AppHandle, Manager};
+use tokio::{pin, sync::broadcast};
+use tonlib_core::cell::{BagOfCells, Cell};
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct TraceResponse {
+    pub transaction: Transaction,
+    pub interfaces: String,
+    pub emulated: bool,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct Transaction {
+    pub hash: String,
+    pub success: bool,
+    #[serde(default)]
+    pub out_msgs: Vec<Message>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct Message {
+    pub op_code: String,
+    pub raw_body: String,
+    #[serde(default)]
+    pub out_msgs: Vec<Message>,
+}
+#[derive(Debug, Clone, Deserialize)]
+pub struct TonDonationEvent {
+    pub op_code: u32,
+    pub query_id: u64,
+    pub amount: u64,
+    pub sender: String,
+    pub name: String,
+    pub message: String,
+}
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct TonTraceAccounts {
@@ -29,81 +62,6 @@ pub struct WidyTonService {
     http_client: reqwest::Client,
     pub nonce: Arc<Mutex<Option<String>>>,
     sign_out_sender: broadcast::Sender<()>,
-}
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Trace {
-    pub transaction: Transaction,
-    pub interfaces: Vec<String>,
-    pub children: Option<Vec<Trace>>,
-    pub emulated: Option<bool>,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Transaction {
-    pub hash: String,
-    pub lt: u64,
-    pub account: AccountAddress,
-    pub success: bool,
-    pub utime: i64,
-    pub orig_status: AccountStatus,
-    pub end_status: AccountStatus,
-    pub total_fees: i64,
-    pub end_balance: i64,
-    pub transaction_type: TransactionType,
-    pub state_update_old: String,
-    pub state_update_new: String,
-    pub in_msg: Option<Message>,
-    pub out_msgs: Vec<Message>,
-    pub block: String,
-    pub aborted: bool,
-    pub destroyed: bool,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AccountAddress {
-    pub address: String,
-    pub name: Option<String>,
-    pub is_scam: bool,
-    pub icon: Option<String>,
-    pub is_wallet: bool,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Message {
-    pub hash: String,
-    pub source: Option<AccountAddress>,
-    pub destination: Option<AccountAddress>,
-    pub value: i64, // nanoTON
-    pub fwd_fee: i64,
-    pub ihr_fee: i64,
-    pub created_lt: u64,
-    pub created_at: i64,
-    pub opcode: Option<String>,
-    pub ih_disabled: bool,
-    pub bounce: bool,
-    pub bounced: bool,
-    pub import_fee: i64,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "snake_case")]
-pub enum AccountStatus {
-    Uninit,
-    Active,
-    Frozen,
-    Nonexist,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "snake_case")]
-pub enum TransactionType {
-    TransOrd,
-    TransTickTock,
-    TransSplitPrepare,
-    TransSplitInstall,
-    TransMergePrepare,
-    TransMergeInstall,
-    TransStorage,
 }
 
 impl DeepLinkHandler for WidyTonService {
@@ -224,9 +182,10 @@ impl WidyTonService {
     ) -> core::result::Result<(), Box<dyn std::error::Error>> {
         let widy_ton_service = app.state::<Arc<WidyTonService>>();
         let mut sign_out_receiver = widy_ton_service.sign_out_sender.subscribe();
-        let client = es::ClientBuilder::for_url(
-            "https://testnet.tonapi.io/v2/sse/accounts/traces?accounts=ALL",
-        )
+        let client = es::ClientBuilder::for_url(&format!(
+            "https://tonapi.io/v2/sse/accounts/traces?accounts={}&operations=0x05a73567",
+            donation_account_address
+        ))
         .map_err(|e| {
             log::error!("{}", e.to_string());
         })
@@ -248,8 +207,26 @@ impl WidyTonService {
             match sse {
                 es::SSE::Event(ev) => {
                     if let Ok(trace) = serde_json::from_str::<TonTraceAccounts>(&ev.data) {
-                        println!("{:?}", trace.hash);
-                        // widy_ton_service.getTransaction(trace.hash).await;
+                        if let Some(transaction) =
+                            widy_ton_service.get_donation_transaction(trace.hash).await
+                        {
+                            if let Some(message) = transaction.out_msgs.first() {
+                                if let Ok(event) =
+                                    widy_ton_service.parse_donation_event(&message.raw_body)
+                                {
+                                    let _ = on_new_donation(
+                                        transaction.hash,
+                                        ServiceType::WidyTon,
+                                        event.name,
+                                        entity::settings::Currency::USD,
+                                        event.amount as f64 / USDT_MULTIPLICATION,
+                                        Some(event.message),
+                                        app.clone(),
+                                    )
+                                    .await;
+                                }
+                            }
+                        };
                     }
                 }
                 _ => {}
@@ -257,18 +234,54 @@ impl WidyTonService {
         }
         Ok(())
     }
+    fn parse_donation_event(&self, hex: &str) -> Result<TonDonationEvent, String> {
+        let boc_bytes = hex::decode(hex).map_err(|e| e.to_string())?;
+        let boc = BagOfCells::parse(&boc_bytes).map_err(|e| e.to_string())?;
 
-    async fn getTransaction(&self, hash: String) {
+        let root = boc.single_root().map_err(|e| e.to_string())?;
+        let mut parser = root.parser();
+
+        let op_code = parser.load_u32(32).map_err(|e| e.to_string())?;
+        let query_id = parser.load_u64(64).map_err(|e| e.to_string())?;
+        let amount = parser.load_coins().map_err(|e| e.to_string())?;
+        let sender = parser.load_address().map_err(|e| e.to_string())?;
+
+        let name_cell = parser.next_reference().map_err(|e| e.to_string())?;
+        let mut name_parser = name_cell.parser();
+
+        let bytes_len: usize = name_parser.remaining_bytes();
+        let name = name_parser
+            .load_utf8(bytes_len)
+            .map_err(|e| e.to_string())?;
+
+        let message_cell = parser.next_reference().map_err(|e| e.to_string())?;
+        let message = message_cell.load_snake_string()?;
+
+        Ok(TonDonationEvent {
+            op_code,
+            query_id,
+            amount: amount.to_u64_digits().first().cloned().unwrap_or(0),
+            sender: sender.to_string(),
+            message,
+            name,
+        })
+    }
+
+    async fn get_donation_transaction(&self, hash: String) -> Option<Transaction> {
         let result = self
             .http_client
             .get(format!("https://tonapi.io/v2/traces/{hash}"))
             .send()
             .await;
         if let Ok(response) = result {
-            if let Ok(trace) = response.json::<Trace>().await {
-                println!("{:?}", trace.transaction.success)
-            };
+            if let Ok(trace_response) = response.json::<Value>().await {
+                let raw_transaction = trace_response["children"][0]["children"][0]["children"][0]
+                    ["transaction"]
+                    .clone();
+                return serde_json::from_value::<Transaction>(raw_transaction).ok();
+            }
         }
+        None
     }
 
     pub async fn sign_out(&self, app: &AppHandle) -> core::result::Result<(), String> {
@@ -283,5 +296,30 @@ impl WidyTonService {
             .await?;
         let _ = self.sign_out_sender.send(());
         Ok(())
+    }
+}
+
+trait StringTail {
+    fn load_snake_string(&self) -> Result<String, String>;
+}
+impl StringTail for Cell {
+    fn load_snake_string(&self) -> Result<String, String> {
+        let mut bytes = Vec::new();
+        let mut current = self.clone();
+
+        loop {
+            let mut parser = current.parser();
+            let available = parser.remaining_bytes();
+            let chunk = parser.load_bytes(available).map_err(|e| e.to_string())?;
+            bytes.extend_from_slice(&chunk);
+
+            if current.references().is_empty() {
+                break;
+            }
+
+            current = (*current.references()[0]).clone();
+        }
+
+        Ok(String::from_utf8(bytes).map_err(|e| e.to_string())?)
     }
 }

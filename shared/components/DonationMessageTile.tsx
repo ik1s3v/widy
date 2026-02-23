@@ -70,7 +70,7 @@ const DonationMessageTile = ({
 						)}
 					</Box>
 
-					<div style={{ width: "100%", padding: 15 }}>
+					<div style={{ width: "100%", padding: 15, wordBreak: "break-word" }}>
 						<div style={{ float: "right" }}>
 							<MessageDate createdAt={message.created_at} />
 						</div>
@@ -87,7 +87,7 @@ const DonationMessageTile = ({
 								})}
 							</Typography>
 						</div>
-						<div style={{ wordBreak: "break-word" }}>
+						<div>
 							<span>{donation.text}</span>
 						</div>
 
