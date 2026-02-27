@@ -23300,7 +23300,7 @@ const Ks = ({ createdAt: e }) => {
             )
           }
         ),
-        /* @__PURE__ */ j.jsxs("div", { style: { width: "100%", padding: 15 }, children: [
+        /* @__PURE__ */ j.jsxs("div", { style: { width: "100%", padding: 15, wordBreak: "break-word" }, children: [
           /* @__PURE__ */ j.jsx("div", { style: { float: "right" }, children: /* @__PURE__ */ j.jsx(Ks, { createdAt: e.created_at }) }),
           /* @__PURE__ */ j.jsx("div", { children: /* @__PURE__ */ j.jsx(
             vu,
@@ -23315,7 +23315,7 @@ const Ks = ({ createdAt: e }) => {
               })
             }
           ) }),
-          /* @__PURE__ */ j.jsx("div", { style: { wordBreak: "break-word" }, children: /* @__PURE__ */ j.jsx("span", { children: u.text }) }),
+          /* @__PURE__ */ j.jsx("div", { children: /* @__PURE__ */ j.jsx("span", { children: u.text }) }),
           /* @__PURE__ */ j.jsxs(
             "div",
             {

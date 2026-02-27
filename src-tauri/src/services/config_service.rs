@@ -14,6 +14,7 @@ pub struct ConfigService {
     pub api_id: i32,
     pub api_hash: String,
     pub client_id: String,
+    pub widy_sol_program_id: String,
 }
 
 impl ConfigService {
@@ -24,6 +25,8 @@ impl ConfigService {
         let api_hash: String = env!("API_HASH").to_string();
         #[cfg(not(debug_assertions))]
         let client_id: String = env!("TWITCH_CLIENT_ID").to_string();
+        #[cfg(not(debug_assertions))]
+        let widy_sol_program_id: String = env!("WIDY_SOL_PROGRAM_ID").to_string();
 
         #[cfg(debug_assertions)]
         let api_id: i32 = std::env::var("API_ID")
@@ -35,6 +38,9 @@ impl ConfigService {
         #[cfg(debug_assertions)]
         let client_id: String =
             std::env::var("TWITCH_CLIENT_ID").expect("TWITCH_CLIENT_ID must be set");
+        #[cfg(debug_assertions)]
+        let widy_sol_program_id: String =
+            std::env::var("WIDY_SOL_PROGRAM_ID").expect("WIDY_SOL_PROGRAM_ID must be set");
 
         let db_path = app
             .path()
@@ -65,6 +71,7 @@ impl ConfigService {
             api_id,
             api_hash,
             client_id,
+            widy_sol_program_id,
         })
     }
 }

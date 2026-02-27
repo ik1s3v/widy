@@ -1,34 +1,34 @@
 {
 	"on": "تشغيل",
 	"off": "إيقاف",
-	"select": "اختيار",
-	"success": "نجاح",
+	"select": "اختر",
+	"success": "تم بنجاح",
 	"ok": "موافق",
 	"cancel": "إلغاء",
-	"sound_volume": "حجم الصوت",
+	"sound_volume": "مستوى الصوت",
 	"skip_media": "اختصار تخطي الوسائط",
 	"skip_alert": "اختصار تخطي التنبيه",
 	"authorization": {
-		"title": "التفويض",
+		"title": "تسجيل الدخول",
 		"code": "طلب الرمز",
 		"sign_in": "تسجيل الدخول",
 		"phone": "رقم الهاتف",
-		"telegram_code": "الرمز من تليغرام",
+		"telegram_code": "الرمز من تيليغرام",
 		"your_code": "رمزك",
 		"2fa_password": "كلمة مرور التحقق بخطوتين",
 		"password": "كلمة المرور"
 	},
 	"error": {
-		"wrong_lots_format": "تنسيق اللوتات خاطئ",
+		"wrong_lots_format": "صيغة اللوتات غير صحيحة",
 		"not_connected": "غير متصل",
 		"request_error": "خطأ في الطلب"
 	},
 	"updater": {
 		"title": "تحديث",
-		"description": "يتوفر إصدار جديد من التطبيق. هل تريد التحديث؟",
+		"description": "يتوفر إصدار جديد من التطبيق. هل تريد التحديث الآن؟",
 		"update": "تحديث",
-		"later": "لاحقاً",
-		"downloading": "جاري التنزيل..."
+		"later": "لاحقًا",
+		"downloading": "جارٍ التحميل..."
 	},
 	"media": {
 		"title": "الوسائط",
@@ -37,7 +37,7 @@
 		"tiktok": "تيك توك"
 	},
 	"integration": {
-		"tribute": "عرض رسائل التحية"
+		"tribute": "إظهار رسائل الشكر / التبرع"
 	},
 	"auction": {
 		"lots": "اللوتات",
@@ -46,17 +46,17 @@
 	},
 	"maption": {
 		"set_point": "تحديد النقطة",
-		"meter_price": "السعر للمتر الواحد",
+		"meter_price": "السعر لكل متر",
 		"amount": "المبلغ",
 		"finish": "إنهاء",
-		"lat_error": "يجب أن تكون خط العرض بين -90 و90",
-		"lng_error": "يجب أن تكون خط الطول بين -180 و180",
-		"rules": "لكي يتغير موقع المؤشر تلقائياً في الرسالة يجب أن تكون هناك كلمة واحدة فقط من:"
+		"lat_error": "خط العرض يجب أن يكون بين -90 و 90",
+		"lng_error": "خط الطول يجب أن يكون بين -180 و 180",
+		"rules": "لكي يتغير مؤشر الموقع تلقائيًا في الرسالة، يجب أن تحتوي الرسالة على كلمة واحدة فقط من:"
 	},
 	"media_settings": {
-		"enabled": "مفعل",
+		"enabled": "مفعّل",
 		"min_amount": "الحد الأدنى للمبلغ",
-		"video_volume": "حجم فيديو",
+		"video_volume": "مستوى صوت الفيديو",
 		"min_views": "الحد الأدنى للمشاهدات"
 	},
 	"dashboard": {
@@ -67,8 +67,8 @@
 		"media": "الوسائط",
 		"goals": "الأهداف",
 		"auction": "المزاد",
-		"maption": "خريطة النقاط",
-		"fighter": "المحارب"
+		"maption": "الخريطة",
+		"fighter": "المقاتل"
 	},
 	"messages": {
 		"title": "آخر الرسائل"
@@ -76,23 +76,23 @@
 	"message": {
 		"skip": "تخطي",
 		"replay": "إعادة تشغيل",
-		"donated": "{{user_name}} تبرع بـ {{amount}}{{currency}}",
-		"followed": "{{user_name}} تبع",
-		"subscribed": "{{user_name}} اشترك",
-		"gifted_subscriptions": "{{user_name}} أهدى {{total}} اشتراكات",
-		"raided_with": "{{user_name}} هاجم مع {{viewers}} مشاهدين"
+		"donated": "تبرع {{user_name}} بمبلغ {{amount}}{{currency}}",
+		"followed": "تابع {{user_name}}",
+		"subscribed": "اشترك {{user_name}}",
+		"gifted_subscriptions": "أهدى {{user_name}} {{total}} اشتراكات",
+		"raided_with": "قام {{user_name}} بغارة بـ {{viewers}} مشاهد"
 	},
 	"filter": {
 		"title": "تصفية الرسائل",
-		"exclude_donations": "استثناء التبرعات",
-		"exclude_follows": "استثناء المتابعين",
-		"exclude_subscriptions": "استثناء الاشتراكات",
-		"exclude_raids": "استثناء الهجمات"
+		"exclude_donations": "استبعاد التبرعات",
+		"exclude_follows": "استبعاد المتابعين",
+		"exclude_subscriptions": "استبعاد الاشتراكات",
+		"exclude_raids": "استبعاد الغارات"
 	},
 	"settings": {
 		"title": "الإعدادات",
-		"pause": "إيقاف رسائل التنبيه مؤقتاً",
-		"moderation_duration": "مدة الإشراف",
+		"pause": "إيقاف تنبيهات الرسائل مؤقتًا",
+		"moderation_duration": "مدة التصفية / الإشراف",
 		"black_list": "القائمة السوداء",
 		"remove_links": "إزالة الروابط",
 		"language": "اللغة",
@@ -101,7 +101,7 @@
 	},
 	"wheel": {
 		"normal": "عادي",
-		"dropout": "تسرب",
+		"dropout": "إقصاء",
 		"spin": "دوران",
 		"speed": "سرعة العجلة"
 	},
@@ -114,17 +114,17 @@
 		"add_timex2": "إضافة وقت ×2"
 	},
 	"fighter": {
-		"title": "المحارب",
-		"match": "المباراة",
+		"title": "المقاتل",
+		"match": "مباراة",
 		"final": "النهائي",
-		"game": "اللعبة",
+		"game": "لعبة",
 		"cancel": "إلغاء اللعبة",
 		"winner": "الفائز",
 		"settings": "الإعدادات",
 		"create_game": "إنشاء لعبة من اللوتات",
 		"start": "بدء",
-		"pause": "إيقاف مؤقت",
-		"rematch": "إعادة المباراة",
+		"pause": "إيقاف",
+		"rematch": "مباراة إعادة",
 		"resume": "استئناف"
 	},
 	"lot": {
@@ -145,14 +145,14 @@
 		"total": "الإجمالي"
 	},
 	"auction_settings": {
-		"leader_change": "تغيير القائد",
+		"leader_change": "تغيير المتصدر",
 		"new_lot": "لوت جديد",
 		"new_donation": "تبرع جديد",
-		"show_odds": "عرض الاحتمالات",
-		"show_total_sum": "عرض المجموع الكلي",
-		"greater_timer_adding_time": "إضافة وقت للمؤقت عند تجاوز",
+		"show_odds": "إظهار الاحتمالات",
+		"show_total_sum": "إظهار المبلغ الإجمالي",
+		"greater_timer_adding_time": "إضافة وقت أكبر للمؤقت",
 		"not_add_time_if": "عدم إضافة وقت إذا",
-		"adding_time": "الوقت"
+		"adding_time": "الوقت المضاف"
 	},
 	"lots_options": {
 		"import_lots": "استيراد اللوتات",
@@ -168,22 +168,29 @@
 	},
 	"services": {
 		"title": "الخدمات",
-		"tribute": "التحية",
+		"tribute": "التبرع / الشكر",
 		"streamelements": "ستريم إليمنتس",
-		"connect": "الاتصال",
+		"connect": "ربط",
 		"integrations": "التكاملات",
 		"sign_out": "تسجيل الخروج",
 		"confirm_sign_out": "هل أنت متأكد من تسجيل الخروج من هذه الخدمة؟"
 	},
 	"twitch": {
-		"device_code_expired": "انتهت صلاحية رمز الجهاز. يرجى المحاولة مرة أخرى.",
+		"device_code_expired": "انتهت صلاحية رمز الجهاز. حاول مرة أخرى.",
 		"user_code": "رمز المستخدم",
-		"authorize_with_code": "التفويض برمز",
+		"authorize_with_code": "التفويض باستخدام الرمز",
 		"waiting_authorization": "في انتظار التفويض..."
+	},
+	"widy": {
+		"donation_account_name": "اسم حساب التبرعات",
+		"donation_url": "رابط التبرع",
+		"create_donation_account": "إنشاء حساب تبرعات Widy",
+		"connect_to_existing_account": "ربط بحساب موجود",
+		"create_donation_account_pending": "جارٍ إنشاء حساب التبرعات..."
 	},
 	"twitch_service_settings": {
 		"title": "إعدادات تويتش",
-		"points_currency_ratio": "نسبة النقاط إلى العملة",
+		"points_currency_ratio": "نسبة تحويل النقاط إلى عملة",
 		"rewards_name": "اسم المكافآت",
 		"rewards_list": "قائمة المكافآت",
 		"add_reward": "إضافة مكافأة",
@@ -193,12 +200,12 @@
 	"alert": {
 		"image": "الصورة",
 		"audio": "الصوت",
-		"view": "عرض",
+		"view": "العرض",
 		"title": "العنوان",
 		"message": "الرسالة",
 		"test_name": "اختبار",
-		"test_text": "هذا تنبيه اختباري!",
-		"configure": "تهيئة",
+		"test_text": "هذا تنبيه تجريبي!",
+		"configure": "إعداد",
 		"test": "اختبار",
 		"add_new_variant": "إضافة متغير جديد",
 		"new_variant": "متغير جديد",
@@ -208,7 +215,7 @@
 		"variation_condition": "شرط المتغير",
 		"group": "المجموعة",
 		"Random": "عشوائي",
-		"AmountIsGreater": "المبلغ أكبر",
+		"AmountIsGreater": "المبلغ أكبر من",
 		"AmountIsEqual": "المبلغ يساوي",
 		"delete": "حذف",
 		"sure_delete": "هل أنت متأكد من حذف هذا المتغير؟",
@@ -216,7 +223,7 @@
 		"Donation": "تبرع",
 		"Subscription": "اشتراك",
 		"Follow": "متابعة",
-		"Raid": "هجوم"
+		"Raid": "غارة"
 	},
 	"general": "عام",
 	"goals": {
@@ -230,13 +237,13 @@
 		"elements": "العناصر",
 		"progress": "التقدم",
 		"goal_title": "عنوان الهدف",
-		"amount_raise": "المبلغ المراد جمعه",
-		"start_raising": "البدء من",
+		"amount_raise": "المبلغ المطلوب جمعه",
+		"start_raising": "البدء بالجمع من",
 		"end_date": "تاريخ انتهاء الهدف",
 		"bar_height": "ارتفاع الشريط",
 		"rounding_radius": "نصف قطر التقريب",
 		"bar_stroke_thickness": "سمك حدود الشريط",
-		"background_bar_color": "لون شريط الخلفية",
+		"background_bar_color": "لون الشريط الخلفي",
 		"progress_bar_color": "لون شريط التقدم",
 		"goal_progress_bar": "شريط تقدم الهدف",
 		"progress_bar_layout": "تخطيط شريط التقدم",
@@ -245,19 +252,19 @@
 		"widget_background": "خلفية الويدجت",
 		"background_color": "لون الخلفية",
 		"OnTop": "في الأعلى",
-		"Inside": "داخل",
+		"Inside": "داخل الشريط",
 		"Below": "أسفل",
 		"DoNotDisplay": "عدم العرض",
 		"title": "العنوان",
 		"limits": "الحدود",
-		"raised": "تم جمعه",
+		"raised": "تم جمع",
 		"days_left": "الأيام المتبقية",
 		"finish_goal": "إنهاء الهدف",
 		"sure_finish": "هل أنت متأكد من إنهاء هذا الهدف؟",
 		"Donation": "تبرع",
 		"TwitchSubscription": "اشتراك تويتش",
 		"TwitchFollow": "متابعة تويتش",
-		"goal_not_finished": "لديك هدف غير منتهٍ من هذا النوع."
+		"goal_not_finished": "لا يزال لديك هدف من هذا النوع غير مكتمل."
 	},
 	"save": "حفظ",
 	"back": "رجوع",
@@ -265,17 +272,17 @@
 		"copy": "نسخ",
 		"launch": "تشغيل",
 		"url": "رابط الويدجت",
-		"obs_dock_url": "رابط لوحة OBS"
+		"obs_dock_url": "رابط OBS Dock"
 	},
 	"view": {
-		"top": "صورة أعلى، نص أسفل",
-		"bottom": "صورة أسفل، نص أعلى",
-		"left": "صورة يسار، نص يمين",
-		"right": "صورة يمين، نص يسار",
-		"overlay": "نص فوق الصورة"
+		"top": "الصورة أعلى، النص أسفل",
+		"bottom": "الصورة أسفل، النص أعلى",
+		"left": "الصورة يسارًا، النص يمينًا",
+		"right": "الصورة يمينًا، النص يسارًا",
+		"overlay": "النص فوق الصورة"
 	},
 	"image": {
-		"show": "عرض الصورة"
+		"show": "إظهار الصورة"
 	},
 	"text": {
 		"font": "الخط",
@@ -283,13 +290,13 @@
 		"text_color": "لون النص",
 		"bold": "غامق",
 		"italics": "مائل",
-		"underline": "تحته خط",
+		"underline": "تسطير",
 		"transformation": "التحويل",
 		"letter_spacing": "تباعد الحروف",
 		"word_spacing": "تباعد الكلمات",
 		"horizontal_alignment": "المحاذاة الأفقية",
-		"vertical_alignment": "المحاذاة الرأسية",
-		"text_preview": "هذا معاينة!",
+		"vertical_alignment": "المحاذاة العمودية",
+		"text_preview": "هذا نص معاينة!",
 		"name": "الاسم"
 	},
 	"audio": {

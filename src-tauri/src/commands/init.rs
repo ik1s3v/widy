@@ -62,7 +62,7 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     let media_service = MediaService::new();
     app.manage(media_service);
 
-    let widy_sol_service = Arc::new(WidySolService::new());
+    let widy_sol_service = Arc::new(WidySolService::new(&config_service.widy_sol_program_id));
     widy_sol_service.connect(&app).await?;
     app.manage(widy_sol_service.clone());
 

@@ -17,6 +17,12 @@
 				},
 				{
 					"url": "https://widy.fun/create-donation-account?nonce=*"
+				},
+				{
+					"url": "https://ton.widy.fun/create-donation-account?nonce=*"
+				},
+				{
+					"url": "https://sol.widy.fun/create-donation-account?nonce=*"
 				}
 			]
 		},

@@ -2,12 +2,12 @@
 	"on": "Вкл",
 	"off": "Выкл",
 	"select": "Выбрать",
-	"success": "Успех",
+	"success": "Успешно",
 	"ok": "ОК",
 	"cancel": "Отмена",
 	"sound_volume": "Громкость звука",
-	"skip_media": "Пропустить медиа (горячая клавиша)",
-	"skip_alert": "Пропустить алерт (горячая клавиша)",
+	"skip_media": "Сокращение — пропустить медиа",
+	"skip_alert": "Сокращение — пропустить алерт",
 	"authorization": {
 		"title": "Авторизация",
 		"code": "Запросить код",
@@ -32,12 +32,12 @@
 	},
 	"media": {
 		"title": "Медиа",
-		"youtube": "Youtube",
+		"youtube": "YouTube",
 		"twitch": "Twitch",
-		"tiktok": "Tiktok"
+		"tiktok": "TikTok"
 	},
 	"integration": {
-		"tribute": "Показывать сообщения трибьюта"
+		"tribute": "Показывать сообщения трибьютов"
 	},
 	"auction": {
 		"lots": "Лоты",
@@ -48,10 +48,10 @@
 		"set_point": "Установить точку",
 		"meter_price": "Цена за 1 метр",
 		"amount": "Сумма",
-		"finish": "Завершить",
-		"lat_error": "Широта должна быть между -90 и 90",
-		"lng_error": "Долгота должна быть между -180 и 180",
-		"rules": "Чтобы указатель автоматически менял позицию в сообщении, в нём должно быть только одно слово из:"
+		"finish": "Финиш",
+		"lat_error": "Широта должна быть от -90 до 90",
+		"lng_error": "Долгота должна быть от -180 до 180",
+		"rules": "Чтобы указатель автоматически менял позицию в сообщении, должно быть только одно слово из:"
 	},
 	"media_settings": {
 		"enabled": "Включено",
@@ -63,11 +63,11 @@
 		"messages": "Сообщения",
 		"settings": "Настройки",
 		"services": "Сервисы",
-		"alerts": "Алерты",
+		"alerts": "Алерт",
 		"media": "Медиа",
 		"goals": "Цели",
 		"auction": "Аукцион",
-		"maption": "Maption",
+		"maption": "Маптон",
 		"fighter": "Боец"
 	},
 	"messages": {
@@ -76,27 +76,27 @@
 	"message": {
 		"skip": "Пропустить",
 		"replay": "Повторить",
-		"donated": "{{user_name}} пожертвовал {{amount}}{{currency}}",
+		"donated": "{{user_name}} задонатил {{amount}}{{currency}}",
 		"followed": "{{user_name}} подписался",
-		"subscribed": "{{user_name}} оформил подписку",
+		"subscribed": "{{user_name}} подписался",
 		"gifted_subscriptions": "{{user_name}} подарил {{total}} подписок",
-		"raided_with": "{{user_name}} рейднул с {{viewers}} зрителями"
+		"raided_with": "{{user_name}} зарейдил с {{viewers}} зрителями"
 	},
 	"filter": {
 		"title": "Фильтр сообщений",
 		"exclude_donations": "Исключить донаты",
-		"exclude_follows": "Исключить фоллоу",
+		"exclude_follows": "Исключить подписки (follow)",
 		"exclude_subscriptions": "Исключить подписки",
 		"exclude_raids": "Исключить рейды"
 	},
 	"settings": {
 		"title": "Настройки",
-		"pause": "Приостановить сообщения алертов",
+		"pause": "Пауза алертов",
 		"moderation_duration": "Длительность модерации",
 		"black_list": "Чёрный список",
 		"remove_links": "Удалять ссылки",
 		"language": "Язык",
-		"sec": "Сек",
+		"sec": "сек",
 		"currency": "Валюта"
 	},
 	"wheel": {
@@ -124,7 +124,7 @@
 		"create_game": "Создать игру из лотов",
 		"start": "Старт",
 		"pause": "Пауза",
-		"rematch": "Реванш",
+		"rematch": "Рематч",
 		"resume": "Продолжить"
 	},
 	"lot": {
@@ -140,7 +140,7 @@
 	},
 	"lots": {
 		"add": "Добавить",
-		"new_lot_name": "Новое название лота",
+		"new_lot_name": "Название нового лота",
 		"search": "Поиск лота",
 		"total": "Итого"
 	},
@@ -148,9 +148,9 @@
 		"leader_change": "Смена лидера",
 		"new_lot": "Новый лот",
 		"new_donation": "Новый донат",
-		"show_odds": "Показывать шансы",
+		"show_odds": "Показывать коэффициенты",
 		"show_total_sum": "Показывать общую сумму",
-		"greater_timer_adding_time": "Добавлять время к таймеру при превышении",
+		"greater_timer_adding_time": "Время добавления при превышении",
 		"not_add_time_if": "Не добавлять время, если",
 		"adding_time": "Время"
 	},
@@ -163,7 +163,7 @@
 		"add_players": "Добавить игроков"
 	},
 	"alerts": {
-		"title": "Алерты",
+		"title": "Алерт",
 		"group": "Группа"
 	},
 	"services": {
@@ -176,14 +176,21 @@
 		"confirm_sign_out": "Вы уверены, что хотите выйти из этого сервиса?"
 	},
 	"twitch": {
-		"device_code_expired": "Код устройства истёк. Попробуйте ещё раз.",
+		"device_code_expired": "Код устройства истёк. Попробуйте снова.",
 		"user_code": "Код пользователя",
-		"authorize_with_code": "Авторизовать с кодом",
+		"authorize_with_code": "Авторизоваться по коду",
 		"waiting_authorization": "Ожидание авторизации..."
+	},
+	"widy": {
+		"donation_account_name": "Название донат-аккаунта",
+		"donation_url": "Ссылка на донаты",
+		"create_donation_account": "Создать донат-аккаунт Widy",
+		"connect_to_existing_account": "Подключиться к существующему аккаунту",
+		"create_donation_account_pending": "Создание донат-аккаунта..."
 	},
 	"twitch_service_settings": {
 		"title": "Настройки Twitch",
-		"points_currency_ratio": "Соотношение очков и валюты",
+		"points_currency_ratio": "Соотношение поинтов к валюте",
 		"rewards_name": "Название наград",
 		"rewards_list": "Список наград",
 		"add_reward": "Добавить награду",
@@ -199,15 +206,15 @@
 		"test_name": "Тест",
 		"test_text": "Это тестовый алерт!",
 		"configure": "Настроить",
-		"test": "Тестировать",
+		"test": "Тест",
 		"add_new_variant": "Добавить новый вариант",
 		"new_variant": "Новый вариант",
-		"variant_title": "Заголовок варианта",
+		"variant_title": "Название варианта",
 		"variant_group": "Группа варианта",
 		"status": "Статус",
 		"variation_condition": "Условие вариации",
 		"group": "Группа",
-		"Random": "Случайно",
+		"Random": "Случайный",
 		"AmountIsGreater": "Сумма больше",
 		"AmountIsEqual": "Сумма равна",
 		"delete": "Удалить",
@@ -215,7 +222,7 @@
 		"type": "Тип",
 		"Donation": "Донат",
 		"Subscription": "Подписка",
-		"Follow": "Фоллоу",
+		"Follow": "Фоллов",
 		"Raid": "Рейд"
 	},
 	"general": "Общие",
@@ -229,8 +236,8 @@
 		"type": "Тип",
 		"elements": "Элементы",
 		"progress": "Прогресс",
-		"goal_title": "Заголовок цели",
-		"amount_raise": "Сумма к сбору",
+		"goal_title": "Название цели",
+		"amount_raise": "Собрать сумму",
 		"start_raising": "Начать сбор с",
 		"end_date": "Дата окончания цели",
 		"bar_height": "Высота полосы",
@@ -241,22 +248,22 @@
 		"goal_progress_bar": "Полоса прогресса цели",
 		"progress_bar_layout": "Расположение полосы прогресса",
 		"remaining_time": "Оставшееся время",
-		"goal_amount_limits": "Ограничения суммы цели",
+		"goal_amount_limits": "Лимиты суммы цели",
 		"widget_background": "Фон виджета",
 		"background_color": "Цвет фона",
 		"OnTop": "Сверху",
 		"Inside": "Внутри",
 		"Below": "Снизу",
-		"DoNotDisplay": "Не показывать",
+		"DoNotDisplay": "Не отображать",
 		"title": "Заголовок",
-		"limits": "лимиты",
+		"limits": "Лимиты",
 		"raised": "Собрано",
-		"days_left": "Дней осталось",
+		"days_left": "Осталось дней",
 		"finish_goal": "Завершить цель",
 		"sure_finish": "Вы уверены, что хотите завершить эту цель?",
 		"Donation": "Донат",
-		"TwitchSubscription": "Подписка Twitch",
-		"TwitchFollow": "Фоллоу Twitch",
+		"TwitchSubscription": "Twitch Подписка",
+		"TwitchFollow": "Twitch Фоллов",
 		"goal_not_finished": "У вас есть незавершённая цель этого типа."
 	},
 	"save": "Сохранить",
@@ -264,8 +271,8 @@
 	"widget": {
 		"copy": "Копировать",
 		"launch": "Запустить",
-		"url": "URL виджета",
-		"obs_dock_url": "URL панели OBS"
+		"url": "Ссылка на виджет",
+		"obs_dock_url": "Ссылка для OBS Dock"
 	},
 	"view": {
 		"top": "Изображение сверху, текст снизу",
@@ -275,7 +282,7 @@
 		"overlay": "Текст поверх изображения"
 	},
 	"image": {
-		"show": "Показать изображение"
+		"show": "Показывать изображение"
 	},
 	"text": {
 		"font": "Шрифт",
@@ -283,14 +290,14 @@
 		"text_color": "Цвет текста",
 		"bold": "Жирный",
 		"italics": "Курсив",
-		"underline": "Подчёркнутый",
+		"underline": "Подчёркивание",
 		"transformation": "Трансформация",
-		"letter_spacing": "Интервал между буквами",
-		"word_spacing": "Интервал между словами",
+		"letter_spacing": "Межбуквенный интервал",
+		"word_spacing": "Межсловный интервал",
 		"horizontal_alignment": "Горизонтальное выравнивание",
 		"vertical_alignment": "Вертикальное выравнивание",
 		"text_preview": "Это предпросмотр!",
-		"name": "Имя"
+		"name": "Название"
 	},
 	"audio": {
 		"play": "Воспроизвести",

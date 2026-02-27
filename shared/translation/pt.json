@@ -3,7 +3,7 @@
 	"off": "Desligado",
 	"select": "Selecionar",
 	"success": "Sucesso",
-	"ok": "OK",
+	"ok": "Ok",
 	"cancel": "Cancelar",
 	"sound_volume": "Volume do som",
 	"skip_media": "Atalho pular mídia",
@@ -19,7 +19,7 @@
 		"password": "Senha"
 	},
 	"error": {
-		"wrong_lots_format": "Formato de lots incorreto",
+		"wrong_lots_format": "Formato de lotes inválido",
 		"not_connected": "Não conectado",
 		"request_error": "Erro na solicitação"
 	},
@@ -27,35 +27,35 @@
 		"title": "Atualização",
 		"description": "Uma nova versão do aplicativo está disponível. Deseja atualizar?",
 		"update": "Atualizar",
-		"later": "Depois",
+		"later": "Mais tarde",
 		"downloading": "Baixando..."
 	},
 	"media": {
 		"title": "Mídia",
-		"youtube": "Youtube",
+		"youtube": "YouTube",
 		"twitch": "Twitch",
-		"tiktok": "Tiktok"
+		"tiktok": "TikTok"
 	},
 	"integration": {
 		"tribute": "Mostrar mensagens de tributo"
 	},
 	"auction": {
-		"lots": "Lots",
+		"lots": "Lotes",
 		"wheel": "Roda",
 		"settings": "Configurações"
 	},
 	"maption": {
 		"set_point": "Definir ponto",
 		"meter_price": "Preço por 1 metro",
-		"amount": "Quantia",
-		"finish": "Concluir",
+		"amount": "Quantidade",
+		"finish": "Finalizar",
 		"lat_error": "A latitude deve estar entre -90 e 90",
 		"lng_error": "A longitude deve estar entre -180 e 180",
 		"rules": "Para que o ponteiro mude automaticamente de posição na mensagem, deve haver apenas uma palavra de:"
 	},
 	"media_settings": {
 		"enabled": "Ativado",
-		"min_amount": "Quantia mínima",
+		"min_amount": "Valor mínimo",
 		"video_volume": "Volume do vídeo",
 		"min_views": "Visualizações mínimas"
 	},
@@ -80,7 +80,7 @@
 		"followed": "{{user_name}} seguiu",
 		"subscribed": "{{user_name}} se inscreveu",
 		"gifted_subscriptions": "{{user_name}} presenteou {{total}} inscrições",
-		"raided_with": "{{user_name}} raidou com {{viewers}} espectadores"
+		"raided_with": "{{user_name}} realizou raid com {{viewers}} espectadores"
 	},
 	"filter": {
 		"title": "Filtrar mensagens",
@@ -101,7 +101,7 @@
 	},
 	"wheel": {
 		"normal": "Normal",
-		"dropout": "Dropout",
+		"dropout": "Eliminação",
 		"spin": "Girar",
 		"speed": "Velocidade da roda"
 	},
@@ -121,10 +121,10 @@
 		"cancel": "Cancelar jogo",
 		"winner": "Vencedor",
 		"settings": "Configurações",
-		"create_game": "Criar jogo a partir dos lots",
+		"create_game": "Criar jogo a partir dos lotes",
 		"start": "Iniciar",
 		"pause": "Pausar",
-		"rematch": "Revancha",
+		"rematch": "Revide",
 		"resume": "Retomar"
 	},
 	"lot": {
@@ -134,29 +134,29 @@
 	},
 	"bid": {
 		"delete": "Excluir",
-		"to_lot": "Para o lot",
+		"to_lot": "Para o lote",
 		"new": "Novo",
-		"add_to_random_slot": "Adicionar a lot aleatório"
+		"add_to_random_slot": "Adicionar a um lote aleatório"
 	},
 	"lots": {
 		"add": "Adicionar",
-		"new_lot_name": "Novo nome de lot",
-		"search": "Buscar lot",
+		"new_lot_name": "Nome do novo lote",
+		"search": "Buscar lote",
 		"total": "Total"
 	},
 	"auction_settings": {
 		"leader_change": "Mudança de líder",
-		"new_lot": "Novo lot",
+		"new_lot": "Novo lote",
 		"new_donation": "Nova doação",
 		"show_odds": "Mostrar probabilidades",
 		"show_total_sum": "Mostrar soma total",
-		"greater_timer_adding_time": "Adicionar tempo ao timer maior",
+		"greater_timer_adding_time": "Tempo adicional do timer maior",
 		"not_add_time_if": "Não adicionar tempo se",
 		"adding_time": "Tempo"
 	},
 	"lots_options": {
-		"import_lots": "Importar lots",
-		"clear_lots": "Limpar lots"
+		"import_lots": "Importar lotes",
+		"clear_lots": "Limpar lotes"
 	},
 	"auc_fighter_settings": {
 		"round_duration": "Duração da rodada",
@@ -173,17 +173,24 @@
 		"connect": "Conectar",
 		"integrations": "Integrações",
 		"sign_out": "Sair",
-		"confirm_sign_out": "Tem certeza de que deseja sair deste serviço?"
+		"confirm_sign_out": "Tem certeza que deseja sair deste serviço?"
 	},
 	"twitch": {
-		"device_code_expired": "Código do dispositivo expirou. Tente novamente.",
+		"device_code_expired": "Código do dispositivo expirado. Tente novamente.",
 		"user_code": "Código do usuário",
 		"authorize_with_code": "Autorizar com código",
 		"waiting_authorization": "Aguardando autorização..."
 	},
+	"widy": {
+		"donation_account_name": "Nome da conta de doação",
+		"donation_url": "URL de doação",
+		"create_donation_account": "Criar conta de doação Widy",
+		"connect_to_existing_account": "Conectar a uma conta existente",
+		"create_donation_account_pending": "Criando conta de doação..."
+	},
 	"twitch_service_settings": {
 		"title": "Configurações do Twitch",
-		"points_currency_ratio": "Relação pontos/moeda",
+		"points_currency_ratio": "Taxa de conversão pontos → moeda",
 		"rewards_name": "Nome das recompensas",
 		"rewards_list": "Lista de recompensas",
 		"add_reward": "Adicionar recompensa",
@@ -208,10 +215,10 @@
 		"variation_condition": "Condição da variação",
 		"group": "Grupo",
 		"Random": "Aleatório",
-		"AmountIsGreater": "Quantia é maior",
-		"AmountIsEqual": "Quantia é igual",
+		"AmountIsGreater": "Valor é maior que",
+		"AmountIsEqual": "Valor é igual a",
 		"delete": "Excluir",
-		"sure_delete": "Tem certeza de que deseja excluir esta variação?",
+		"sure_delete": "Tem certeza que deseja excluir esta variação?",
 		"type": "Tipo",
 		"Donation": "Doação",
 		"Subscription": "Inscrição",
@@ -225,26 +232,26 @@
 	},
 	"goal": {
 		"new": "Nova meta",
-		"goal": "Visualização",
+		"goal": "Visualizar",
 		"type": "Tipo",
 		"elements": "Elementos",
 		"progress": "Progresso",
 		"goal_title": "Título da meta",
-		"amount_raise": "Quantia a arrecadar",
-		"start_raising": "Iniciar arrecadação a partir de",
-		"end_date": "Data de término da meta",
+		"amount_raise": "Valor a arrecadar",
+		"start_raising": "Começar a arrecadar a partir de",
+		"end_date": "Data final da meta",
 		"bar_height": "Altura da barra",
 		"rounding_radius": "Raio de arredondamento",
-		"bar_stroke_thickness": "Espessura do contorno da barra",
+		"bar_stroke_thickness": "Espessura da borda da barra",
 		"background_bar_color": "Cor da barra de fundo",
 		"progress_bar_color": "Cor da barra de progresso",
 		"goal_progress_bar": "Barra de progresso da meta",
 		"progress_bar_layout": "Layout da barra de progresso",
 		"remaining_time": "Tempo restante",
-		"goal_amount_limits": "Limites de quantia da meta",
+		"goal_amount_limits": "Limites de valor da meta",
 		"widget_background": "Fundo do widget",
 		"background_color": "Cor de fundo",
-		"OnTop": "No topo",
+		"OnTop": "Acima",
 		"Inside": "Dentro",
 		"Below": "Abaixo",
 		"DoNotDisplay": "Não exibir",
@@ -252,27 +259,27 @@
 		"limits": "limites",
 		"raised": "Arrecadado",
 		"days_left": "Dias restantes",
-		"finish_goal": "Concluir meta",
-		"sure_finish": "Tem certeza de que deseja concluir esta meta?",
+		"finish_goal": "Finalizar meta",
+		"sure_finish": "Tem certeza que deseja finalizar esta meta?",
 		"Donation": "Doação",
 		"TwitchSubscription": "Inscrição Twitch",
 		"TwitchFollow": "Follow Twitch",
-		"goal_not_finished": "Você tem uma meta inacabada deste tipo."
+		"goal_not_finished": "Você possui uma meta deste tipo ainda não finalizada."
 	},
 	"save": "Salvar",
 	"back": "Voltar",
 	"widget": {
 		"copy": "Copiar",
-		"launch": "Iniciar",
+		"launch": "Abrir",
 		"url": "URL do widget",
-		"obs_dock_url": "URL do dock OBS"
+		"obs_dock_url": "URL do dock no OBS"
 	},
 	"view": {
-		"top": "Imagem no topo, texto abaixo",
-		"bottom": "Imagem abaixo, texto no topo",
+		"top": "Imagem acima, texto abaixo",
+		"bottom": "Imagem abaixo, texto acima",
 		"left": "Imagem à esquerda, texto à direita",
 		"right": "Imagem à direita, texto à esquerda",
-		"overlay": "Texto sobre a imagem"
+		"overlay": "Texto sobreposto na imagem"
 	},
 	"image": {
 		"show": "Mostrar imagem"
@@ -285,8 +292,8 @@
 		"italics": "Itálico",
 		"underline": "Sublinhado",
 		"transformation": "Transformação",
-		"letter_spacing": "Espaçamento de letras",
-		"word_spacing": "Espaçamento de palavras",
+		"letter_spacing": "Espaçamento entre letras",
+		"word_spacing": "Espaçamento entre palavras",
 		"horizontal_alignment": "Alinhamento horizontal",
 		"vertical_alignment": "Alinhamento vertical",
 		"text_preview": "Esta é uma pré-visualização!",

@@ -7,10 +7,7 @@ use anchor_lang::{AnchorDeserialize, AnchorSerialize};
 use entity::service::{ServiceAuth, ServiceType, WidyAuth};
 use serde::{Deserialize, Serialize};
 use serde_qs;
-use std::{
-    env,
-    sync::{Arc, Mutex},
-};
+use std::sync::{Arc, Mutex};
 use tauri::{AppHandle, Manager};
 use tokio::sync::broadcast;
 
@@ -28,7 +25,15 @@ pub struct DonationEvent {
     pub message: Option<String>,
     pub name: Option<String>,
     pub amount: u64,
+    pub donation_referral_amount: u64,
+    pub user_amount: u64,
+    pub user_referral_amount: u64,
+    pub fee_recipient_amount: u64,
     pub user: Pubkey,
+    pub sender: Pubkey,
+    pub fee_recipient: Pubkey,
+    pub donation_referral: Pubkey,
+    pub user_referral: Pubkey,
 }
 pub enum WidyProgramEvent {
     Donation(DonationEvent),
@@ -52,6 +57,7 @@ pub struct DeepLinkQueryParams {
 
 pub struct WidySolService {
     pub nonce: Arc<Mutex<Option<String>>>,
+    pub widy_sol_program_id: String,
     sign_out_sender: broadcast::Sender<()>,
 }
 impl DeepLinkHandler for WidySolService {
@@ -128,10 +134,11 @@ impl DeepLinkHandler for WidySolService {
     }
 }
 impl WidySolService {
-    pub fn new() -> Self {
+    pub fn new(widy_program_id: &String) -> Self {
         let (tx, _) = broadcast::channel(1);
         Self {
             nonce: Arc::new(Mutex::new(None)),
+            widy_sol_program_id: widy_program_id.clone(),
             sign_out_sender: tx,
         }
     }
@@ -170,10 +177,10 @@ impl WidySolService {
         let cluster = Cluster::Mainnet;
         let client =
             Client::new_with_options(cluster, Arc::new(payer), CommitmentConfig::finalized());
-        let widy_program_id = env::var("WIDY_PROGRAM_ID")?;
 
-        let program = client.program(Pubkey::from_str_const(&widy_program_id))?;
-
+        let program = client.program(Pubkey::from_str_const(
+            &widy_sol_service.widy_sol_program_id,
+        ))?;
         let subscription = program
             .on(move |ctx: &EventContext, event: DonationEvent| {
                 let app = app.clone();
@@ -204,6 +211,7 @@ impl WidySolService {
                 }
             })
             .await?;
+
         sign_out_receiver.recv().await.ok();
         subscription.unsubscribe().await;
         Ok(())

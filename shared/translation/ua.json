@@ -1,16 +1,16 @@
 {
-	"on": "Увімк",
-	"off": "Вимк",
-	"select": "Вибрати",
+	"on": "Увімкнено",
+	"off": "Вимкнено",
+	"select": "Обрати",
 	"success": "Успіх",
 	"ok": "OK",
 	"cancel": "Скасувати",
 	"sound_volume": "Гучність звуку",
-	"skip_media": "Пропустити медіа (гаряча клавіша)",
-	"skip_alert": "Пропустити алерт (гаряча клавіша)",
+	"skip_media": "Гаряча клавіша пропустити медіа",
+	"skip_alert": "Гаряча клавіша пропустити сповіщення",
 	"authorization": {
 		"title": "Авторизація",
-		"code": "Запросити код",
+		"code": "Запит коду",
 		"sign_in": "Увійти",
 		"phone": "Номер телефону",
 		"telegram_code": "Код з Telegram",
@@ -32,12 +32,12 @@
 	},
 	"media": {
 		"title": "Медіа",
-		"youtube": "Youtube",
+		"youtube": "YouTube",
 		"twitch": "Twitch",
-		"tiktok": "Tiktok"
+		"tiktok": "TikTok"
 	},
 	"integration": {
-		"tribute": "Показувати повідомлення тріб'юту"
+		"tribute": "Показувати повідомлення подяки"
 	},
 	"auction": {
 		"lots": "Лоти",
@@ -49,9 +49,9 @@
 		"meter_price": "Ціна за 1 метр",
 		"amount": "Сума",
 		"finish": "Завершити",
-		"lat_error": "Широта має бути між -90 та 90",
-		"lng_error": "Довгота має бути між -180 та 180",
-		"rules": "Щоб вказівник автоматично змінював позицію в повідомленні, у ньому має бути лише одне слово з:"
+		"lat_error": "Широта має бути від -90 до 90",
+		"lng_error": "Довгота має бути від -180 до 180",
+		"rules": "Щоб покажчик автоматично змінював позицію в повідомленні, має бути лише одне слово з:"
 	},
 	"media_settings": {
 		"enabled": "Увімкнено",
@@ -63,12 +63,12 @@
 		"messages": "Повідомлення",
 		"settings": "Налаштування",
 		"services": "Сервіси",
-		"alerts": "Алерти",
+		"alerts": "Сповіщення",
 		"media": "Медіа",
 		"goals": "Цілі",
 		"auction": "Аукціон",
 		"maption": "Maption",
-		"fighter": "Боєць"
+		"fighter": "Боець"
 	},
 	"messages": {
 		"title": "Останні повідомлення"
@@ -78,30 +78,30 @@
 		"replay": "Повторити",
 		"donated": "{{user_name}} задонатив {{amount}}{{currency}}",
 		"followed": "{{user_name}} підписався",
-		"subscribed": "{{user_name}} оформив підписку",
+		"subscribed": "{{user_name}} підписався",
 		"gifted_subscriptions": "{{user_name}} подарував {{total}} підписок",
-		"raided_with": "{{user_name}} рейднув з {{viewers}} глядачами"
+		"raided_with": "{{user_name}} здійснив рейд з {{viewers}} глядачами"
 	},
 	"filter": {
 		"title": "Фільтр повідомлень",
-		"exclude_donations": "Виключити донати",
-		"exclude_follows": "Виключити фолови",
-		"exclude_subscriptions": "Виключити підписки",
-		"exclude_raids": "Виключити рейди"
+		"exclude_donations": "Приховати донати",
+		"exclude_follows": "Приховати підписки",
+		"exclude_subscriptions": "Приховати підписки",
+		"exclude_raids": "Приховати рейди"
 	},
 	"settings": {
 		"title": "Налаштування",
-		"pause": "Призупинити повідомлення алертів",
+		"pause": "Призупинити сповіщення",
 		"moderation_duration": "Тривалість модерації",
 		"black_list": "Чорний список",
 		"remove_links": "Видаляти посилання",
 		"language": "Мова",
-		"sec": "Сек",
+		"sec": "сек",
 		"currency": "Валюта"
 	},
 	"wheel": {
 		"normal": "Звичайне",
-		"dropout": "Випадіння",
+		"dropout": "Вибування",
 		"spin": "Крутити",
 		"speed": "Швидкість колеса"
 	},
@@ -114,7 +114,7 @@
 		"add_timex2": "Додати час ×2"
 	},
 	"fighter": {
-		"title": "Боєць",
+		"title": "Боець",
 		"match": "Матч",
 		"final": "Фінал",
 		"game": "Гра",
@@ -124,7 +124,7 @@
 		"create_game": "Створити гру з лотів",
 		"start": "Старт",
 		"pause": "Пауза",
-		"rematch": "Реванш",
+		"rematch": "Рематч",
 		"resume": "Продовжити"
 	},
 	"lot": {
@@ -134,28 +134,28 @@
 	},
 	"bid": {
 		"delete": "Видалити",
-		"to_lot": "До лота",
+		"to_lot": "До лоту",
 		"new": "Новий",
-		"add_to_random_slot": "Додати до випадкового лота"
+		"add_to_random_slot": "Додати до випадкового лоту"
 	},
 	"lots": {
 		"add": "Додати",
-		"new_lot_name": "Нова назва лота",
-		"search": "Пошук лота",
+		"new_lot_name": "Назва нового лоту",
+		"search": "Пошук лоту",
 		"total": "Всього"
 	},
 	"auction_settings": {
 		"leader_change": "Зміна лідера",
 		"new_lot": "Новий лот",
 		"new_donation": "Новий донат",
-		"show_odds": "Показувати шанси",
+		"show_odds": "Показувати коефіцієнти",
 		"show_total_sum": "Показувати загальну суму",
-		"greater_timer_adding_time": "Додавати час до таймера при перевищенні",
+		"greater_timer_adding_time": "Більший таймер додавання часу",
 		"not_add_time_if": "Не додавати час, якщо",
 		"adding_time": "Час"
 	},
 	"lots_options": {
-		"import_lots": "Імпорт лотів",
+		"import_lots": "Імпортувати лоти",
 		"clear_lots": "Очистити лоти"
 	},
 	"auc_fighter_settings": {
@@ -163,12 +163,12 @@
 		"add_players": "Додати гравців"
 	},
 	"alerts": {
-		"title": "Алерти",
+		"title": "Сповіщення",
 		"group": "Група"
 	},
 	"services": {
 		"title": "Сервіси",
-		"tribute": "Тріб'ют",
+		"tribute": "Подяка",
 		"streamelements": "StreamElements",
 		"connect": "Підключити",
 		"integrations": "Інтеграції",
@@ -176,14 +176,21 @@
 		"confirm_sign_out": "Ви впевнені, що хочете вийти з цього сервісу?"
 	},
 	"twitch": {
-		"device_code_expired": "Код пристрою закінчився. Спробуйте ще раз.",
+		"device_code_expired": "Код пристрою прострочено. Спробуйте ще раз.",
 		"user_code": "Код користувача",
-		"authorize_with_code": "Авторизувати за кодом",
+		"authorize_with_code": "Авторизуватися за кодом",
 		"waiting_authorization": "Очікування авторизації..."
+	},
+	"widy": {
+		"donation_account_name": "Назва донат-акаунту",
+		"donation_url": "Посилання на донати",
+		"create_donation_account": "Створити Widy донат-акаунт",
+		"connect_to_existing_account": "Підключитися до існуючого акаунту",
+		"create_donation_account_pending": "Створення донат-акаунту..."
 	},
 	"twitch_service_settings": {
 		"title": "Налаштування Twitch",
-		"points_currency_ratio": "Співвідношення очок та валюти",
+		"points_currency_ratio": "Співвідношення балів до валюти",
 		"rewards_name": "Назва нагород",
 		"rewards_list": "Список нагород",
 		"add_reward": "Додати нагороду",
@@ -193,32 +200,32 @@
 	"alert": {
 		"image": "Зображення",
 		"audio": "Аудіо",
-		"view": "Вигляд",
+		"view": "Перегляд",
 		"title": "Заголовок",
 		"message": "Повідомлення",
 		"test_name": "Тест",
-		"test_text": "Це тестовий алерт!",
+		"test_text": "Це тестове сповіщення!",
 		"configure": "Налаштувати",
-		"test": "Тестувати",
+		"test": "Тест",
 		"add_new_variant": "Додати новий варіант",
 		"new_variant": "Новий варіант",
-		"variant_title": "Заголовок варіанта",
-		"variant_group": "Група варіанта",
+		"variant_title": "Назва варіанту",
+		"variant_group": "Група варіанту",
 		"status": "Статус",
 		"variation_condition": "Умова варіації",
 		"group": "Група",
-		"Random": "Випадково",
-		"AmountIsGreater": "Сума більша",
+		"Random": "Випадковий",
+		"AmountIsGreater": "Сума більша за",
 		"AmountIsEqual": "Сума дорівнює",
 		"delete": "Видалити",
 		"sure_delete": "Ви впевнені, що хочете видалити цей варіант?",
 		"type": "Тип",
 		"Donation": "Донат",
 		"Subscription": "Підписка",
-		"Follow": "Фоллоу",
+		"Follow": "Підписка (фолов)",
 		"Raid": "Рейд"
 	},
-	"general": "Загальні",
+	"general": "Загальне",
 	"goals": {
 		"title": "Цілі",
 		"create": "Створити нову ціль"
@@ -229,19 +236,19 @@
 		"type": "Тип",
 		"elements": "Елементи",
 		"progress": "Прогрес",
-		"goal_title": "Заголовок цілі",
-		"amount_raise": "Сума до збору",
+		"goal_title": "Назва цілі",
+		"amount_raise": "Сума для збору",
 		"start_raising": "Почати збір з",
 		"end_date": "Дата завершення цілі",
 		"bar_height": "Висота смуги",
 		"rounding_radius": "Радіус заокруглення",
-		"bar_stroke_thickness": "Товщина обведення смуги",
+		"bar_stroke_thickness": "Товщина обводки смуги",
 		"background_bar_color": "Колір фонової смуги",
 		"progress_bar_color": "Колір смуги прогресу",
 		"goal_progress_bar": "Смуга прогресу цілі",
 		"progress_bar_layout": "Розташування смуги прогресу",
-		"remaining_time": "Час, що залишився",
-		"goal_amount_limits": "Обмеження суми цілі",
+		"remaining_time": "Залишилось часу",
+		"goal_amount_limits": "Ліміти суми цілі",
 		"widget_background": "Фон віджета",
 		"background_color": "Колір фону",
 		"OnTop": "Зверху",
@@ -249,23 +256,23 @@
 		"Below": "Знизу",
 		"DoNotDisplay": "Не показувати",
 		"title": "Заголовок",
-		"limits": "ліміти",
+		"limits": "Ліміти",
 		"raised": "Зібрано",
-		"days_left": "Днів залишилось",
+		"days_left": "Залишилось днів",
 		"finish_goal": "Завершити ціль",
 		"sure_finish": "Ви впевнені, що хочете завершити цю ціль?",
 		"Donation": "Донат",
 		"TwitchSubscription": "Підписка Twitch",
-		"TwitchFollow": "Фоллоу Twitch",
+		"TwitchFollow": "Фоловер Twitch",
 		"goal_not_finished": "У вас є незавершена ціль цього типу."
 	},
 	"save": "Зберегти",
 	"back": "Назад",
 	"widget": {
-		"copy": "Копіювати",
+		"copy": "Скопіювати",
 		"launch": "Запустити",
-		"url": "URL віджета",
-		"obs_dock_url": "URL панелі OBS"
+		"url": "Посилання на віджет",
+		"obs_dock_url": "Посилання для OBS Dock"
 	},
 	"view": {
 		"top": "Зображення зверху, текст знизу",
@@ -285,12 +292,12 @@
 		"italics": "Курсив",
 		"underline": "Підкреслений",
 		"transformation": "Трансформація",
-		"letter_spacing": "Інтервал між літерами",
-		"word_spacing": "Інтервал між словами",
+		"letter_spacing": "Відстань між літерами",
+		"word_spacing": "Відстань між словами",
 		"horizontal_alignment": "Горизонтальне вирівнювання",
 		"vertical_alignment": "Вертикальне вирівнювання",
 		"text_preview": "Це попередній перегляд!",
-		"name": "Ім'я"
+		"name": "Назва"
 	},
 	"audio": {
 		"play": "Відтворити",

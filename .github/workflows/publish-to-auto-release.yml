@@ -74,10 +74,12 @@ jobs:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ""
           TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
+          VITE_WIDY_BASE_DOMAINE: ${{ secrets.VITE_WIDY_BASE_DOMAINE }}
+          WIDY_SOL_PROGRAM_ID: ${{ secrets.WIDY_SOL_PROGRAM_ID }}
         with:
           tagName: v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
           releaseName: "v__VERSION__"
-          releaseBody: "Add WidySol."
+          releaseBody: "Add WidySol and WidyTon services."
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
@@ -91,10 +93,12 @@ jobs:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ""
           TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
+          VITE_WIDY_BASE_DOMAINE: ${{ secrets.VITE_WIDY_BASE_DOMAINE }}
+          WIDY_SOL_PROGRAM_ID: ${{ secrets.WIDY_SOL_PROGRAM_ID }}
         with:
           tagName: latest # the action automatically replaces \_\_VERSION\_\_ with the app version.
           releaseName: "latest"
-          releaseBody: "Add WidySol."
+          releaseBody: "Add WidySol and WidyTon services."
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}

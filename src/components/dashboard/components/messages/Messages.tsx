@@ -51,7 +51,7 @@ const Messages = () => {
 					{widyTon?.auth ? (
 						<WidgetUrl
 							widgetUrl={getDonationUrl({
-								network: WidyNetwork.Sol,
+								network: WidyNetwork.Ton,
 								donation_account_name: (widyTon.auth as IWidyAuth)
 									.donation_account_name,
 							})}
@@ -59,9 +59,9 @@ const Messages = () => {
 						/>
 					) : (
 						<CreateDonationAccount
-							sx={{ backgroundColor: services.WidySol.color }}
+							sx={{ backgroundColor: services.WidyTon.color }}
 							isNavigate={false}
-							network={WidyNetwork.Sol}
+							network={WidyNetwork.Ton}
 						/>
 					)}
 				</div>
