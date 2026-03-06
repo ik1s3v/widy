@@ -1,5 +1,6 @@
 import { ServiceType } from "../../shared/enums";
 import type {
+	IDonationAlertsAuth,
 	IService,
 	IStreamElementsAuth,
 	ITwitchIntegrationSettings,
@@ -37,7 +38,7 @@ export const servicesApi = api.injectEndpoints({
 		updateServiceAuth: builder.mutation<
 			void,
 			{
-				auth: IStreamElementsAuth | undefined;
+				auth: IStreamElementsAuth | IDonationAlertsAuth | undefined;
 				id: ServiceType;
 				authorized: boolean;
 			}

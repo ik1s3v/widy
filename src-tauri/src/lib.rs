@@ -97,6 +97,8 @@ pub fn run() {
             get_widy_nonce,
             widy_sol_sign_out,
             widy_ton_sign_out,
+            donation_alerts_connect,
+            donation_alerts_sign_out,
             init
         ])
         .run(tauri::generate_context!())

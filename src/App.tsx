@@ -10,6 +10,7 @@ import { useInitMutation } from "./api";
 import { useGetSettingsQuery } from "./api/settingsApi";
 import { AppSnackBar } from "./components/AppSnackBar";
 import Dashboard from "./components/dashboard/Dashboard";
+import DonationAlerts from "./components/donationalerts/DonationAlerts";
 import ServicesSettings from "./components/services/ServicesSettings";
 import StreamElements from "./components/streamelements/StreamElements";
 import TelegramAuthorization from "./components/telegram-authorization/TelegramAuthorization";
@@ -99,6 +100,7 @@ function App() {
 					<Route path="/streamelements/*" element={<StreamElements />} />
 					<Route path="/twitch/*" element={<Twitch />} />
 					<Route path="/widy/*" element={<Widy />} />
+					<Route path="/donationalerts/*" element={<DonationAlerts />} />
 					<Route path="/dashboard/*" element={<Dashboard />} />
 					<Route path="/services-settings/*" element={<ServicesSettings />} />
 				</Routes>

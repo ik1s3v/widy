@@ -141,11 +141,11 @@ impl TelegramService {
                         let _ = on_new_donation(
                             message.id().to_string(),
                             ServiceType::TributeBot,
-                            donate_message.user_name,
+                            Some(donate_message.user_name),
                             donate_message.currency,
                             donate_message.amount,
                             donate_message.text,
-                            app.clone(),
+                            &app,
                         )
                         .await;
                     }

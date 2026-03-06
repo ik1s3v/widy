@@ -21,22 +21,19 @@ use crate::{
 
 #[derive(Debug, Clone)]
 #[event]
-pub struct DonationEvent {
-    pub message: Option<String>,
-    pub name: Option<String>,
-    pub amount: u64,
-    pub donation_referral_amount: u64,
-    pub user_amount: u64,
-    pub user_referral_amount: u64,
-    pub fee_recipient_amount: u64,
-    pub user: Pubkey,
-    pub sender: Pubkey,
-    pub fee_recipient: Pubkey,
-    pub donation_referral: Pubkey,
-    pub user_referral: Pubkey,
-}
-pub enum WidyProgramEvent {
-    Donation(DonationEvent),
+struct DonationEvent {
+    message: Option<String>,
+    name: Option<String>,
+    amount: u64,
+    donation_referral_amount: u64,
+    user_amount: u64,
+    user_referral_amount: u64,
+    fee_recipient_amount: u64,
+    user: Pubkey,
+    sender: Pubkey,
+    fee_recipient: Pubkey,
+    donation_referral: Pubkey,
+    user_referral: Pubkey,
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
@@ -185,13 +182,6 @@ impl WidySolService {
             .on(move |ctx: &EventContext, event: DonationEvent| {
                 let app = app.clone();
                 let signature = ctx.signature.to_string();
-                let name = match event.name {
-                    Some(name) => match name.as_str() {
-                        "" => "Anonymous".to_string(),
-                        _ => name,
-                    },
-                    None => "Anonymous".to_string(),
-                };
                 let amount = event.amount;
                 let event_user = event.user;
                 let message = event.message.clone();
@@ -200,11 +190,11 @@ impl WidySolService {
                         let _ = on_new_donation(
                             signature,
                             ServiceType::WidySol,
-                            name,
+                            event.name.clone(),
                             entity::settings::Currency::USD,
                             amount as f64 / USDT_MULTIPLICATION,
                             message.clone(),
-                            app,
+                            &app,
                         )
                         .await;
                     });

@@ -124,7 +124,7 @@ impl MediaService {
         &self,
         text: Option<String>,
         amount: f64,
-        app: AppHandle,
+        app: &AppHandle,
     ) -> Option<Media> {
         let database_service = app.state::<DatabaseService>();
         let media_settings = match database_service.get_media_settings().await {
@@ -214,7 +214,7 @@ impl MediaService {
         Some(true)
     }
 
-    async fn get_tiktok_info(&self, url: &str, app: AppHandle) -> Option<TikTokInfo> {
+    async fn get_tiktok_info(&self, url: &str, app: &AppHandle) -> Option<TikTokInfo> {
         let reqwest_client = app.state::<reqwest::Client>();
         let response = match reqwest_client
             .get(url)
@@ -262,7 +262,7 @@ impl MediaService {
         Some(TikTokInfo { id, play_count })
     }
 
-    async fn get_youtube_views(&self, url: &str, app: AppHandle) -> Option<u64> {
+    async fn get_youtube_views(&self, url: &str, app: &AppHandle) -> Option<u64> {
         let reqwest_client: tauri::State<'_, Client> = app.state::<reqwest::Client>();
         let response = match reqwest_client
             .get(url)
@@ -302,7 +302,11 @@ impl MediaService {
         return None;
     }
 
-    async fn get_twitch_clip_info(&self, clip_url: &str, app: AppHandle) -> Option<TwitchClipInfo> {
+    async fn get_twitch_clip_info(
+        &self,
+        clip_url: &str,
+        app: &AppHandle,
+    ) -> Option<TwitchClipInfo> {
         let twitch_gql_endpoint = "https://gql.twitch.tv/gql";
         let slug = clip_url.split('/').last().unwrap_or_default().to_string();
         let payload = vec![Operation {

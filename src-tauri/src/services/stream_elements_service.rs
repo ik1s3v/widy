@@ -51,11 +51,11 @@ impl StreamElementsService {
         on_new_donation(
             event._id,
             ServiceType::Streamelements,
-            event.data.display_name,
+            Some(event.data.display_name),
             get_currency_from_string(event.data.currency),
             event.data.amount,
             event.data.message,
-            app,
+            &app,
         )
         .await?;
         Ok(())

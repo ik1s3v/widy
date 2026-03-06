@@ -1,5 +1,6 @@
 import { ServiceType } from "./../../shared/enums";
 import {
+	useDonationAlertsSignOutMutation,
 	useTributeBotSignOutMutation,
 	useTwitchSignOutMutation,
 	useWidySolSignOutMutation,
@@ -12,6 +13,7 @@ const useSignOut = (id: ServiceType) => {
 	const [twitchSignOut] = useTwitchSignOutMutation();
 	const [widySolSignOut] = useWidySolSignOutMutation();
 	const [widyTonSignOut] = useWidyTonSignOutMutation();
+	const [donationAlertsSignOut] = useDonationAlertsSignOutMutation();
 	const streamElementsSocketService = useStreamElementsSocketService();
 
 	switch (id) {
@@ -27,6 +29,8 @@ const useSignOut = (id: ServiceType) => {
 			return widySolSignOut;
 		case ServiceType.WidyTon:
 			return widyTonSignOut;
+		case ServiceType.DonationAlerts:
+			return donationAlertsSignOut;
 		default:
 			return () => null;
 	}

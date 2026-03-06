@@ -42,6 +42,8 @@ pub enum ServiceType {
     WidySol,
     #[sea_orm(string_value = "WidyTon")]
     WidyTon,
+    #[sea_orm(string_value = "DonationAlerts")]
+    DonationAlerts,
 }
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, FromJsonQueryResult)]
 #[serde(untagged)]
@@ -57,6 +59,7 @@ pub enum ServiceAuth {
     Twitch(TwitchAuth),
     StreamElements(StreamElementsAuth),
     Widy(WidyAuth),
+    DonationAlerts(DonationAlertsAuth),
 }
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -70,6 +73,10 @@ pub struct WidyAuth {
     pub donation_account_name: String,
     pub donation_account_address: String,
     pub user: String,
+}
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct DonationAlertsAuth {
+    pub token: String,
 }
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct TwitchAuth {

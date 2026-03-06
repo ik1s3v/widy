@@ -22,12 +22,19 @@ use crate::{
 pub async fn on_new_donation(
     service_id: String,
     service: ServiceType,
-    user_name: String,
+    name: Option<String>,
     target_currency: Currency,
     target_amount: f64,
     message: Option<String>,
-    app: AppHandle,
+    app: &AppHandle,
 ) -> Result<(), String> {
+    let user_name = match name {
+        Some(name) => match name.as_str() {
+            "" => "Anonymous".to_string(),
+            _ => name,
+        },
+        None => "Anonymous".to_string(),
+    };
     let media_service = app.state::<MediaService>();
     let database_service = app.state::<DatabaseService>();
     let tts_service = app.state::<TTSService>();
@@ -57,7 +64,7 @@ pub async fn on_new_donation(
         .await;
 
     let media = media_service
-        .get_media(message.clone(), exchanged_amount.clone(), app.clone())
+        .get_media(message.clone(), exchanged_amount.clone(), app)
         .await;
 
     let text = match message {

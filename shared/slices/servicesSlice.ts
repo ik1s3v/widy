@@ -45,6 +45,12 @@ const initialState: ServicesState = {
 			authPath: `/widy/create-donation-account/${WidyNetwork.Ton}`,
 			settingsPath: "",
 		},
+		[ServiceType.DonationAlerts]: {
+			active: false,
+			color: "#f57d07",
+			authPath: `/donationalerts/token`,
+			settingsPath: "",
+		},
 	},
 };
 

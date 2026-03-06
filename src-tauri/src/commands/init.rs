@@ -1,9 +1,9 @@
 use std::sync::Arc;
 
 use crate::services::{
-    AxumService, ConfigService, DatabaseService, DeepLinkDispatcherService, ExchangeRatesService,
-    MediaService, StreamElementsService, TTSService, TelegramService, TwitchService,
-    WebSocketBroadcaster, WidySolService, WidyTonService,
+    AxumService, ConfigService, DatabaseService, DeepLinkDispatcherService, DonationAlertsService,
+    ExchangeRatesService, MediaService, StreamElementsService, TTSService, TelegramService,
+    TwitchService, WebSocketBroadcaster, WidySolService, WidyTonService,
 };
 use crate::utils::copy_assets_to_static;
 use grammers_client::types::{LoginToken, PasswordToken};
@@ -73,6 +73,10 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     let twitch_service = TwitchService::new(config_service.client_id);
     twitch_service.connect(app.clone()).await?;
     app.manage(twitch_service);
+
+    let donation_alerts_service = DonationAlertsService::new();
+    donation_alerts_service.connect(&app).await?;
+    app.manage(donation_alerts_service);
 
     let stream_elements_service = StreamElementsService::new();
     app.manage(stream_elements_service);

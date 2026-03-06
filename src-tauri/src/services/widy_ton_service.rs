@@ -22,41 +22,49 @@ use tokio::{pin, sync::broadcast};
 use tonlib_core::cell::{BagOfCells, Cell};
 
 #[derive(Debug, Clone, Deserialize)]
-pub struct TraceResponse {
-    pub transaction: Transaction,
-    pub interfaces: String,
-    pub emulated: bool,
+#[allow(dead_code)]
+struct TraceResponse {
+    transaction: Transaction,
+    interfaces: String,
+    emulated: bool,
 }
 
 #[derive(Debug, Clone, Deserialize)]
-pub struct Transaction {
-    pub hash: String,
-    pub success: bool,
+struct Transaction {
+    hash: String,
+    #[allow(dead_code)]
+    success: bool,
     #[serde(default)]
-    pub out_msgs: Vec<Message>,
+    out_msgs: Vec<Message>,
 }
 
 #[derive(Debug, Clone, Deserialize)]
-pub struct Message {
-    pub op_code: String,
-    pub raw_body: String,
+struct Message {
+    #[allow(dead_code)]
+    op_code: String,
+    raw_body: String,
+    #[allow(dead_code)]
     #[serde(default)]
-    pub out_msgs: Vec<Message>,
+    out_msgs: Vec<Message>,
 }
 #[derive(Debug, Clone, Deserialize)]
-pub struct TonDonationEvent {
-    pub op_code: u32,
-    pub query_id: u64,
-    pub amount: u64,
-    pub sender: String,
-    pub name: String,
-    pub message: String,
+struct DonationEvent {
+    #[allow(dead_code)]
+    op_code: u32,
+    #[allow(dead_code)]
+    query_id: u64,
+    amount: u64,
+    #[allow(dead_code)]
+    sender: String,
+    name: String,
+    message: String,
 }
 
 #[derive(Debug, Clone, Deserialize)]
-pub struct TonTraceAccounts {
-    pub accounts: Vec<String>,
-    pub hash: String,
+struct TonTraceAccounts {
+    #[allow(dead_code)]
+    accounts: Vec<String>,
+    hash: String,
 }
 pub struct WidyTonService {
     http_client: reqwest::Client,
@@ -217,11 +225,11 @@ impl WidyTonService {
                                     let _ = on_new_donation(
                                         transaction.hash,
                                         ServiceType::WidyTon,
-                                        event.name,
+                                        Some(event.name),
                                         entity::settings::Currency::USD,
                                         event.amount as f64 / USDT_MULTIPLICATION,
                                         Some(event.message),
-                                        app.clone(),
+                                        &app,
                                     )
                                     .await;
                                 }
@@ -234,7 +242,7 @@ impl WidyTonService {
         }
         Ok(())
     }
-    fn parse_donation_event(&self, hex: &str) -> Result<TonDonationEvent, String> {
+    fn parse_donation_event(&self, hex: &str) -> Result<DonationEvent, String> {
         let boc_bytes = hex::decode(hex).map_err(|e| e.to_string())?;
         let boc = BagOfCells::parse(&boc_bytes).map_err(|e| e.to_string())?;
 
@@ -257,7 +265,7 @@ impl WidyTonService {
         let message_cell = parser.next_reference().map_err(|e| e.to_string())?;
         let message = message_cell.load_snake_string()?;
 
-        Ok(TonDonationEvent {
+        Ok(DonationEvent {
             op_code,
             query_id,
             amount: amount.to_u64_digits().first().cloned().unwrap_or(0),

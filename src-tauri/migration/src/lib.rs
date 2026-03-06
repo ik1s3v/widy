@@ -30,6 +30,7 @@ mod m20251225_002805_add_goal_type;
 mod m20251225_233550_add_alert_show_image;
 mod m20260131_232002_add_widy_sol_service;
 mod m20260214_231116_add_widy_ton_service;
+mod m20260306_172034_add_donation_alerts_service;
 
 pub struct Migrator;
 
@@ -68,6 +69,7 @@ impl MigratorTrait for Migrator {
             Box::new(m20251225_233550_add_alert_show_image::Migration),
             Box::new(m20260131_232002_add_widy_sol_service::Migration),
             Box::new(m20260214_231116_add_widy_ton_service::Migration),
+            Box::new(m20260306_172034_add_donation_alerts_service::Migration),
         ]
     }
 }
