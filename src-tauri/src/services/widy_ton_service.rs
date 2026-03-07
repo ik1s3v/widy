@@ -30,46 +30,61 @@ struct TraceResponse {
 }
 
 #[derive(Debug, Clone, Deserialize)]
+#[allow(dead_code)]
 struct Transaction {
     hash: String,
-    #[allow(dead_code)]
     success: bool,
-    #[serde(default)]
     out_msgs: Vec<Message>,
 }
 
 #[derive(Debug, Clone, Deserialize)]
+#[allow(dead_code)]
 struct Message {
-    #[allow(dead_code)]
     op_code: String,
     raw_body: String,
-    #[allow(dead_code)]
     #[serde(default)]
     out_msgs: Vec<Message>,
 }
 #[derive(Debug, Clone, Deserialize)]
+#[allow(dead_code)]
 struct DonationEvent {
-    #[allow(dead_code)]
     op_code: u32,
-    #[allow(dead_code)]
     query_id: u64,
     amount: u64,
-    #[allow(dead_code)]
     sender: String,
     name: String,
     message: String,
 }
 
 #[derive(Debug, Clone, Deserialize)]
+#[allow(dead_code)]
 struct TonTraceAccounts {
-    #[allow(dead_code)]
     accounts: Vec<String>,
     hash: String,
 }
-pub struct WidyTonService {
-    http_client: reqwest::Client,
-    pub nonce: Arc<Mutex<Option<String>>>,
-    sign_out_sender: broadcast::Sender<()>,
+trait StringTail {
+    fn load_snake_string(&self) -> Result<String, String>;
+}
+impl StringTail for Cell {
+    fn load_snake_string(&self) -> Result<String, String> {
+        let mut bytes = Vec::new();
+        let mut current = self.clone();
+
+        loop {
+            let mut parser = current.parser();
+            let available = parser.remaining_bytes();
+            let chunk = parser.load_bytes(available).map_err(|e| e.to_string())?;
+            bytes.extend_from_slice(&chunk);
+
+            if current.references().is_empty() {
+                break;
+            }
+
+            current = (*current.references()[0]).clone();
+        }
+
+        Ok(String::from_utf8(bytes).map_err(|e| e.to_string())?)
+    }
 }
 
 impl DeepLinkHandler for WidyTonService {
@@ -144,6 +159,12 @@ impl DeepLinkHandler for WidyTonService {
                 .await;
         });
     }
+}
+
+pub struct WidyTonService {
+    http_client: reqwest::Client,
+    pub nonce: Arc<Mutex<Option<String>>>,
+    sign_out_sender: broadcast::Sender<()>,
 }
 
 impl WidyTonService {
@@ -304,30 +325,5 @@ impl WidyTonService {
             .await?;
         let _ = self.sign_out_sender.send(());
         Ok(())
-    }
-}
-
-trait StringTail {
-    fn load_snake_string(&self) -> Result<String, String>;
-}
-impl StringTail for Cell {
-    fn load_snake_string(&self) -> Result<String, String> {
-        let mut bytes = Vec::new();
-        let mut current = self.clone();
-
-        loop {
-            let mut parser = current.parser();
-            let available = parser.remaining_bytes();
-            let chunk = parser.load_bytes(available).map_err(|e| e.to_string())?;
-            bytes.extend_from_slice(&chunk);
-
-            if current.references().is_empty() {
-                break;
-            }
-
-            current = (*current.references()[0]).clone();
-        }
-
-        Ok(String::from_utf8(bytes).map_err(|e| e.to_string())?)
     }
 }

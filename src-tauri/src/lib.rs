@@ -99,6 +99,8 @@ pub fn run() {
             widy_ton_sign_out,
             donation_alerts_connect,
             donation_alerts_sign_out,
+            stream_labs_connect,
+            stream_labs_sign_out,
             init
         ])
         .run(tauri::generate_context!())

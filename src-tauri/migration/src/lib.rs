@@ -31,6 +31,7 @@ mod m20251225_233550_add_alert_show_image;
 mod m20260131_232002_add_widy_sol_service;
 mod m20260214_231116_add_widy_ton_service;
 mod m20260306_172034_add_donation_alerts_service;
+mod m20260307_000508_add_stream_labs_service;
 
 pub struct Migrator;
 
@@ -70,6 +71,7 @@ impl MigratorTrait for Migrator {
             Box::new(m20260131_232002_add_widy_sol_service::Migration),
             Box::new(m20260214_231116_add_widy_ton_service::Migration),
             Box::new(m20260306_172034_add_donation_alerts_service::Migration),
+            Box::new(m20260307_000508_add_stream_labs_service::Migration),
         ]
     }
 }

@@ -3,6 +3,7 @@ import type {
 	IDonationAlertsAuth,
 	IService,
 	IStreamElementsAuth,
+	IStreamLabsAuth,
 	ITwitchIntegrationSettings,
 } from "../../shared/types";
 import { api } from ".";
@@ -38,7 +39,11 @@ export const servicesApi = api.injectEndpoints({
 		updateServiceAuth: builder.mutation<
 			void,
 			{
-				auth: IStreamElementsAuth | IDonationAlertsAuth | undefined;
+				auth:
+					| IStreamElementsAuth
+					| IDonationAlertsAuth
+					| IStreamLabsAuth
+					| undefined;
 				id: ServiceType;
 				authorized: boolean;
 			}

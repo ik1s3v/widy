@@ -281,6 +281,9 @@ export interface IStreamElementsAuth {
 export interface IDonationAlertsAuth {
 	token: string;
 }
+export interface IStreamLabsAuth {
+	jwt: string;
+}
 export interface IStreamElementsEvent<T> {
 	channel: string;
 	provider: string;

@@ -71,6 +71,12 @@ export const api = createApi({
 			}),
 			invalidatesTags: ["Services"],
 		}),
+		streamLabsSignOut: builder.mutation<void, void>({
+			query: () => ({
+				command: "stream_labs_sign_out",
+			}),
+			invalidatesTags: ["Services"],
+		}),
 	}),
 });
 
@@ -81,4 +87,5 @@ export const {
 	useWidySolSignOutMutation,
 	useWidyTonSignOutMutation,
 	useDonationAlertsSignOutMutation,
+	useStreamLabsSignOutMutation,
 } = api;

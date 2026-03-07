@@ -35,35 +35,30 @@ struct ClientMessageResult {
     client: String,
 }
 #[derive(Debug, Clone, Deserialize)]
+#[allow(dead_code)]
 struct DonationMessageResult {
-    #[allow(dead_code)]
     channel: String,
     data: DonationMessageData,
 }
 #[derive(Debug, Clone, Deserialize)]
+#[allow(dead_code)]
 struct DonationMessageData {
-    #[allow(dead_code)]
     seq: u64,
     data: Donation,
 }
 #[derive(Debug, Clone, Deserialize)]
+#[allow(dead_code)]
 struct Donation {
     id: u64,
-    #[allow(dead_code)]
     name: String,
     username: Option<String>,
     message: String,
-    #[allow(dead_code)]
     message_type: String,
-    #[allow(dead_code)]
     payin_system: Option<String>,
     amount: f64,
-    #[allow(dead_code)]
     amount_in_user_currency: f64,
     currency: Currency,
-    #[allow(dead_code)]
     recipient_name: String,
-    #[allow(dead_code)]
     is_shown: u8,
 }
 

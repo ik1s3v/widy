@@ -107,6 +107,7 @@ export enum ServiceType {
 	WidySol = "WidySol",
 	WidyTon = "WidyTon",
 	DonationAlerts = "DonationAlerts",
+	StreamLabs = "StreamLabs",
 }
 
 export enum StreamElementsEventType {

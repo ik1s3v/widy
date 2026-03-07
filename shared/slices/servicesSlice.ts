@@ -51,6 +51,12 @@ const initialState: ServicesState = {
 			authPath: `/donationalerts/token`,
 			settingsPath: "",
 		},
+		[ServiceType.StreamLabs]: {
+			active: false,
+			color: "#80f5d2",
+			authPath: `/streamlabs/token`,
+			settingsPath: "",
+		},
 	},
 };
 
