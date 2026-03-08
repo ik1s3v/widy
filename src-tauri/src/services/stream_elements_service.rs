@@ -1,5 +1,5 @@
-use crate::utils::{get_currency_from_string, on_new_donation};
-use entity::service::ServiceType;
+use crate::utils::on_new_donation;
+use entity::{service::ServiceType, settings::Currency};
 use serde::{Deserialize, Serialize};
 use tauri::AppHandle;
 
@@ -11,7 +11,7 @@ pub struct StreamElementsEvent<T> {
     #[serde(rename = "createdAt")]
     created_at: String,
     #[serde(rename = "isMock")]
-    is_mock: bool,
+    is_mock: Option<bool>,
     data: T,
     #[serde(rename = "updatedAt")]
     updated_at: String,
@@ -26,12 +26,12 @@ pub struct StreamElementsTip {
     amount: f64,
     avatar: String,
     #[serde(rename = "displayName")]
-    display_name: String,
-    username: String,
+    display_name: Option<String>,
+    username: Option<String>,
     #[serde(rename = "providerId")]
-    provider_id: String,
+    provider_id: Option<String>,
     gifted: Option<bool>,
-    currency: Option<String>,
+    currency: Option<Currency>,
     message: Option<String>,
 }
 
@@ -51,8 +51,8 @@ impl StreamElementsService {
         on_new_donation(
             event._id,
             ServiceType::Streamelements,
-            Some(event.data.display_name),
-            get_currency_from_string(event.data.currency),
+            event.data.username,
+            event.data.currency.unwrap_or(Currency::USD),
             event.data.amount,
             event.data.message,
             &app,

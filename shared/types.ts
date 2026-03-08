@@ -289,7 +289,7 @@ export interface IStreamElementsEvent<T> {
 	provider: string;
 	type: StreamElementsEventType;
 	createdAt: string;
-	isMock: boolean;
+	isMock?: boolean;
 	data: T;
 	updatedAt: string;
 	_id: string;
@@ -300,8 +300,8 @@ export interface IStreamElementsEvent<T> {
 export interface IStreamElementsTip {
 	amount: number;
 	avatar: string;
-	displayName: string;
-	username: string;
+	displayName?: string;
+	username?: string;
 	providerId: string;
 	gifted: boolean;
 	currency?: string;
