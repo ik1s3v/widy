@@ -9,14 +9,17 @@
 	"skip_media": "Medien überspringen (Shortcut)",
 	"skip_alert": "Alert überspringen (Shortcut)",
 	"authorization": {
-		"title": "Autorisierung",
+		"title": "Anmeldung / Autorisierung",
 		"code": "Code anfordern",
-		"sign_in": "Anmelden",
-		"phone": "Telefonnummer",
-		"telegram_code": "Code aus Telegram",
+		"sign_in": "Einloggen",
+		"phone": "Handynummer",
+		"telegram_code": "Telegram-Code",
 		"your_code": "Dein Code",
-		"2fa_password": "2FA-Passwort",
-		"password": "Passwort"
+		"2fa_password": "Zwei-Faktor-Passwort",
+		"password": "Passwort",
+		"streamelements": "Du musst zuerst dein StreamElements-Konto mit JWT verbinden",
+		"you_can_find_by_url": "Du findest es hier:",
+		"set_id_and_jwt": "Bitte trage die StreamElements Account-ID und den JWT für {{service}} ein"
 	},
 	"error": {
 		"wrong_lots_format": "Falsches Lots-Format",

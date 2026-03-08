@@ -9,14 +9,17 @@
 	"skip_media": "Гаряча клавіша пропустити медіа",
 	"skip_alert": "Гаряча клавіша пропустити сповіщення",
 	"authorization": {
-		"title": "Авторизація",
-		"code": "Запит коду",
+		"title": "Вхід",
+		"code": "Код підтвердження",
 		"sign_in": "Увійти",
-		"phone": "Номер телефону",
-		"telegram_code": "Код з Telegram",
+		"phone": "Телефон",
+		"telegram_code": "Код із Telegram",
 		"your_code": "Ваш код",
 		"2fa_password": "Пароль 2FA",
-		"password": "Пароль"
+		"password": "Пароль",
+		"streamelements": "Спочатку підключіть StreamElements (JWT)",
+		"you_can_find_by_url": "Знаходиться за цим посиланням",
+		"set_id_and_jwt": "Вкажіть Account ID та JWT StreamElements для {{service}}"
 	},
 	"error": {
 		"wrong_lots_format": "Неправильний формат лотів",

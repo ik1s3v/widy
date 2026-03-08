@@ -9,14 +9,17 @@
 	"skip_media": "اختصار تخطي الوسائط",
 	"skip_alert": "اختصار تخطي التنبيه",
 	"authorization": {
-		"title": "تسجيل الدخول",
-		"code": "طلب الرمز",
+		"title": "تسجيل الدخول / الترخيص",
+		"code": "رمز التحقق",
 		"sign_in": "تسجيل الدخول",
-		"phone": "رقم الهاتف",
-		"telegram_code": "الرمز من تيليغرام",
-		"your_code": "رمزك",
+		"phone": "رقم الجوال",
+		"telegram_code": "رمز تيليغرام",
+		"your_code": "الكود الخاص بك",
 		"2fa_password": "كلمة مرور التحقق بخطوتين",
-		"password": "كلمة المرور"
+		"password": "كلمة المرور",
+		"streamelements": "يجب عليك ربط حساب StreamElements باستخدام JWT أولاً",
+		"you_can_find_by_url": "يمكنك الحصول عليه من خلال هذا العنوان",
+		"set_id_and_jwt": "يجب تعيين معرف الحساب و JWT الخاص بـ StreamElements لـ {{service}}"
 	},
 	"error": {
 		"wrong_lots_format": "صيغة اللوتات غير صحيحة",

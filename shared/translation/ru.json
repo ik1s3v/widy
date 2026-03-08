@@ -10,13 +10,16 @@
 	"skip_alert": "Сокращение — пропустить алерт",
 	"authorization": {
 		"title": "Авторизация",
-		"code": "Запросить код",
+		"code": "Код подтверждения",
 		"sign_in": "Войти",
-		"phone": "Номер телефона",
+		"phone": "Телефон",
 		"telegram_code": "Код из Telegram",
 		"your_code": "Ваш код",
-		"2fa_password": "Пароль 2FA",
-		"password": "Пароль"
+		"2fa_password": "Пароль двухфакторной аутентификации",
+		"password": "Пароль",
+		"streamelements": "Сначала подключите аккаунт StreamElements через JWT",
+		"you_can_find_by_url": "Можно найти по этой ссылке",
+		"set_id_and_jwt": "Укажите Account ID и JWT от StreamElements для {{service}}"
 	},
 	"error": {
 		"wrong_lots_format": "Неверный формат лотов",

@@ -9,14 +9,17 @@
 	"skip_media": "Raccourci passer média",
 	"skip_alert": "Raccourci passer alerte",
 	"authorization": {
-		"title": "Autorisation",
-		"code": "Demander le code",
+		"title": "Connexion / Autorisation",
+		"code": "Code de vérification",
 		"sign_in": "Se connecter",
 		"phone": "Numéro de téléphone",
-		"telegram_code": "Code de Telegram",
+		"telegram_code": "Code Telegram",
 		"your_code": "Votre code",
-		"2fa_password": "Mot de passe 2FA",
-		"password": "Mot de passe"
+		"2fa_password": "Mot de passe à deux facteurs",
+		"password": "Mot de passe",
+		"streamelements": "Vous devez d'abord connecter votre compte StreamElements avec le JWT",
+		"you_can_find_by_url": "Vous pouvez le récupérer via ce lien",
+		"set_id_and_jwt": "Veuillez renseigner l'ID de compte StreamElements et le JWT pour {{service}}"
 	},
 	"error": {
 		"wrong_lots_format": "Format des lots incorrect",

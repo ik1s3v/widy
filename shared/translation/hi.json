@@ -9,14 +9,17 @@
 	"skip_media": "मीडिया छोड़ने का शॉर्टकट",
 	"skip_alert": "अलर्ट छोड़ने का शॉर्टकट",
 	"authorization": {
-		"title": "प्रमाणीकरण",
+		"title": "लॉगिन / अधिकृत करें",
 		"code": "कोड प्राप्त करें",
-		"sign_in": "साइन इन करें",
-		"phone": "फ़ोन नंबर",
-		"telegram_code": "टेलीग्राम से कोड",
+		"sign_in": "लॉग इन करें",
+		"phone": "मोबाइल नंबर",
+		"telegram_code": "टेलीग्राम वाला कोड",
 		"your_code": "आपका कोड",
-		"2fa_password": "2FA पासवर्ड",
-		"password": "पासवर्ड"
+		"2fa_password": "दो-चरणीय पासवर्ड (2FA)",
+		"password": "पासवर्ड",
+		"streamelements": "पहले StreamElements JWT से कनेक्ट करना ज़रूरी है",
+		"you_can_find_by_url": "आप इसे इस लिंक पर पा सकते हैं",
+		"set_id_and_jwt": "{{service}} के लिए StreamElements अकाउंट ID और JWT सेट करें"
 	},
 	"error": {
 		"wrong_lots_format": "लॉट्स का गलत फ़ॉर्मेट",

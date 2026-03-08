@@ -9,14 +9,17 @@
 	"skip_media": "快捷键跳过媒体",
 	"skip_alert": "快捷键跳过提醒",
 	"authorization": {
-		"title": "授权",
-		"code": "请求代码",
+		"title": "登录授权",
+		"code": "获取验证码",
 		"sign_in": "登录",
-		"phone": "电话号码",
-		"telegram_code": "Telegram验证码",
-		"your_code": "你的代码",
+		"phone": "手机号码",
+		"telegram_code": "Telegram 收到的验证码",
+		"your_code": "你的验证码",
 		"2fa_password": "两步验证密码",
-		"password": "密码"
+		"password": "密码",
+		"streamelements": "请先使用 StreamElements 的 JWT 进行连接",
+		"you_can_find_by_url": "你可以在以下链接找到它",
+		"set_id_and_jwt": "需要为 {{service}} 设置 StreamElements 账户 ID 和 JWT"
 	},
 	"error": {
 		"wrong_lots_format": "份数格式错误",

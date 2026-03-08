@@ -79,7 +79,7 @@ jobs:
         with:
           tagName: v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
           releaseName: "v__VERSION__"
-          releaseBody: "Add WidySol and WidyTon services."
+          releaseBody: "Add StreamLabs, DonationAlerts, Donatello and Donatik services."
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
@@ -98,7 +98,7 @@ jobs:
         with:
           tagName: latest # the action automatically replaces \_\_VERSION\_\_ with the app version.
           releaseName: "latest"
-          releaseBody: "Add WidySol and WidyTon services."
+          releaseBody: "Add StreamLabs, DonationAlerts, Donatello and Donatik services."
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}

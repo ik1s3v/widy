@@ -11,12 +11,15 @@
 	"authorization": {
 		"title": "Autorização",
 		"code": "Solicitar código",
-		"sign_in": "Entrar",
+		"sign_in": "Entrar / Iniciar sessão",
 		"phone": "Número de telefone",
 		"telegram_code": "Código do Telegram",
 		"your_code": "Seu código",
-		"2fa_password": "Senha 2FA",
-		"password": "Senha"
+		"2fa_password": "Senha de autenticação em dois fatores",
+		"password": "Senha",
+		"streamelements": "É necessário conectar sua conta StreamElements usando JWT primeiro",
+		"you_can_find_by_url": "Você pode obtê-lo através deste link",
+		"set_id_and_jwt": "Configure o ID da conta e o JWT do StreamElements para o {{service}}"
 	},
 	"error": {
 		"wrong_lots_format": "Formato de lotes inválido",
