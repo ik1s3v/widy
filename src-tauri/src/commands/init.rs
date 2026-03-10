@@ -29,6 +29,10 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     let config_service = ConfigService::new(&app)?;
     app.manage(config_service.clone());
 
+    //ws
+    let websocket_broadcaster = WebSocketBroadcaster::new();
+    app.manage(websocket_broadcaster);
+
     //axum
     let axum_service = AxumService::new(
         &config_service.widget_path,
@@ -42,10 +46,6 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     //db
     let database_service = DatabaseService::new(&config_service.db_path, &version).await?;
     app.manage(database_service);
-
-    //ws
-    let websocket_broadcaster = WebSocketBroadcaster::new();
-    app.manage(websocket_broadcaster);
 
     //language detector
     let language_detector = LanguageDetectorBuilder::from_languages(&[
