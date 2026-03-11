@@ -153,3 +153,13 @@ export enum WidyNetwork {
 	Sol = "sol",
 	Ton = "ton",
 }
+
+export enum TtsType {
+	Google = "Google",
+	Edge = "Edge",
+}
+
+export enum Gender {
+	Male = "Male",
+	Female = "Edge",
+}

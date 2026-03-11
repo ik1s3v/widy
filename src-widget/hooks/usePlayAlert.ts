@@ -22,7 +22,7 @@ const usePlayAlert = () => {
 	const [currentMessage, setCurrentMessage] = useState<IClientMessage>();
 	const [currentAlert, setCurrentAlert] = useState<IAlert>();
 
-	const handleAudioEnd = useCallback(
+	const handleMessageAudioEnd = useCallback(
 		({
 			message,
 			skip = false,
@@ -73,12 +73,6 @@ const usePlayAlert = () => {
 							event: AppEvent.AlertPlaying,
 							data: message.id,
 						});
-						const audio = message.donation?.audio;
-						if (audio) {
-							messageAudioRef.current.src = `static/${audio}`;
-							messageAudioRef.current.volume =
-								settingsRef.current.tts_volume / 100;
-						}
 						alertAudioRef.current.src = `static/${alert.audio}`;
 						alertAudioRef.current.volume = alert.audio_volume / 100;
 						alertAudioRef.current.play();
@@ -123,20 +117,20 @@ const usePlayAlert = () => {
 	const skipMessage = useCallback(
 		(id: string) => {
 			if (currentMessage?.id === id) {
-				handleAudioEnd({ message: currentMessage, skip: true });
+				handleMessageAudioEnd({ message: currentMessage, skip: true });
 			} else {
 				messagesRef.current = messagesRef.current.filter(
 					(message) => message.id !== id,
 				);
 			}
 		},
-		[handleAudioEnd, currentMessage],
+		[handleMessageAudioEnd, currentMessage],
 	);
 	const skipPlayingMessage = useCallback(() => {
 		if (currentMessage) {
-			handleAudioEnd({ message: currentMessage, skip: true });
+			handleMessageAudioEnd({ message: currentMessage, skip: true });
 		}
-	}, [handleAudioEnd, currentMessage]);
+	}, [handleMessageAudioEnd, currentMessage]);
 
 	const handleNewMessage = useCallback(
 		(message: IClientMessage) => {
@@ -170,36 +164,38 @@ const usePlayAlert = () => {
 		[playMessage],
 	);
 
-	const handleSoundEnd = useCallback(() => {
+	const handleAlertAudioEnd = useCallback(() => {
 		const audio = currentMessage?.donation?.audio;
-		if (audio) {
+		if (audio && settingsRef.current) {
+			messageAudioRef.current.src = `static/${audio}`;
+			messageAudioRef.current.volume = settingsRef.current.tts_volume / 100;
 			messageAudioRef.current.play();
 		} else {
-			handleAudioEnd({ message: currentMessage });
+			handleMessageAudioEnd({ message: currentMessage });
 		}
-	}, [currentMessage, handleAudioEnd]);
+	}, [currentMessage, handleMessageAudioEnd]);
 
 	useEffect(() => {
 		messageAudioRef.current.onended = () =>
-			handleAudioEnd({ message: currentMessage });
+			handleMessageAudioEnd({ message: currentMessage });
 		messageAudioRef.current.onerror = () =>
-			handleAudioEnd({ message: currentMessage });
+			handleMessageAudioEnd({ message: currentMessage });
 
 		return () => {
 			messageAudioRef.current.onended = null;
 			messageAudioRef.current.onerror = null;
 		};
-	}, [currentMessage, handleAudioEnd]);
+	}, [currentMessage, handleMessageAudioEnd]);
 
 	useEffect(() => {
-		alertAudioRef.current.onended = handleSoundEnd;
-		alertAudioRef.current.onerror = handleSoundEnd;
+		alertAudioRef.current.onended = handleAlertAudioEnd;
+		alertAudioRef.current.onerror = handleAlertAudioEnd;
 
 		return () => {
 			alertAudioRef.current.onended = null;
 			alertAudioRef.current.onerror = null;
 		};
-	}, [handleSoundEnd]);
+	}, [handleAlertAudioEnd]);
 
 	useEffect(() => {
 		const unsubscribe = websocketService.subscribe<IClientMessage>(

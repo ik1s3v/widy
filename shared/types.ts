@@ -2,6 +2,7 @@ import type {
 	AlertVariationConditions,
 	AppEvent,
 	Currency,
+	Gender,
 	GoalProgressLayout,
 	GoalTextPosition,
 	GoalType,
@@ -9,6 +10,7 @@ import type {
 	MessageType,
 	ServiceType,
 	StreamElementsEventType,
+	TtsType,
 	ViewType,
 	WidyNetwork,
 } from "./enums";
@@ -137,6 +139,8 @@ export interface ISettings {
 	black_list: string;
 	language: string;
 	currency: Currency;
+	tts_type: TtsType;
+	tts_settings?: IEdgeTtsSettings;
 }
 
 export interface IAuctionSettings {
@@ -391,3 +395,7 @@ export type MatchId = string;
 export type MessageId = string;
 export type DonationId = string;
 export type AlertId = string;
+
+export interface IEdgeTtsSettings {
+	gender: Gender;
+}
