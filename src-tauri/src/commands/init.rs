@@ -29,6 +29,23 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     let config_service = ConfigService::new(&app)?;
     app.manage(config_service.clone());
 
+    //exchange
+    let mut exchange_rates_service = ExchangeRatesService::new();
+    exchange_rates_service.get_exchange_rates().await;
+    app.manage(Mutex::new(exchange_rates_service));
+
+    //http client
+    let user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36";
+    let reqwest_client = reqwest::Client::builder()
+        .user_agent(user_agent)
+        .build()
+        .map_err(|e| format!("reqwest build error: {}", e))?;
+    app.manage(reqwest_client);
+
+    //db
+    let database_service = DatabaseService::new(&config_service.db_path, &version).await?;
+    app.manage(database_service);
+
     //ws
     let websocket_broadcaster = WebSocketBroadcaster::new();
     app.manage(websocket_broadcaster);
@@ -43,10 +60,6 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     app.manage(axum_service);
     copy_assets_to_static(&config_service.assets_path, &config_service.static_path)?;
 
-    //db
-    let database_service = DatabaseService::new(&config_service.db_path, &version).await?;
-    app.manage(database_service);
-
     //language detector
     let language_detector = LanguageDetectorBuilder::from_languages(&[
         English, French, German, Spanish, Russian, Ukrainian, Portuguese, Hindi, Chinese, Arabic,
@@ -57,14 +70,6 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     //tts
     let tts_service = TtsService::new(&config_service.static_path);
     app.manage(tts_service);
-
-    //http client
-    let user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36";
-    let reqwest_client = reqwest::Client::builder()
-        .user_agent(user_agent)
-        .build()
-        .map_err(|e| format!("reqwest build error: {}", e))?;
-    app.manage(reqwest_client);
 
     //media
     let media_service = MediaService::new();
@@ -78,11 +83,6 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     //stream elements
     let stream_elements_service = StreamElementsService::new();
     app.manage(stream_elements_service);
-
-    //exchange
-    let mut exchange_rates_service = ExchangeRatesService::new();
-    exchange_rates_service.get_exchange_rates().await;
-    app.manage(Mutex::new(exchange_rates_service));
 
     //telegram
     app.manage(Mutex::new(None::<LoginToken>));

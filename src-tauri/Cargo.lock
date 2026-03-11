@@ -13837,7 +13837,7 @@ dependencies = [
 
 [[package]]
 name = "widy"
-version = "0.2.3"
+version = "0.2.4"
 dependencies = [
  "anchor-client",
  "anchor-lang",
