@@ -11,3 +11,4 @@ pub mod raid;
 pub mod service;
 pub mod settings;
 pub mod subscription;
+pub mod widget;

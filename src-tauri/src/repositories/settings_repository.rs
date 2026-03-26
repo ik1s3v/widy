@@ -33,6 +33,7 @@ impl SettingsRepository for DatabaseService {
             id: Set(1),
             tts_type: Set(settings.tts_type),
             tts_settings: Set(settings.tts_settings),
+            widget_token: Set(settings.widget_token),
         })
         .exec(&self.connection)
         .await

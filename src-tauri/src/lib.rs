@@ -101,6 +101,8 @@ pub fn run() {
             donation_alerts_sign_out,
             stream_labs_connect,
             stream_labs_sign_out,
+            get_widget_by_name,
+            upload_widget,
             init
         ])
         .run(tauri::generate_context!())

@@ -15,6 +15,7 @@ pub struct Model {
     pub currency: Currency,
     pub tts_type: TtsType,
     pub tts_settings: Option<TtsSettings>,
+    pub widget_token: String,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
