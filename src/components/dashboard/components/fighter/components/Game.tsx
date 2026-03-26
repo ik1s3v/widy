@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { AutoSizer, List } from "react-virtualized";
 import { AppEvent } from "../../../../../../shared/enums";
-import useWebSocket from "../../../../../../shared/hooks/useWebSocket";
+import useAppEvents from "../../../../../../shared/hooks/useAppEvents";
 import type { IAucFighterMatch, MatchId } from "../../../../../../shared/types";
 import fighterGameFromLots from "../../../../../helpers/fighterGameFromLots";
 import type { AppState } from "../../../../../store";
@@ -17,7 +17,7 @@ import GameWinner from "./GameWinner";
 import MatchCard from "./MatchCard";
 
 const AucFighter = () => {
-	const websocketService = useWebSocket();
+	const eventsService = useAppEvents();
 	const { lots } = useSelector((state: AppState) => state.lotsState);
 	const { game, pausedMatchId, playingMatchId, isGameStarted, gameWinner } =
 		useSelector((state: AppState) => state.aucFighterState);
@@ -47,7 +47,7 @@ const AucFighter = () => {
 					<Button
 						onClick={() => {
 							dispatch(setIsGameStarted(true));
-							websocketService.send<IAucFighterMatch>({
+							eventsService.send<IAucFighterMatch>({
 								event: AppEvent.StartAucFighterMatch,
 								data: game.matches[0],
 							});
@@ -59,7 +59,7 @@ const AucFighter = () => {
 				{isGameStarted && (
 					<Button
 						onClick={() => {
-							websocketService.send<MatchId>({
+							eventsService.send<MatchId>({
 								event: AppEvent.CancelAucFighterMatch,
 								data: playingMatchId,
 							});
@@ -74,7 +74,7 @@ const AucFighter = () => {
 				<Button
 					disabled={!isGameStarted}
 					onClick={() => {
-						websocketService.send<MatchId>({
+						eventsService.send<MatchId>({
 							event: AppEvent.PauseAucFighterMatch,
 							data: playingMatchId,
 						});
@@ -86,7 +86,7 @@ const AucFighter = () => {
 				<Button
 					disabled={!isGameStarted}
 					onClick={() => {
-						websocketService.send<MatchId>({
+						eventsService.send<MatchId>({
 							event: AppEvent.ResumeAucFighterMatch,
 							data: pausedMatchId,
 						});

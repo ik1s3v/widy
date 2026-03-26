@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AppEvent } from "../../shared/enums";
-import useWebSocket from "../../shared/hooks/useWebSocket";
+import useAppEvents from "../../shared/hooks/useAppEvents";
 import type {
 	IClientMessage,
 	IMediaSettings,
@@ -9,7 +9,7 @@ import type {
 } from "../../shared/types";
 
 const usePlayMedia = () => {
-	const websocketService = useWebSocket();
+	const eventsService = useAppEvents();
 	const mediaSettingsRef = useRef<IMediaSettings | null>(null);
 	const settingsRef = useRef<ISettings | null>(null);
 	const messagesRef = useRef<IClientMessage[]>([]);
@@ -18,7 +18,7 @@ const usePlayMedia = () => {
 	const handleMediaEnd = useCallback(
 		({ message }: { message?: IClientMessage }) => {
 			if (!message) return;
-			websocketService.send<MessageId>({
+			eventsService.send<MessageId>({
 				event: AppEvent.MediaPlayed,
 				data: message.id,
 			});
@@ -81,7 +81,7 @@ const usePlayMedia = () => {
 	);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<IClientMessage>(
+		const unsubscribe = eventsService.subscribe<IClientMessage>(
 			AppEvent.MediaMessage,
 			handleNewMessage,
 		);
@@ -90,7 +90,7 @@ const usePlayMedia = () => {
 	}, [handleNewMessage]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<IClientMessage>(
+		const unsubscribe = eventsService.subscribe<IClientMessage>(
 			AppEvent.ReplayMedia,
 			handleReplayMedia,
 		);
@@ -99,7 +99,7 @@ const usePlayMedia = () => {
 	}, [handleReplayMedia]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<IMediaSettings>(
+		const unsubscribe = eventsService.subscribe<IMediaSettings>(
 			AppEvent.MediaSettings,
 			(mediaSettings) => {
 				mediaSettingsRef.current = mediaSettings;
@@ -110,7 +110,7 @@ const usePlayMedia = () => {
 	}, []);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<ISettings>(
+		const unsubscribe = eventsService.subscribe<ISettings>(
 			AppEvent.Settings,
 			(settings) => {
 				if (settingsRef.current?.alert_paused && !settings.alert_paused) {
@@ -129,7 +129,7 @@ const usePlayMedia = () => {
 	}, [playMedia]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<string>(
+		const unsubscribe = eventsService.subscribe<string>(
 			AppEvent.SkipMedia,
 			skipMedia,
 		);
@@ -138,7 +138,7 @@ const usePlayMedia = () => {
 	}, [skipMedia]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<null>(
+		const unsubscribe = eventsService.subscribe<null>(
 			AppEvent.SkipPlayingMedia,
 			skipPlayingMedia,
 		);
@@ -147,7 +147,7 @@ const usePlayMedia = () => {
 	}, [skipPlayingMedia]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<string>(
+		const unsubscribe = eventsService.subscribe<string>(
 			AppEvent.MediaEnd,
 			(id) => {
 				const message = messagesRef.current.find(
@@ -161,7 +161,7 @@ const usePlayMedia = () => {
 	}, [handleMediaEnd]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<string>(
+		const unsubscribe = eventsService.subscribe<string>(
 			AppEvent.MediaError,
 			(id) => {
 				const message = messagesRef.current.find(
@@ -175,7 +175,7 @@ const usePlayMedia = () => {
 	}, [handleMediaEnd]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<string>(
+		const unsubscribe = eventsService.subscribe<string>(
 			AppEvent.AlertPlayed,
 			(id) => {
 				const message = messagesRef.current.find(

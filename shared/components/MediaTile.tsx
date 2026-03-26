@@ -5,14 +5,14 @@ import { IconButton } from "@mui/material";
 import { useSelector } from "react-redux";
 import type { AppState } from "../../src/store";
 import { AppEvent } from "../enums";
-import useWebSocket from "../hooks/useWebSocket";
+import useAppEvents from "../hooks/useAppEvents";
 import type { IDonation, MessageId } from "../types";
 import getColorByMediaType from "../utils/getColorByMediaType";
 import MessageDate from "./MessageDate";
 
 const MediaTile = ({ donation }: { donation: IDonation }) => {
 	const { pausedMediaId } = useSelector((state: AppState) => state.mediaState);
-	const websocketService = useWebSocket();
+	const eventsService = useAppEvents();
 
 	return (
 		<>
@@ -52,12 +52,12 @@ const MediaTile = ({ donation }: { donation: IDonation }) => {
 						<IconButton
 							onClick={() => {
 								if (pausedMediaId === donation.message_id) {
-									websocketService.send<MessageId>({
+									eventsService.send<MessageId>({
 										event: AppEvent.PlayMedia,
 										data: donation.message_id,
 									});
 								} else {
-									websocketService.send<MessageId>({
+									eventsService.send<MessageId>({
 										event: AppEvent.PauseMedia,
 										data: donation.message_id,
 									});
@@ -79,7 +79,7 @@ const MediaTile = ({ donation }: { donation: IDonation }) => {
 								left: 70,
 							}}
 							onClick={() => {
-								websocketService.send<MessageId>({
+								eventsService.send<MessageId>({
 									event: AppEvent.SkipMedia,
 									data: donation.message_id,
 								});

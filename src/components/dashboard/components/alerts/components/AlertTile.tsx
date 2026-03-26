@@ -11,7 +11,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { AppEvent } from "../../../../../../shared/enums";
-import useWebSocket from "../../../../../../shared/hooks/useWebSocket";
+import useAppEvents from "../../../../../../shared/hooks/useAppEvents";
 import type { AlertId, IAlert } from "../../../../../../shared/types";
 import getColorByMessageType from "../../../../../../shared/utils/getColorByMessageType";
 import { useUpdateAlertSettingsMutation } from "../../../../../api/alertsApi";
@@ -30,12 +30,12 @@ const AlertTile = ({ alert }: { alert: IAlert }) => {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
-	const websocketService = useWebSocket();
+	const eventsService = useAppEvents();
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const theme = useTheme();
 	const handleTestAlert = () => {
-		websocketService.send<AlertId>({
+		eventsService.send<AlertId>({
 			event: AppEvent.TestAlert,
 			data: alert.id,
 		});

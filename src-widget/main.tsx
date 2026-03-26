@@ -3,29 +3,66 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router";
 import App from "./App";
-import { WebSocketService } from "./services/websocketService";
 import "../shared/i18n/i18n";
 import { Provider } from "react-redux";
-import { WebsocketContext } from "../shared/contexts/WebsocketContext";
-import WebsocketProvider from "../shared/providers/WebsocketProvider";
+import { EventsContext } from "../shared/contexts/EventsContext";
+import { AppEvent } from "../shared/enums";
+import i18n from "../shared/i18n/i18n";
+import EventsProvider from "../shared/providers/EventsProvider";
+import { WebsocketEventsService } from "../shared/services/websocketEventsService";
+import { setPlayingAlertId } from "../shared/slices/alertsSlice";
+import {
+	setPausedMediaId,
+	setPlayingMediaId,
+} from "../shared/slices/mediaSlice";
+import type { IClientMessage, ISettings } from "../shared/types";
+import { messagesApi } from "./api/messagesApi";
 import { store } from "./store";
 
-const webSocketService = new WebSocketService("ws://localhost:12553/ws");
+const eventsService = new WebsocketEventsService("ws://127.0.0.1:12553/ws");
 
-webSocketService.connect();
+eventsService.connect();
+
+store.dispatch(messagesApi.util.invalidateTags(["Messages"]));
+
+eventsService.subscribe<IClientMessage>(AppEvent.Message, (_) => {
+	store.dispatch(messagesApi.util.invalidateTags(["Messages"]));
+});
+
+eventsService.subscribe<string>(AppEvent.AlertPlaying, (id) => {
+	store.dispatch(setPlayingAlertId(id));
+});
+
+eventsService.subscribe<string>(AppEvent.MediaPlaying, (id) => {
+	store.dispatch(setPausedMediaId(""));
+	store.dispatch(setPlayingMediaId(id));
+});
+
+eventsService.subscribe<string>(AppEvent.MediaPaused, (id) => {
+	store.dispatch(setPausedMediaId(id));
+});
+
+eventsService.subscribe<string>(AppEvent.AlertPlayed, (_) => {
+	store.dispatch(setPlayingAlertId(""));
+});
+eventsService.subscribe<string>(AppEvent.MediaPlayed, (_) => {
+	store.dispatch(setPlayingMediaId(""));
+	store.dispatch(setPausedMediaId(""));
+});
+
+eventsService.subscribe<ISettings>(AppEvent.Settings, (settings) => {
+	i18n.changeLanguage(settings.language);
+});
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>
-		<WebsocketProvider
-			context={WebsocketContext}
-			webSocketService={webSocketService}
-		>
+		<EventsProvider context={EventsContext} eventsService={eventsService}>
 			<Provider store={store}>
 				<BrowserRouter>
 					<CssBaseline />
 					<App />
 				</BrowserRouter>
 			</Provider>
-		</WebsocketProvider>
+		</EventsProvider>
 	</React.StrictMode>,
 );

@@ -8,6 +8,7 @@ use crate::constants::{SQLITE_DB, STATIC_DIR};
 pub struct ConfigService {
     pub db_path: PathBuf,
     pub widget_path: PathBuf,
+    pub widgets_path: PathBuf,
     pub auc_fighter_path: PathBuf,
     pub static_path: PathBuf,
     pub assets_path: PathBuf,
@@ -50,6 +51,10 @@ impl ConfigService {
             .path()
             .resolve("dist-widget", BaseDirectory::Resource)
             .map_err(|e| format!("Failed to resolve widget path: {}", e))?;
+        let widgets_path = app
+            .path()
+            .resolve("widgets", BaseDirectory::AppLocalData)
+            .map_err(|e| format!("Failed to resolve widgets path: {}", e))?;
         let auc_fighter_path = app
             .path()
             .resolve("auc-fighter", BaseDirectory::Resource)
@@ -72,6 +77,7 @@ impl ConfigService {
             api_hash,
             client_id,
             widy_sol_program_id,
+            widgets_path,
         })
     }
 }

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AppEvent } from "../../shared/enums";
-import useWebSocket from "../../shared/hooks/useWebSocket";
+import useAppEvents from "../../shared/hooks/useAppEvents";
 import type {
 	IAlert,
 	IClientMessage,
@@ -13,7 +13,7 @@ import getAlertByMessage from "../utils/getAlertByMessage";
 
 const usePlayAlert = () => {
 	const { t } = useTranslation();
-	const websocketService = useWebSocket();
+	const eventsService = useAppEvents();
 	const alertAudioRef = useRef<HTMLAudioElement>(new Audio());
 	const messageAudioRef = useRef<HTMLAudioElement>(new Audio());
 	const alertsRef = useRef<IAlert[]>([]);
@@ -35,7 +35,7 @@ const usePlayAlert = () => {
 			setTimeout(
 				() => {
 					if (!message) return;
-					websocketService.send<MessageId>({
+					eventsService.send<MessageId>({
 						event: AppEvent.AlertPlayed,
 						data: message.id,
 					});
@@ -69,7 +69,7 @@ const usePlayAlert = () => {
 			if (settingsRef.current && !settingsRef.current.alert_paused) {
 				setTimeout(() => {
 					if (settingsRef.current && messagesRef.current.length) {
-						websocketService.send<MessageId>({
+						eventsService.send<MessageId>({
 							event: AppEvent.AlertPlaying,
 							data: message.id,
 						});
@@ -101,7 +101,7 @@ const usePlayAlert = () => {
 		if (!testMessage) return;
 
 		if (!messagesRef.current.length && settingsRef.current) {
-			websocketService.send<MessageId>({
+			eventsService.send<MessageId>({
 				event: AppEvent.AlertPlaying,
 				data: testMessage.id,
 			});
@@ -198,7 +198,7 @@ const usePlayAlert = () => {
 	}, [handleAlertAudioEnd]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<IClientMessage>(
+		const unsubscribe = eventsService.subscribe<IClientMessage>(
 			AppEvent.Message,
 			handleNewMessage,
 		);
@@ -207,7 +207,7 @@ const usePlayAlert = () => {
 	}, [handleNewMessage]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<IClientMessage>(
+		const unsubscribe = eventsService.subscribe<IClientMessage>(
 			AppEvent.ReplayAlert,
 			handleReplayMessage,
 		);
@@ -216,7 +216,7 @@ const usePlayAlert = () => {
 	}, [handleReplayMessage]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<string>(
+		const unsubscribe = eventsService.subscribe<string>(
 			AppEvent.SkipAlert,
 			(id) => {
 				skipMessage(id);
@@ -227,7 +227,7 @@ const usePlayAlert = () => {
 	}, [skipMessage]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<string>(
+		const unsubscribe = eventsService.subscribe<string>(
 			AppEvent.TestAlert,
 			(id) => {
 				testAlert(id);
@@ -238,7 +238,7 @@ const usePlayAlert = () => {
 	}, [testAlert]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<null>(
+		const unsubscribe = eventsService.subscribe<null>(
 			AppEvent.SkipPlayingAlert,
 			skipPlayingMessage,
 		);
@@ -247,7 +247,7 @@ const usePlayAlert = () => {
 	}, [skipPlayingMessage]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<IAlert[]>(
+		const unsubscribe = eventsService.subscribe<IAlert[]>(
 			AppEvent.Alerts,
 			(alerts) => {
 				alertsRef.current = alerts;
@@ -258,7 +258,7 @@ const usePlayAlert = () => {
 	}, []);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<ISettings>(
+		const unsubscribe = eventsService.subscribe<ISettings>(
 			AppEvent.Settings,
 			(settings) => {
 				if (settingsRef.current?.alert_paused && !settings.alert_paused) {

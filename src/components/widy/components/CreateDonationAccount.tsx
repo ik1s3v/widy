@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { AppEvent, ServiceType, WidyNetwork } from "../../../../shared/enums";
-import useWebSocket from "../../../../shared/hooks/useWebSocket";
+import useAppEvents from "../../../../shared/hooks/useAppEvents";
 import type { IDeepLinkQueryParams } from "../../../../shared/types";
 import {
 	useGetServicesQuery,
@@ -25,7 +25,7 @@ const CreateDonationAccount = ({
 	const { t } = useTranslation();
 	const [isPending, setIsPending] = useState(false);
 	const [getWidyNonce] = useGetWidyNonceMutation();
-	const websocketService = useWebSocket();
+	const eventsService = useAppEvents();
 	const navigate = useNavigate();
 	const { refetch } = useGetServicesQuery();
 	const { refetch: refetchWidySolService } = useGetServiceWithAuthByIdQuery({
@@ -36,7 +36,7 @@ const CreateDonationAccount = ({
 	});
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<IDeepLinkQueryParams>(
+		const unsubscribe = eventsService.subscribe<IDeepLinkQueryParams>(
 			AppEvent.CreateDonationAccount,
 			async (params) => {
 				await refetch().unwrap();
@@ -55,7 +55,7 @@ const CreateDonationAccount = ({
 		);
 		return () => unsubscribe();
 	}, [
-		websocketService,
+		eventsService,
 		navigate,
 		refetch,
 		isNavigate,

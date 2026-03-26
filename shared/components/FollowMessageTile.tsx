@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import type { AppState } from "../../src/store";
 import { AppEvent } from "../enums";
-import useWebSocket from "../hooks/useWebSocket";
+import useAppEvents from "../hooks/useAppEvents";
 import type { IClientMessage, MessageId } from "../types";
 import getColorByMessageType from "../utils/getColorByMessageType";
 import MessageDate from "./MessageDate";
@@ -16,7 +16,7 @@ const FollowMessageTile = ({
 	isAlertPlaying: boolean;
 }) => {
 	const { t } = useTranslation();
-	const websocketService = useWebSocket();
+	const eventsService = useAppEvents();
 	const { services } = useSelector((state: AppState) => state.servicesState);
 	const follow = message.follow;
 
@@ -73,7 +73,7 @@ const FollowMessageTile = ({
 										fontSize: 12,
 									}}
 									onClick={() => {
-										websocketService.send<IClientMessage>({
+										eventsService.send<IClientMessage>({
 											event: AppEvent.ReplayAlert,
 											data: message,
 										});
@@ -90,7 +90,7 @@ const FollowMessageTile = ({
 									fontSize: 12,
 								}}
 								onClick={() => {
-									websocketService.send<MessageId>({
+									eventsService.send<MessageId>({
 										event: AppEvent.SkipAlert,
 										data: message.id,
 									});

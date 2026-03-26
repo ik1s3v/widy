@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import YouTube, { type YouTubePlayer } from "react-youtube";
 import { AppEvent } from "../../../shared/enums";
-import useWebSocket from "../../../shared/hooks/useWebSocket";
+import useAppEvents from "../../../shared/hooks/useAppEvents";
 import type {
 	IMedia,
 	IMediaPlatformSettings,
@@ -17,7 +17,7 @@ const Youtube = ({
 	media: IMedia;
 	messageId: string;
 }) => {
-	const websocketService = useWebSocket();
+	const eventsService = useAppEvents();
 	const [player, setPlayer] = useState<YouTubePlayer>();
 	const opts = {
 		height: window.innerHeight,
@@ -30,7 +30,7 @@ const Youtube = ({
 	};
 
 	const onReady = (event: YouTubePlayer) => {
-		websocketService.send<MessageId>({
+		eventsService.send<MessageId>({
 			event: AppEvent.MediaPlaying,
 			data: messageId,
 		});
@@ -38,32 +38,32 @@ const Youtube = ({
 		setPlayer(event.target);
 	};
 	const onError = () => {
-		websocketService.send<MessageId>({
+		eventsService.send<MessageId>({
 			event: AppEvent.MediaError,
 			data: messageId,
 		});
 	};
 	const onPlay = () => {
-		websocketService.send<MessageId>({
+		eventsService.send<MessageId>({
 			event: AppEvent.MediaPlaying,
 			data: messageId,
 		});
 	};
 	const onPause = () => {
-		websocketService.send<MessageId>({
+		eventsService.send<MessageId>({
 			event: AppEvent.MediaPaused,
 			data: messageId,
 		});
 	};
 	const onEnd = () => {
-		websocketService.send<MessageId>({
+		eventsService.send<MessageId>({
 			event: AppEvent.MediaEnd,
 			data: messageId,
 		});
 	};
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<MessageId>(
+		const unsubscribe = eventsService.subscribe<MessageId>(
 			AppEvent.PauseMedia,
 			(id) => {
 				if (messageId === id) {
@@ -73,10 +73,10 @@ const Youtube = ({
 		);
 
 		return () => unsubscribe();
-	}, [messageId, player, websocketService]);
+	}, [messageId, player, eventsService]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<MessageId>(
+		const unsubscribe = eventsService.subscribe<MessageId>(
 			AppEvent.PlayMedia,
 			(id) => {
 				if (messageId === id) {
@@ -86,7 +86,7 @@ const Youtube = ({
 		);
 
 		return () => unsubscribe();
-	}, [messageId, player, websocketService]);
+	}, [messageId, player, eventsService]);
 
 	return (
 		<YouTube

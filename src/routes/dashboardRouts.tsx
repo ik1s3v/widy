@@ -5,6 +5,7 @@ import MessageIcon from "@mui/icons-material/Message";
 import MovieIcon from "@mui/icons-material/Movie";
 import SettingsIcon from "@mui/icons-material/Settings";
 import SportsMartialArtsIcon from "@mui/icons-material/SportsMartialArts";
+import WidgetsIcon from "@mui/icons-material/Widgets";
 import Alerts from "../components/dashboard/components/alerts/Alerts";
 import Auction from "../components/dashboard/components/auction/Auction";
 import AuctionIcon from "../components/dashboard/components/auction/components/AuctionIcon";
@@ -16,6 +17,7 @@ import Media from "../components/dashboard/components/media/Media";
 import Messages from "../components/dashboard/components/messages/Messages";
 import Services from "../components/dashboard/components/services/Services";
 import Settings from "../components/dashboard/components/settings/Settings";
+import Widgets from "../components/dashboard/components/widgets/Widgets";
 
 export const dashboardRouts = [
 	{
@@ -71,5 +73,11 @@ export const dashboardRouts = [
 		element: <Maption />,
 		icon: <MapIcon />,
 		name: "maption",
+	},
+	{
+		path: "widgets",
+		element: <Widgets />,
+		icon: <WidgetsIcon />,
+		name: "widgets",
 	},
 ];

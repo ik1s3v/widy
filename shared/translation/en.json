@@ -71,7 +71,8 @@
 		"goals": "Goals",
 		"auction": "Auction",
 		"maption": "Maption",
-		"fighter": "Fighter"
+		"fighter": "Fighter",
+		"widgets": "Widgets"
 	},
 	"messages": {
 		"title": "Last messages"

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router";
 import { AlertSeverity } from "../shared/enums";
-import useWebSocket from "../shared/hooks/useWebSocket";
+import useAppEvents from "../shared/hooks/useAppEvents";
 import { showSnackBar } from "../shared/slices/snackBarSlice";
 import { useInitMutation } from "./api";
 import { useGetSettingsQuery } from "./api/settingsApi";
@@ -23,7 +23,7 @@ import Widy from "./components/widy/Widy";
 import { setSettings } from "./store/slices/settingsSlice";
 
 function App() {
-	const websocketService = useWebSocket();
+	const eventsService = useAppEvents();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { i18n } = useTranslation();
@@ -48,9 +48,9 @@ function App() {
 
 	useEffect(() => {
 		if (initIsSuccess) {
-			websocketService.connect();
+			eventsService.connect();
 		}
-	}, [initIsSuccess, websocketService]);
+	}, [initIsSuccess, eventsService]);
 
 	useEffect(() => {
 		if (settings) {

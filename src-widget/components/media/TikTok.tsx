@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import { AppEvent } from "../../../shared/enums";
-import useWebSocket from "../../../shared/hooks/useWebSocket";
+import useAppEvents from "../../../shared/hooks/useAppEvents";
 import type {
 	IMedia,
 	IMediaPlatformSettings,
@@ -16,7 +16,7 @@ const TikTok = ({
 	media: IMedia;
 	messageId: string;
 }) => {
-	const websocketService = useWebSocket();
+	const eventsService = useAppEvents();
 	const tiktokRef = useRef<HTMLIFrameElement>(null);
 	const tiktokListener = useCallback(
 		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -25,20 +25,20 @@ const TikTok = ({
 				case "onStateChange":
 					switch (event.data.value) {
 						case 0:
-							websocketService.send<MessageId>({
+							eventsService.send<MessageId>({
 								event: AppEvent.MediaEnd,
 								data: messageId,
 							});
 							break;
 						case 1:
-							websocketService.send<MessageId>({
+							eventsService.send<MessageId>({
 								event: AppEvent.MediaPlaying,
 								data: messageId,
 							});
 
 							break;
 						case 2:
-							websocketService.send<MessageId>({
+							eventsService.send<MessageId>({
 								event: AppEvent.MediaPaused,
 								data: messageId,
 							});
@@ -65,7 +65,7 @@ const TikTok = ({
 
 					break;
 				case "onError":
-					websocketService.send<MessageId>({
+					eventsService.send<MessageId>({
 						event: AppEvent.MediaError,
 						data: messageId,
 					});
@@ -75,7 +75,7 @@ const TikTok = ({
 					break;
 			}
 		},
-		[messageId, mediaPlatformSettings, websocketService],
+		[messageId, mediaPlatformSettings, eventsService],
 	);
 	useEffect(() => {
 		window.addEventListener("message", tiktokListener);
@@ -86,7 +86,7 @@ const TikTok = ({
 	}, [tiktokListener]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<MessageId>(
+		const unsubscribe = eventsService.subscribe<MessageId>(
 			AppEvent.PauseMedia,
 			(id) => {
 				if (messageId === id && tiktokRef.current) {
@@ -99,10 +99,10 @@ const TikTok = ({
 		);
 
 		return () => unsubscribe();
-	}, [messageId, websocketService]);
+	}, [messageId, eventsService]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<MessageId>(
+		const unsubscribe = eventsService.subscribe<MessageId>(
 			AppEvent.PlayMedia,
 			(id) => {
 				if (messageId === id && tiktokRef.current) {
@@ -115,7 +115,7 @@ const TikTok = ({
 		);
 
 		return () => unsubscribe();
-	}, [messageId, websocketService]);
+	}, [messageId, eventsService]);
 	return (
 		<iframe
 			ref={tiktokRef}

@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { AppEvent } from "../shared/enums";
+import { WebsocketEventsService } from "../shared/services/websocketEventsService";
 import { fighterTimerSlice } from "../shared/slices/timerSlice";
 import type {
 	IAucFighterMatch,
@@ -14,7 +15,6 @@ import updatePlayersEnergybar from "./helpers/updatePlayersEnergybar";
 import updatePlayersHealthbar from "./helpers/updatePlayersHealthbar";
 import updateRoundWinnerIndex from "./helpers/updateRoundWinnerIndex";
 import updateTeamsPlayers from "./helpers/updateTeamsPlayers";
-import { websocketService } from "./services/websocketService";
 import { type AppState, store } from "./store";
 import {
 	setAucFighterMatch,
@@ -39,7 +39,9 @@ const STAGES = [
 	"sagat",
 ] as const;
 
-websocketService.connect();
+const eventsService = new WebsocketEventsService("ws://127.0.0.1:12553/ws");
+
+eventsService.connect();
 
 const { setTime, subtractTime, setCurrentIntervalId } =
 	fighterTimerSlice.actions;
@@ -79,7 +81,7 @@ const clearTimer = () => {
 
 $$init();
 
-websocketService.subscribe<IAucFighterMatch>(
+eventsService.subscribe<IAucFighterMatch>(
 	AppEvent.StartAucFighterMatch,
 	(match: IAucFighterMatch) => {
 		store.dispatch(setIsShowAnnouncer(true));
@@ -94,7 +96,7 @@ websocketService.subscribe<IAucFighterMatch>(
 		user1_.resetChar(teamA.character, false, true);
 		user2_.resetChar(teamB.character, true, true);
 		game_.startMatch(0, [0], [1], randomStage, () => {
-			websocketService.send<MatchId>({
+			eventsService.send<MatchId>({
 				event: AppEvent.AucFighterMatchPlaying,
 				data: match.id,
 			});
@@ -124,7 +126,7 @@ game_.onMatchEnd = () => {
 		store.dispatch(setIsGameStarted(false));
 		store.dispatch(setIsNewRoundStart(false));
 		store.dispatch(setIsShowAnnouncer(false));
-		websocketService.send<IAucFighterMatchWinner>({
+		eventsService.send<IAucFighterMatchWinner>({
 			event: AppEvent.AucFighterMatchEnd,
 			data: {
 				matchId: match.id,
@@ -134,25 +136,25 @@ game_.onMatchEnd = () => {
 	}
 };
 
-websocketService.subscribe<string>(AppEvent.PauseAucFighterMatch, () => {
+eventsService.subscribe<string>(AppEvent.PauseAucFighterMatch, () => {
 	const state = store.getState() as AppState;
 	const { match } = state.mainState;
 	game_.pause();
 	clearTimer();
 	if (match) {
-		websocketService.send<MatchId>({
+		eventsService.send<MatchId>({
 			event: AppEvent.AucFighterMatchPaused,
 			data: match.id,
 		});
 	}
 });
 
-websocketService.subscribe<string>(AppEvent.ResumeAucFighterMatch, () => {
+eventsService.subscribe<string>(AppEvent.ResumeAucFighterMatch, () => {
 	game_.resume();
 	setTimer();
 });
 
-websocketService.subscribe<string>(AppEvent.CancelAucFighterMatch, () => {
+eventsService.subscribe<string>(AppEvent.CancelAucFighterMatch, () => {
 	store.dispatch(setIsGameStarted(false));
 	store.dispatch(setIsNewRoundStart(false));
 	store.dispatch(setIsShowAnnouncer(false));
@@ -160,7 +162,7 @@ websocketService.subscribe<string>(AppEvent.CancelAucFighterMatch, () => {
 	game_.end();
 });
 
-websocketService.subscribe<IAucFighterMatch>(
+eventsService.subscribe<IAucFighterMatch>(
 	AppEvent.UpdateAucFighterMatch,
 	(match: IAucFighterMatch) => {
 		const state = store.getState() as AppState;
@@ -177,7 +179,7 @@ websocketService.subscribe<IAucFighterMatch>(
 	},
 );
 
-websocketService.subscribe<IAucFighterSettings>(
+eventsService.subscribe<IAucFighterSettings>(
 	AppEvent.AucFighterSettings,
 	(aucFighterSettings: IAucFighterSettings) => {
 		store.dispatch(setAucFighterSettings(aucFighterSettings));

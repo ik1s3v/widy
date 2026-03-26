@@ -104,7 +104,6 @@ export interface ISubscriber<T = any> {
 	callback: EventCallback<T>;
 }
 export type EventCallback<T> = (data: T) => void;
-
 export interface IAlert {
 	id: string;
 	audio: string;
@@ -241,7 +240,7 @@ export interface IImportedLot {
 	name: string;
 	investors: [];
 }
-export interface IWebsocketService extends ISubscriptions {
+export interface IEventsService extends ISubscriptions {
 	connect: () => void;
 	disconnect: () => void;
 	send: <T>(message: IEventMessage<T>) => void;
@@ -398,4 +397,24 @@ export type AlertId = string;
 
 export interface IEdgeTtsSettings {
 	gender: Gender;
+}
+
+export type WidgetAction = "widgets:messages.read" | "widgets:goals.read";
+
+export type WidgetSubscription =
+	| "widgets:messages.subscription"
+	| "widgets:goal.subscription"
+	| "widgets:settings.subscription";
+
+export type WidgetScopes = WidgetAction | WidgetSubscription;
+
+export interface IWidgetRequest<T = unknown> {
+	id: string;
+	scope: WidgetScopes;
+	payload?: T;
+}
+export interface IWidgetResponse<T = unknown> {
+	id: string;
+	result: T;
+	error?: string;
 }

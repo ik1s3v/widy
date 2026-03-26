@@ -15,7 +15,6 @@ use utils::register_shortcuts;
 pub fn run() {
     let mut builder = tauri::Builder::default()
         .plugin(tauri_plugin_deep_link::init())
-        .plugin(tauri_plugin_websocket::init())
         .plugin(tauri_plugin_opener::init());
 
     #[cfg(debug_assertions)]

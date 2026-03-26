@@ -1,12 +1,15 @@
 import { AppEvent } from "../../shared/enums";
-import { IAucFighterMatch, IDonation } from "../../shared/types";
-import { WebSocketService } from "../services/websocketService";
+import {
+	IAucFighterMatch,
+	IDonation,
+	IEventsService,
+} from "../../shared/types";
 import { AppState, store } from "../store";
 import { updateMatches } from "../store/slices/aucFighterSlice";
 
 const updateAucFighterTeamAmount = (
 	donation: IDonation,
-	websocketService: WebSocketService,
+	eventsService: IEventsService,
 ) => {
 	const state = store.getState() as AppState;
 	const ids = donation.text?.split("#");
@@ -62,7 +65,7 @@ const updateAucFighterTeamAmount = (
 				(match) => match.id === playingMatchId,
 			);
 			if (updatedMatch) {
-				websocketService.send<IAucFighterMatch>({
+				eventsService.send<IAucFighterMatch>({
 					event: AppEvent.UpdateAucFighterMatch,
 					data: updatedMatch,
 				});

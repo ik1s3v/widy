@@ -2,11 +2,11 @@ use crate::constants::HTTP_WIDGET_PORT;
 use crate::enums::AppEvent;
 use crate::repositories::{
     AlertsRepository, AucFighterSettingsRepository, GoalsRepository, MediaSettingsRepository,
-    MessagesRepository, SettingsRepository,
+    MessagesRepository, SettingsRepository, WidgetsRepository,
 };
-use crate::services::{DatabaseService, EventMessage, WebSocketBroadcaster};
+use crate::services::{ConfigService, DatabaseService, EventMessage, WebSocketBroadcaster};
 use axum::extract::ws::{Message, WebSocket};
-use axum::extract::Query;
+use axum::extract::{Path, Query};
 use axum::http::HeaderValue;
 use axum::Json;
 use axum::{
@@ -18,10 +18,12 @@ use axum::{
 use entity::goal::GoalType;
 use entity::message::ClientMessage;
 use futures::{sink::SinkExt, stream::StreamExt};
+use http::header;
 use reqwest::StatusCode;
 use serde::Deserialize;
 use std::path::PathBuf;
 use tauri::{AppHandle, Manager};
+use tokio::fs;
 use tokio::sync::mpsc;
 use tower_http::cors::CorsLayer;
 use tower_http::services::{ServeDir, ServeFile};
@@ -73,6 +75,10 @@ impl AxumService {
             .route("/ws", get(AxumService::websocket_handler))
             .route("/api/messages", get(AxumService::get_messages))
             .route("/api/goals", get(AxumService::get_not_ended_goal))
+            .route(
+                "/widgets/{widget_name}/{widget_type}/{*file_path}",
+                get(AxumService::widgets_handler),
+            )
             .nest_service("/static", ServeDir::new(&static_path))
             .nest_service(
                 "/auc-fighter",
@@ -103,6 +109,52 @@ impl AxumService {
         });
 
         Ok(())
+    }
+
+    async fn widgets_handler(
+        Path((widget_name, widget_type, file_path)): Path<(String, String, String)>,
+        State(state): State<AxumState>,
+    ) -> Result<Response, StatusCode> {
+        let database_service = state.app.state::<DatabaseService>();
+        if let Ok(Some(widget)) = database_service.get_widget_by_name(widget_name).await {
+            let config_service = state.app.state::<ConfigService>();
+            let widget_path = match widget.dev_path {
+                Some(dev_path) => PathBuf::new().join(&dev_path),
+                None => config_service.widgets_path.clone().join(&widget.name),
+            };
+            let base_path = widget_path.join(&widget_type).join(file_path);
+
+            let canonical = base_path
+                .canonicalize()
+                .map_err(|_| StatusCode::NOT_FOUND)?;
+
+            let widgets_root = widget_path
+                .canonicalize()
+                .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+
+            if !canonical.starts_with(&widgets_root) {
+                return Err(StatusCode::FORBIDDEN);
+            }
+
+            let content = fs::read(&canonical)
+                .await
+                .map_err(|_| StatusCode::NOT_FOUND)?;
+
+            let mime = mime_guess::from_path(&canonical).first_or_octet_stream();
+
+            let response = Response::builder()
+                .status(StatusCode::OK)
+                .header(header::CONTENT_TYPE, mime.as_ref())
+                // .header(
+                //     header::CONTENT_SECURITY_POLICY,
+                //     "default-src 'none'; connect-src https://api.example.com",
+                // )
+                .body(axum::body::Body::from(content))
+                .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+
+            return Ok(response);
+        }
+        return Err(StatusCode::NOT_FOUND);
     }
 
     async fn get_messages(

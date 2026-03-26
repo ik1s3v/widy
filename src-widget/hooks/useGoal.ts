@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { AppEvent, GoalType } from "../../shared/enums";
-import useWebSocket from "../../shared/hooks/useWebSocket";
+import useAppEvents from "../../shared/hooks/useAppEvents";
 import type { IGoal, ISettings } from "../../shared/types";
 import { useGetNotEndedGoalQuery } from "../api/goalsApi";
 
 const useGoal = () => {
-	const websocketService = useWebSocket();
+	const eventsService = useAppEvents();
 	const [goal, setGoal] = useState<IGoal>();
 	const urlParams = new URLSearchParams(window.location.search);
 	const type = urlParams.get("type") as GoalType;
@@ -19,7 +19,7 @@ const useGoal = () => {
 	}, [data]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<IGoal>(
+		const unsubscribe = eventsService.subscribe<IGoal>(
 			AppEvent.Goal,
 			(goal) => {
 				if (data && goal.id === data.id) {
@@ -32,7 +32,7 @@ const useGoal = () => {
 	}, [data]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<ISettings>(
+		const unsubscribe = eventsService.subscribe<ISettings>(
 			AppEvent.Settings,
 			(settings) => {
 				setSettings(settings);

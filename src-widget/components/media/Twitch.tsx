@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { AppEvent } from "../../../shared/enums";
-import useWebSocket from "../../../shared/hooks/useWebSocket";
+import useAppEvents from "../../../shared/hooks/useAppEvents";
 import type {
 	IMedia,
 	IMediaPlatformSettings,
@@ -17,7 +17,7 @@ const Twitch = ({
 	messageId: string;
 }) => {
 	const videoRef = useRef<HTMLVideoElement | null>(null);
-	const websocketService = useWebSocket();
+	const eventsService = useAppEvents();
 
 	useEffect(() => {
 		if (!videoRef.current) return;
@@ -26,26 +26,26 @@ const Twitch = ({
 	useEffect(() => {
 		if (!videoRef.current) return;
 		videoRef.current.onplay = () => {
-			websocketService.send<MessageId>({
+			eventsService.send<MessageId>({
 				event: AppEvent.MediaPlaying,
 				data: messageId,
 			});
 		};
 
 		videoRef.current.onended = () => {
-			websocketService.send<MessageId>({
+			eventsService.send<MessageId>({
 				event: AppEvent.MediaEnd,
 				data: messageId,
 			});
 		};
 		videoRef.current.onpause = () => {
-			websocketService.send<MessageId>({
+			eventsService.send<MessageId>({
 				event: AppEvent.MediaPaused,
 				data: messageId,
 			});
 		};
 		videoRef.current.onerror = () => {
-			websocketService.send<MessageId>({
+			eventsService.send<MessageId>({
 				event: AppEvent.MediaError,
 				data: messageId,
 			});
@@ -58,10 +58,10 @@ const Twitch = ({
 			videoRef.current.onpause = null;
 			videoRef.current.onerror = null;
 		};
-	}, [messageId, websocketService]);
+	}, [messageId, eventsService]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<MessageId>(
+		const unsubscribe = eventsService.subscribe<MessageId>(
 			AppEvent.PauseMedia,
 			(id) => {
 				if (messageId === id && videoRef.current) {
@@ -71,10 +71,10 @@ const Twitch = ({
 		);
 
 		return () => unsubscribe();
-	}, [messageId, websocketService]);
+	}, [messageId, eventsService]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<MessageId>(
+		const unsubscribe = eventsService.subscribe<MessageId>(
 			AppEvent.PlayMedia,
 			(id) => {
 				if (messageId === id && videoRef.current) {
@@ -84,7 +84,7 @@ const Twitch = ({
 		);
 
 		return () => unsubscribe();
-	}, [messageId, websocketService]);
+	}, [messageId, eventsService]);
 
 	return (
 		<>

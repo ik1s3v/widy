@@ -1,7 +1,7 @@
 import { Button, Card } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { AppEvent } from "../../../../../../shared/enums";
-import useWebSocket from "../../../../../../shared/hooks/useWebSocket";
+import useAppEvents from "../../../../../../shared/hooks/useAppEvents";
 import type { IAucFighterMatch } from "../../../../../../shared/types";
 import TeamTile from "../../auction/components/TeamTile";
 
@@ -14,7 +14,7 @@ const MatchCard = ({
 	matchNumber: number;
 	isAucFighterPlaying: boolean;
 }) => {
-	const websocketService = useWebSocket();
+	const eventsService = useAppEvents();
 	const { t } = useTranslation();
 	return (
 		<Card
@@ -47,7 +47,7 @@ const MatchCard = ({
 					<Button
 						size="small"
 						onClick={() => {
-							websocketService.send<IAucFighterMatch>({
+							eventsService.send<IAucFighterMatch>({
 								event: AppEvent.StartAucFighterMatch,
 								data: match,
 							});

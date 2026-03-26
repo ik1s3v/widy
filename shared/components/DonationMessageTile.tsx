@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import type { AppState } from "../../src/store";
 import { AppEvent } from "../enums";
-import useWebSocket from "../hooks/useWebSocket";
+import useAppEvents from "../hooks/useAppEvents";
 import type { IClientMessage, MessageId } from "../types";
 import getColorByMediaType from "../utils/getColorByMediaType";
 import getColorByMessageType from "../utils/getColorByMessageType";
@@ -22,7 +22,7 @@ const DonationMessageTile = ({
 	isMediaPlaying: boolean;
 }) => {
 	const { t } = useTranslation();
-	const websocketService = useWebSocket();
+	const eventsService = useAppEvents();
 	const { services } = useSelector((state: AppState) => state.servicesState);
 	const donation = message.donation;
 
@@ -59,7 +59,7 @@ const DonationMessageTile = ({
 						{donation.media && !isMediaPlaying && !isAlertPlaying && (
 							<IconButton
 								onClick={() => {
-									websocketService.send<IClientMessage>({
+									eventsService.send<IClientMessage>({
 										event: AppEvent.ReplayMedia,
 										data: message,
 									});
@@ -102,7 +102,7 @@ const DonationMessageTile = ({
 										fontSize: 12,
 									}}
 									onClick={() => {
-										websocketService.send<IClientMessage>({
+										eventsService.send<IClientMessage>({
 											event: AppEvent.ReplayAlert,
 											data: message,
 										});
@@ -119,7 +119,7 @@ const DonationMessageTile = ({
 									fontSize: 12,
 								}}
 								onClick={() => {
-									websocketService.send<MessageId>({
+									eventsService.send<MessageId>({
 										event: AppEvent.SkipAlert,
 										data: message.id,
 									});

@@ -48,7 +48,6 @@ axum = { version = "0.8.4", features = ["ws"] }
 tower = "0.5.2"
 tower-http = { version = "0.6.6", features = ["fs", "cors"] }
 tauri-plugin-opener = "2"
-tauri-plugin-websocket = "2"
 dotenvy = "0.15.7"
 anchor-lang = "0.32.1"
 anchor-client = { version = "0.32.1", features = ["async"] }
@@ -61,6 +60,8 @@ tonlib-core = "0.26.6"
 hex = "0.4.3"
 rust_socketio = { version = "0.6.0", features = ["async"] }
 msedge-tts = "0.3.0"
+mime_guess = "2.0.5"
+http = "1.4.0"
 
 [target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
 tauri-plugin-global-shortcut = "2"
