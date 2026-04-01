@@ -1,5 +1,5 @@
 import type { Middleware, Action as UnknownAction } from "@reduxjs/toolkit";
-import { auctionTimerSlice } from "../../../shared/slices/timerSlice";
+import { auctionTimerSlice } from "../../../shared/slices/timerSlice.ts";
 import isDonationAddTime from "../../helpers/isDonationAddTime.ts";
 import type { AppState } from "..";
 import { auctionDonationsSlice } from "../slices/donationsSlice.ts";

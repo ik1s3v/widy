@@ -1,8 +1,8 @@
 import { Box, Button } from "@mui/material";
+import { ServiceType } from "@widy/sdk";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { ServiceType } from "../../shared/enums";
 import { useGetServiceByIdQuery } from "../api/servicesApi";
 import type { AppState } from "../store";
 import NavigateBackButton from "./NavigateBackButton";

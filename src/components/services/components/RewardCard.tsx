@@ -1,12 +1,12 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Card, CardContent, IconButton, TextField } from "@mui/material";
-import type { Dispatch, SetStateAction } from "react";
-import { useTranslation } from "react-i18next";
-import { NumericFormat } from "react-number-format";
 import type {
 	ITwitchIntegrationReward,
 	ITwitchIntegrationSettings,
-} from "../../../../shared/types";
+} from "@widy/sdk";
+import type { Dispatch, SetStateAction } from "react";
+import { useTranslation } from "react-i18next";
+import { NumericFormat } from "react-number-format";
 import ColorPicker from "../../ColorPicker";
 
 const RewardCard = ({

@@ -1,6 +1,6 @@
+import type { IAlert } from "@widy/sdk";
+import { MessageType, ViewType } from "@widy/sdk";
 import type { ReactNode } from "react";
-import { MessageType, ViewType } from "../enums";
-import type { IAlert } from "../types";
 import computePXSize from "../utils/computePXSize";
 import getGridAutoColumns from "../utils/getGridAutoColumns";
 import getGridAutoRows from "../utils/getGridAutoRows";

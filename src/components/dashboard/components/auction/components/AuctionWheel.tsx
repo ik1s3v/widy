@@ -5,11 +5,10 @@ import {
 	ToggleButton,
 	ToggleButtonGroup,
 } from "@mui/material";
+import { WheelVariant } from "@widy/sdk";
 import { memo, useCallback, useRef, useState } from "react";
 import { Wheel } from "react-custom-roulette";
 import { useTranslation } from "react-i18next";
-import { WheelVariant } from "../../../../../../shared/enums";
-import type { ILot } from "../../../../../../shared/types";
 import getRandomWinnerIndex from "../../../../../../shared/utils/getRandomWinnerIndex";
 import calculateLotProbability from "../../../../../helpers/calculateLotProbability";
 import findLotsMinMaxAmount from "../../../../../helpers/findLotsMinMaxAmount";
@@ -18,6 +17,7 @@ import wheelDataFromLots, {
 	type WheelDataWithFastId,
 } from "../../../../../helpers/wheelDataFromLots";
 import InputSlider from "../../../../InputSlider";
+import type { ILot } from "../@widy/sdk";
 import AuctionWheelLots from "./AuctionWheelLots";
 
 const Container = styled("div")(({ theme }) => ({

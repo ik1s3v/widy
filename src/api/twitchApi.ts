@@ -1,4 +1,4 @@
-import type { ITwitchDeviceCodeResponse } from "../../shared/types";
+import type { ITwitchDeviceCodeResponse } from "@widy/sdk";
 import { api } from ".";
 
 export const twitchApi = api.injectEndpoints({

@@ -1,8 +1,8 @@
 import { Button, MenuItem, Select, TextField } from "@mui/material";
 import type { SerializedError } from "@reduxjs/toolkit";
+import { AlertSeverity, Currency, TtsType } from "@widy/sdk";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { AlertSeverity, Currency, TtsType } from "../../../../../shared/enums";
 import { languages } from "../../../../../shared/i18n/languages";
 import { showSnackBar } from "../../../../../shared/slices/snackBarSlice";
 import { useUpdateSettingsMutation } from "../../../../api/settingsApi";

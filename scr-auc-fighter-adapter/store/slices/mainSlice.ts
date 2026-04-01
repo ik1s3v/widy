@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IAucFighterMatch, IAucFighterSettings } from "../../../shared/types";
+import { IAucFighterMatch, IAucFighterSettings } from "@widy/sdk";
 
 interface MainState {
 	isGameStarted: boolean;

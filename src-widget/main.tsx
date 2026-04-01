@@ -2,11 +2,11 @@ import { CssBaseline } from "@mui/material";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router";
-import App from "./App";
 import "../shared/i18n/i18n";
+import type { IClientMessage, ISettings } from "@widy/sdk";
+import { AppEvent } from "@widy/sdk";
 import { Provider } from "react-redux";
 import { EventsContext } from "../shared/contexts/EventsContext";
-import { AppEvent } from "../shared/enums";
 import i18n from "../shared/i18n/i18n";
 import EventsProvider from "../shared/providers/EventsProvider";
 import { WebsocketEventsService } from "../shared/services/websocketEventsService";
@@ -15,7 +15,7 @@ import {
 	setPausedMediaId,
 	setPlayingMediaId,
 } from "../shared/slices/mediaSlice";
-import type { IClientMessage, ISettings } from "../shared/types";
+import App from "./App";
 import { messagesApi } from "./api/messagesApi";
 import { store } from "./store";
 

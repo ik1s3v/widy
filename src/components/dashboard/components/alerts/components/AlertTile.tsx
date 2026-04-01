@@ -7,14 +7,14 @@ import {
 	Switch,
 	useTheme,
 } from "@mui/material";
+import { AppEvent } from "@widy/sdk";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import { AppEvent } from "../../../../../../shared/enums";
 import useAppEvents from "../../../../../../shared/hooks/useAppEvents";
-import type { AlertId, IAlert } from "../../../../../../shared/types";
 import getColorByMessageType from "../../../../../../shared/utils/getColorByMessageType";
 import { useUpdateAlertSettingsMutation } from "../../../../../api/alertsApi";
+import type { AlertId, IAlert } from "../@widy/sdk";
 import DeleteAlertDialog from "./DeleteAlertDialog";
 
 const AlertTile = ({ alert }: { alert: IAlert }) => {

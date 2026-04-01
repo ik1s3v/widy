@@ -1,5 +1,5 @@
+import type { IEventsService } from "@widy/sdk";
 import type { Context, ReactNode } from "react";
-import type { IEventsService } from "../types";
 
 const EventsProvider = ({
 	children,

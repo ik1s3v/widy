@@ -10,18 +10,18 @@ import {
 	MenuItem,
 	Typography,
 } from "@mui/material";
+import { AlertSeverity } from "@widy/sdk";
 import { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { findBestMatch } from "string-similarity";
-import { AlertSeverity } from "../../../../../../shared/enums";
 import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
-import type { IDonation, ILot } from "../../../../../../shared/types";
 import getCurrencySymbol from "../../../../../../shared/utils/getCurrencySymbol.ts";
 import getRandomColor from "../../../../../helpers/getRandomColor";
 import type { AppState } from "../../../../../store";
 import { auctionDonationsSlice } from "../../../../../store/slices/donationsSlice.ts";
 import { addLot, updateLot } from "../../../../../store/slices/lotsSlice";
+import type { IDonation, ILot } from "../@widy/sdk.ts";
 
 const AuctionDonationCard = ({ donation }: { donation: IDonation }) => {
 	const { t } = useTranslation();

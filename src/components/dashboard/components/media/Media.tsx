@@ -1,10 +1,10 @@
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { Box, Button, Tab, Tabs } from "@mui/material";
 import type { SerializedError } from "@reduxjs/toolkit";
+import { AlertSeverity } from "@widy/sdk";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { AlertSeverity } from "../../../../../shared/enums";
 import { setMediaSettings } from "../../../../../shared/slices/mediaSlice";
 import { showSnackBar } from "../../../../../shared/slices/snackBarSlice";
 import {

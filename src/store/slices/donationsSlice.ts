@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { IDonation } from "../../../shared/types";
+import type { IDonation } from "@widy/sdk";
 
 interface DonationsState {
 	donations: IDonation[];

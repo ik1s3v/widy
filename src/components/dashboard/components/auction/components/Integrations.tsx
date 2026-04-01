@@ -10,11 +10,10 @@ import {
 	Switch,
 	Typography,
 } from "@mui/material";
-
+import { AlertSeverity, ServiceType } from "@widy/sdk";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { AlertSeverity, ServiceType } from "../../../../../../shared/enums";
 import { setServiceActive } from "../../../../../../shared/slices/servicesSlice";
 import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
 import { useGetServicesQuery } from "../../../../../api/servicesApi";

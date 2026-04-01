@@ -1,13 +1,9 @@
 import AddIcon from "@mui/icons-material/Add";
 import { Button } from "@mui/material";
+import { AlertVariationConditions, MessageType, ViewType } from "@widy/sdk";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import {
-	AlertVariationConditions,
-	MessageType,
-	ViewType,
-} from "../../../../../../shared/enums";
 import { setAlert } from "../../../../../../shared/slices/alertsSlice";
 import { TEXT_STYLE } from "../../../../../constants";
 

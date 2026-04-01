@@ -1,7 +1,7 @@
 import { Box, FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import { ViewType } from "@widy/sdk";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { ViewType } from "../../../../../../shared/enums";
 import { setAlert } from "../../../../../../shared/slices/alertsSlice";
 import type { AppState } from "../../../../../store";
 import View from "./View";

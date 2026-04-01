@@ -1,4 +1,4 @@
-import { IAucFighterMatch } from "../../shared/types";
+import { IAucFighterMatch } from "@widy/sdk";
 import calculateHealthDelta from "./calculateHealthDelta";
 
 const updatePlayersHealthbar = ({

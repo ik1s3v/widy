@@ -1,10 +1,11 @@
-import dayjs from "../../shared/dayjs";
-import { Currency, ServiceType } from "../../shared/enums";
 import {
+	Currency,
 	IDonation,
 	ITwitchEventPayload,
 	ITwitchRedemptionEvent,
-} from "../../shared/types";
+	ServiceType,
+} from "@widy/sdk";
+import dayjs from "../../shared/dayjs";
 
 const twitchRedemptionToDonation = ({
 	payload,

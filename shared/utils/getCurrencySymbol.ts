@@ -1,4 +1,4 @@
-import { Currency } from "../enums";
+import { Currency } from "@widy/sdk";
 
 const getCurrencySymbol = (currency: Currency) => {
 	switch (currency) {

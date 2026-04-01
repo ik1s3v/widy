@@ -1,8 +1,8 @@
 import type { SerializedError } from "@reduxjs/toolkit";
+import { AlertSeverity } from "@widy/sdk";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { AlertSeverity } from "../../../../../../shared/enums";
 import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
 import {
 	useCreateGoalMutation,

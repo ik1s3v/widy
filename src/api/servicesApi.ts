@@ -1,11 +1,11 @@
-import { ServiceType } from "../../shared/enums";
 import type {
 	IDonationAlertsAuth,
 	IService,
 	IStreamElementsAuth,
 	IStreamLabsAuth,
 	ITwitchIntegrationSettings,
-} from "../../shared/types";
+} from "@widy/sdk";
+import { ServiceType } from "@widy/sdk";
 import { api } from ".";
 
 export const servicesApi = api.injectEndpoints({

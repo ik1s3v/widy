@@ -1,4 +1,4 @@
-import type { ISettings } from "../../shared/types";
+import type { ISettings } from "@widy/sdk";
 import { api } from ".";
 
 export const settingsApi = api.injectEndpoints({

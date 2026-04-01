@@ -1,11 +1,10 @@
 import { Button } from "@mui/material";
+import { AppEvent } from "@widy/sdk";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { AutoSizer, List } from "react-virtualized";
-import { AppEvent } from "../../../../../../shared/enums";
 import useAppEvents from "../../../../../../shared/hooks/useAppEvents";
-import type { IAucFighterMatch, MatchId } from "../../../../../../shared/types";
 import fighterGameFromLots from "../../../../../helpers/fighterGameFromLots";
 import type { AppState } from "../../../../../store";
 import {
@@ -13,6 +12,7 @@ import {
 	setGameWinner,
 	setIsGameStarted,
 } from "../../../../../store/slices/aucFighterSlice";
+import type { IAucFighterMatch, MatchId } from "../@widy/sdk";
 import GameWinner from "./GameWinner";
 import MatchCard from "./MatchCard";
 

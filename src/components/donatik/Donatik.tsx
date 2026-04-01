@@ -1,4 +1,4 @@
-import { ServiceType } from "../../../shared/enums";
+import { ServiceType } from "@widy/sdk";
 import AuthorizationWithStreamElements from "../AuthorizationWithStreamElements";
 
 const Donatik = () => {

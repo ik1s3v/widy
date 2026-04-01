@@ -1,11 +1,8 @@
 import { MenuItem, Select, TextField } from "@mui/material";
+import { AlertVariationConditions, MessageType } from "@widy/sdk";
 import { useTranslation } from "react-i18next";
 import { NumericFormat } from "react-number-format";
 import { useDispatch, useSelector } from "react-redux";
-import {
-	AlertVariationConditions,
-	MessageType,
-} from "../../../../../../shared/enums";
 import { setAlert } from "../../../../../../shared/slices/alertsSlice";
 import type { AppState } from "../../../../../store";
 import OnOffSwitch from "../../../../OnOffSwitch";

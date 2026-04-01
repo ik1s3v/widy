@@ -1,5 +1,5 @@
-import { GoalType } from "../../shared/enums";
-import type { IGoal, IPageParm } from "../../shared/types";
+import type { IGoal, IPageParm } from "@widy/sdk";
+import { GoalType } from "@widy/sdk";
 import { api } from ".";
 
 export const goalsApi = api.injectEndpoints({

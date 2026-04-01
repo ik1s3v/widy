@@ -1,10 +1,10 @@
 import { Button, TextField } from "@mui/material";
 import type { SerializedError } from "@reduxjs/toolkit";
+import { AlertSeverity, ServiceType } from "@widy/sdk";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { AlertSeverity, ServiceType } from "../../../../shared/enums";
 import { showSnackBar } from "../../../../shared/slices/snackBarSlice";
 import { useGetServiceByIdQuery } from "../../../api/servicesApi";
 import useStreamElementsSocketService from "../../../hooks/useStreamElementsService";

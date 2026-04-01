@@ -1,6 +1,6 @@
+import type { ILot } from "@widy/sdk";
+import { WheelVariant } from "@widy/sdk";
 import type { WheelData } from "react-custom-roulette/dist/components/Wheel/types";
-import type { ILot } from "../../shared/types";
-import { WheelVariant } from "../../shared/enums";
 
 export type WheelDataWithFastId = WheelData & {
 	fastId: number;

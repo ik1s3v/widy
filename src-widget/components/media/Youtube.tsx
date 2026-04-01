@@ -1,12 +1,8 @@
+import type { IMedia, IMediaPlatformSettings, MessageId } from "@widy/sdk";
+import { AppEvent } from "@widy/sdk";
 import { useEffect, useState } from "react";
 import YouTube, { type YouTubePlayer } from "react-youtube";
-import { AppEvent } from "../../../shared/enums";
 import useAppEvents from "../../../shared/hooks/useAppEvents";
-import type {
-	IMedia,
-	IMediaPlatformSettings,
-	MessageId,
-} from "../../../shared/types";
 
 const Youtube = ({
 	mediaPlatformSettings,

@@ -1,8 +1,4 @@
-import type {
-	IAucFighterGame,
-	IAucFighterMatch,
-	ILot,
-} from "../../shared/types";
+import type { IAucFighterGame, IAucFighterMatch, ILot } from "@widy/sdk";
 import getRandomFighterCharacter from "./getRandomFighterCharacter";
 
 const fighterGameFromLots = (lots: ILot[]): IAucFighterGame => {

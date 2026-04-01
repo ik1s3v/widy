@@ -1,4 +1,4 @@
-import type { IMediaSettings } from "../../shared/types";
+import type { IMediaSettings } from "@widy/sdk";
 import { api } from ".";
 
 export const mediaApi = api.injectEndpoints({

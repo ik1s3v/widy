@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IAlert, ITextStyle } from "../types";
+import { IAlert, ITextStyle } from "@widy/sdk";
 
 interface AlertsState {
 	alert: IAlert | null;

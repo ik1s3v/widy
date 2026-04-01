@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IMessagesFilter } from "../types";
+import { IMessagesFilter } from "@widy/sdk";
 
 interface MessagesState {
 	filter: IMessagesFilter;

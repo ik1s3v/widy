@@ -1,9 +1,9 @@
 import { Button, Card } from "@mui/material";
+import { AppEvent } from "@widy/sdk";
 import { useTranslation } from "react-i18next";
-import { AppEvent } from "../../../../../../shared/enums";
 import useAppEvents from "../../../../../../shared/hooks/useAppEvents";
-import type { IAucFighterMatch } from "../../../../../../shared/types";
 import TeamTile from "../../auction/components/TeamTile";
+import type { IAucFighterMatch } from "../@widy/sdk";
 
 const MatchCard = ({
 	match,

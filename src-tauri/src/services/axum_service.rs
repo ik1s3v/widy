@@ -68,18 +68,30 @@ impl AxumService {
         let widget_path = self.widget_path.clone();
         let static_path = self.static_path.clone();
         let auc_fighter_path = self.auc_fighter_path.clone();
-        let cors =
-            CorsLayer::new().allow_origin(HeaderValue::from_static("http://localhost:12553"));
+        let cors = CorsLayer::new()
+            .allow_origin(HeaderValue::from_static("http://localhost:12553"))
+            .allow_origin(HeaderValue::from_static("http://localhost:1420"));
 
         let axum_router: Router = Router::new()
             .route("/ws", get(AxumService::websocket_handler))
+            .route("/api/alerts", get(AxumService::get_alerts))
+            .route("/api/settings", get(AxumService::get_settings))
             .route("/api/messages", get(AxumService::get_messages))
             .route("/api/goals", get(AxumService::get_not_ended_goal))
+            .route(
+                "/api/auc-fighter-settings",
+                get(AxumService::get_auc_fighter_settings),
+            )
             .route(
                 "/widgets/{widget_name}/{widget_type}/{*file_path}",
                 get(AxumService::widgets_handler),
             )
             .nest_service("/static", ServeDir::new(&static_path))
+            .nest_service(
+                "/widget",
+                ServeDir::new(&widget_path)
+                    .fallback(ServeFile::new(widget_path.join("index.html"))),
+            )
             .nest_service(
                 "/auc-fighter",
                 ServeDir::new(&auc_fighter_path)
@@ -147,7 +159,7 @@ impl AxumService {
                 .header(header::CONTENT_TYPE, mime.as_ref())
                 // .header(
                 //     header::CONTENT_SECURITY_POLICY,
-                //     "default-src 'none'; connect-src https://api.example.com",
+                //     "default-src 'none'; connect-src http://localhost:12553 https://google.com",
                 // )
                 .body(axum::body::Body::from(content))
                 .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
@@ -188,6 +200,42 @@ impl AxumService {
             .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
 
         Ok(Json(goal))
+    }
+
+    async fn get_auc_fighter_settings(
+        State(state): State<AxumState>,
+    ) -> Result<Json<Option<entity::auc_fighter_settings::Model>>, StatusCode> {
+        let database_service = state.app.state::<DatabaseService>();
+        let settings = database_service
+            .get_auc_fighter_settings()
+            .await
+            .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+
+        Ok(Json(settings))
+    }
+
+    async fn get_alerts(
+        State(state): State<AxumState>,
+    ) -> Result<Json<Vec<entity::alert::Model>>, StatusCode> {
+        let database_service = state.app.state::<DatabaseService>();
+        let alerts = database_service
+            .get_alerts()
+            .await
+            .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+
+        Ok(Json(alerts))
+    }
+
+    async fn get_settings(
+        State(state): State<AxumState>,
+    ) -> Result<Json<Option<entity::settings::Model>>, StatusCode> {
+        let database_service = state.app.state::<DatabaseService>();
+        let settings: Option<entity::settings::Model> = database_service
+            .get_settings()
+            .await
+            .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+
+        Ok(Json(settings))
     }
 
     async fn websocket_handler(

@@ -14,10 +14,10 @@ import {
 	CellMeasurerCache,
 	List,
 } from "react-virtualized";
-import type { IDonation } from "../../../../../../shared/types";
 import type { AppState } from "../../../../../store";
 import { auctionDonationsSlice } from "../../../../../store/slices/donationsSlice.ts";
 import { updateLot } from "../../../../../store/slices/lotsSlice";
+import type { IDonation } from "../@widy/sdk.ts";
 import AuctionDonationCard from "./AuctionDonationCard";
 import DraggableDonationCard from "./DraggableDonationCard";
 import LotCard from "./LotCard";
@@ -25,10 +25,10 @@ import LotSearch from "./LotSearch";
 import NewLotForm from "./NewLotForm";
 import Timer from "./Timer";
 import "react-virtualized/styles.css";
+import { AlertSeverity } from "@widy/sdk";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { AlertSeverity } from "../../../../../../shared/enums";
 import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
-import { auctionTimerSlice } from "../../../../../../shared/slices/timerSlice";
+import { auctionTimerSlice } from "../../../../../../shared/slices/timerSlice.ts";
 import { useGetAuctionSettingsQuery } from "../../../../../api/auctionApi.ts";
 import Integrations from "./Integrations";
 import LotsOptionsMenu from "./LotsOptionsMenu";

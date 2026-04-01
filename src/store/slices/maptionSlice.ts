@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { IMaptionSettings } from "../../../shared/types";
+import type { IMaptionSettings } from "@widy/sdk";
 
 const startPosition = {
 	lat: 0,

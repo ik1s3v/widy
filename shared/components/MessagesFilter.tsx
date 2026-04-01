@@ -1,11 +1,11 @@
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { Checkbox, FormGroup, IconButton, Menu, MenuItem } from "@mui/material";
+import type { IMessagesFilter } from "@widy/sdk";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppState } from "../../src/store";
 import { setFilter } from "../slices/messagesSlice";
-import type { IMessagesFilter } from "../types";
 
 const MessagesFilter = () => {
 	const { filter } = useSelector((state: AppState) => state.messagesState);

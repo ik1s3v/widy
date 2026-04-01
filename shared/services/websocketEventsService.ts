@@ -1,4 +1,4 @@
-import { IEventMessage, IEventsService } from "../types";
+import { IEventMessage, IEventsService } from "@widy/sdk";
 import Subscriptions from "./subscriptions";
 
 export class WebsocketEventsService

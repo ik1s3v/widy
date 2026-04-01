@@ -1,10 +1,11 @@
 import {
 	AlertVariationConditions,
 	Currency,
+	IAlert,
+	IClientMessage,
 	MessageType,
 	ServiceType,
-} from "../enums";
-import { IAlert, IClientMessage } from "../types";
+} from "@widy/sdk";
 
 const getTestAlertMessage = ({
 	alert,

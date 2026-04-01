@@ -1,14 +1,14 @@
 import { Skeleton } from "@mui/material";
 import type { TypedUseInfiniteQuery } from "@reduxjs/toolkit/query/react";
+import type { IClientMessage, IMessagesFilter } from "@widy/sdk";
+import { AlertSeverity } from "@widy/sdk";
 import { Fragment, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroller";
 import { useDispatch, useSelector } from "react-redux";
 import getMessageComponentByMessageType from "../../src/helpers/getMessageComponentByMessageType";
 import type { AppState } from "../../src/store";
-import { AlertSeverity } from "../enums";
 import { showSnackBar } from "../slices/snackBarSlice";
-import type { IClientMessage, IMessagesFilter } from "../types";
 import MessagesFilter from "./MessagesFilter";
 
 const InfiniteMessages = ({

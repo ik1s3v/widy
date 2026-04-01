@@ -1,7 +1,4 @@
-import type {
-	IStreamElementsEvent,
-	IStreamElementsTip,
-} from "../../shared/types";
+import type { IStreamElementsEvent, IStreamElementsTip } from "@widy/sdk";
 import { api } from ".";
 
 export const streamElementsApi = api.injectEndpoints({

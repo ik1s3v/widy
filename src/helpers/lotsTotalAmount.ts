@@ -1,4 +1,4 @@
-import type { ILot } from "../../shared/types";
+import type { ILot } from "@widy/sdk";
 
 const lotsTotalAmount = (lots: ILot[]) => {
 	return lots.reduce((a, v) => a + (v.amount ?? 0), 0);

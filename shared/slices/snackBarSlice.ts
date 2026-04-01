@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AlertSeverity } from "../enums";
+import { AlertSeverity } from "@widy/sdk";
 
 interface SnackBarState {
 	isShowSnackBar: boolean;

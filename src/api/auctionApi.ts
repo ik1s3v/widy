@@ -1,4 +1,4 @@
-import type { IAuctionSettings } from "../../shared/types";
+import type { IAuctionSettings } from "@widy/sdk";
 import { api } from ".";
 
 export const auctionApi = api.injectEndpoints({

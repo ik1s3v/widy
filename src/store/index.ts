@@ -7,7 +7,7 @@ import { snackBarSlice } from "../../shared/slices/snackBarSlice";
 import {
 	auctionTimerSlice,
 	maptionTimerSlice,
-} from "../../shared/slices/timerSlice";
+} from "../../shared/slices/timerSlice.ts";
 import { api } from "../api";
 import calculateLotsProbabilityMiddleware from "./middlewares/calculateLotsProbabilityMiddleware";
 import lotsLeaderChangeAddTimeMiddleware from "./middlewares/lotsLeaderChangeAddTimeMiddleware";

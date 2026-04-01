@@ -1,4 +1,4 @@
-import { MediaType } from "../enums";
+import { MediaType } from "@widy/sdk";
 
 const getColorByMediaType = (mediaType: MediaType) => {
 	switch (mediaType) {

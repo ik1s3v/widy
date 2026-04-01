@@ -1,12 +1,12 @@
 import { Button, TextField, useTheme } from "@mui/material";
 import type { SerializedError } from "@reduxjs/toolkit";
+import type { ITwitchIntegrationSettings } from "@widy/sdk";
+import { AlertSeverity, ServiceType } from "@widy/sdk";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NumericFormat } from "react-number-format";
 import { useDispatch } from "react-redux";
-import { AlertSeverity, ServiceType } from "../../../../shared/enums";
 import { showSnackBar } from "../../../../shared/slices/snackBarSlice";
-import type { ITwitchIntegrationSettings } from "../../../../shared/types";
 import {
 	useGetServiceByIdQuery,
 	useUpdateServiceSettingsMutation,

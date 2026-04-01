@@ -13,10 +13,10 @@ import { memo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NumericFormat } from "react-number-format";
 import { useDispatch } from "react-redux";
-import type { ILot } from "../../../../../../shared/types";
 import getCurrencySymbol from "../../../../../../shared/utils/getCurrencySymbol";
 import { useGetSettingsQuery } from "../../../../../api/settingsApi";
 import { removeLot, updateLot } from "../../../../../store/slices/lotsSlice";
+import type { ILot } from "../@widy/sdk";
 
 const inputSX = (theme: Theme) => ({
 	"& .MuiOutlinedInput-root": {

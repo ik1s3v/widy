@@ -1,4 +1,4 @@
-import type { IAlert, IAlertsGroup } from "../../shared/types";
+import type { IAlert, IAlertsGroup } from "@widy/sdk";
 
 const groupAlertsByGroupId = (alerts: IAlert[]): IAlertsGroup[] => {
 	const groupsMap = alerts.reduce<Record<string, IAlert[]>>((acc, obj) => {

@@ -1,11 +1,11 @@
 import { Button, type SxProps, type Theme } from "@mui/material";
 import { openUrl } from "@tauri-apps/plugin-opener";
+import type { IDeepLinkQueryParams } from "@widy/sdk";
+import { AppEvent, ServiceType, WidyNetwork } from "@widy/sdk";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import { AppEvent, ServiceType, WidyNetwork } from "../../../../shared/enums";
 import useAppEvents from "../../../../shared/hooks/useAppEvents";
-import type { IDeepLinkQueryParams } from "../../../../shared/types";
 import {
 	useGetServicesQuery,
 	useGetServiceWithAuthByIdQuery,

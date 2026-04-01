@@ -1,13 +1,14 @@
-import { io, Socket } from "socket.io-client";
-import { ServiceType, StreamElementsEventType } from "../../shared/enums";
-import Subscriptions from "../../shared/services/subscriptions";
 import {
 	IService,
 	IStreamElementsAuth,
 	IStreamElementsAuthenticated,
 	IStreamElementsEvent,
 	IStreamElementsTip,
-} from "../../shared/types";
+	ServiceType,
+	StreamElementsEventType,
+} from "@widy/sdk";
+import { io, Socket } from "socket.io-client";
+import Subscriptions from "../../shared/services/subscriptions";
 import { servicesApi } from "../api/servicesApi";
 import { streamElementsApi } from "../api/streamElementsApi";
 import { store } from "../store";

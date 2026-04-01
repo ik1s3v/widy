@@ -1,5 +1,4 @@
-import { IAucFighterMatch } from "../../shared/types";
-import getRandomWinnerIndex from "../../shared/utils/getRandomWinnerIndex";
+import { getRandomWinnerIndex, IAucFighterMatch } from "@widy/sdk";
 import { store } from "../store";
 import { setWinnerIndex } from "../store/slices/mainSlice";
 

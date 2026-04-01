@@ -1,5 +1,5 @@
-import { MediaType } from "../../shared/enums";
-import type { IMedia, IMediaSettings } from "../../shared/types";
+import type { IMedia, IMediaSettings } from "@widy/sdk";
+import { MediaType } from "@widy/sdk";
 import TikTok from "../components/media/TikTok";
 import Twitch from "../components/media/Twitch";
 import Youtube from "../components/media/Youtube";

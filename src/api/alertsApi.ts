@@ -1,4 +1,4 @@
-import type { IAlert } from "../../shared/types";
+import type { IAlert } from "@widy/sdk";
 import { api } from ".";
 
 export const alertsApi = api.injectEndpoints({

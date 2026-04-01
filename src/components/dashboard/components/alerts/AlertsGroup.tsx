@@ -1,6 +1,6 @@
 import { Card } from "@mui/material";
+import type { IAlertsGroup } from "@widy/sdk";
 import { useTranslation } from "react-i18next";
-import type { IAlertsGroup } from "../../../../../shared/types";
 import AddNewAlertVariantButton from "./components/AddNewAlertVariantButton";
 import AlertTile from "./components/AlertTile";
 import WidgetUrl from "./components/WidgetUrl";

@@ -25,9 +25,7 @@
 	"include": [
 		"src",
 		"src-widget",
-		"src-widget/services",
-		"shared/enums.ts",
-		"shared/types.ts",
+		// "src-widget/services",
 		"shared/utils/getGridTemplateAreas.ts",
 		"shared/utils/getGridAutoRows.ts",
 		"shared/utils/getGridAutoColumns.ts",
@@ -37,11 +35,18 @@
 		"shared/contexts",
 		"shared/providers",
 		"shared/i18n",
-		"scr-auc-fighter-adapter",
+		// "scr-auc-fighter-adapter",
 		"shared/components/*.tsx",
 		"shared/utils/getColorByMediaType.ts",
 		"shared/dayjs",
-		"shared/utils/getTestAlertMessage.ts"
+		"shared/utils/getTestAlertMessage.ts",
+		"shared/slices/timerSlice.ts",
+		"shared/utils/computePXSize.ts",
+		"shared/utils/getProgressBarLayoutText.ts",
+		"shared/utils/getRandomWinnerIndex.ts",
+		"widgets/**/*.ts",
+		"widgets/**/*.tsx",
+		"src-widget/hooks/useInboundBridge.ts"
 	],
 	"references": [
 		{

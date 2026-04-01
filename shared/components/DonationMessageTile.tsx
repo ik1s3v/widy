@@ -1,11 +1,10 @@
 import ReplayIcon from "@mui/icons-material/Replay";
 import { Box, Button, Card, IconButton, Typography } from "@mui/material";
+import { useBridge } from "@widy/react";
+import type { IClientMessage, MessageId } from "@widy/sdk";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import type { AppState } from "../../src/store";
-import { AppEvent } from "../enums";
-import useAppEvents from "../hooks/useAppEvents";
-import type { IClientMessage, MessageId } from "../types";
 import getColorByMediaType from "../utils/getColorByMediaType";
 import getColorByMessageType from "../utils/getColorByMessageType";
 import getCurrencySymbol from "../utils/getCurrencySymbol";
@@ -21,8 +20,8 @@ const DonationMessageTile = ({
 	isAlertPlaying: boolean;
 	isMediaPlaying: boolean;
 }) => {
+	const bridge = useBridge();
 	const { t } = useTranslation();
-	const eventsService = useAppEvents();
 	const { services } = useSelector((state: AppState) => state.servicesState);
 	const donation = message.donation;
 
@@ -59,10 +58,10 @@ const DonationMessageTile = ({
 						{donation.media && !isMediaPlaying && !isAlertPlaying && (
 							<IconButton
 								onClick={() => {
-									eventsService.send<IClientMessage>({
-										event: AppEvent.ReplayMedia,
-										data: message,
-									});
+									bridge.send<IClientMessage>(
+										"widgets:media:replay.send",
+										message,
+									);
 								}}
 							>
 								<ReplayIcon />
@@ -102,10 +101,10 @@ const DonationMessageTile = ({
 										fontSize: 12,
 									}}
 									onClick={() => {
-										eventsService.send<IClientMessage>({
-											event: AppEvent.ReplayAlert,
-											data: message,
-										});
+										bridge.send<IClientMessage>(
+											"widgets:alert:replay.send",
+											message,
+										);
 									}}
 								>
 									{t("message.replay")}
@@ -119,10 +118,7 @@ const DonationMessageTile = ({
 									fontSize: 12,
 								}}
 								onClick={() => {
-									eventsService.send<MessageId>({
-										event: AppEvent.SkipAlert,
-										data: message.id,
-									});
+									bridge.send<MessageId>("widgets:alert:skip.send", message.id);
 								}}
 							>
 								{t("message.skip")}

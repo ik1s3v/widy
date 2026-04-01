@@ -1,13 +1,8 @@
+import type { IAlert, IClientMessage, ISettings, MessageId } from "@widy/sdk";
+import { AppEvent } from "@widy/sdk";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { AppEvent } from "../../shared/enums";
 import useAppEvents from "../../shared/hooks/useAppEvents";
-import type {
-	IAlert,
-	IClientMessage,
-	ISettings,
-	MessageId,
-} from "../../shared/types";
 import getTestAlertMessage from "../../shared/utils/getTestAlertMessage";
 import getAlertByMessage from "../utils/getAlertByMessage";
 

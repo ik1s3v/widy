@@ -1,4 +1,4 @@
-import { MessageType } from "../enums";
+import { MessageType } from "@widy/sdk";
 
 const getColorByMessageType = (type: MessageType) => {
 	switch (type) {

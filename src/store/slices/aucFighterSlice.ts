@@ -4,7 +4,7 @@ import {
 	IAucFighterMatch,
 	IAucFighterSettings,
 	IAucFighterTeam,
-} from "../../../shared/types";
+} from "@widy/sdk";
 
 interface AucFighterState {
 	game: IAucFighterGame | null;

@@ -1,8 +1,12 @@
+import {
+	type Currency,
+	GoalTextPosition,
+	GoalType,
+	type IGoal,
+} from "@widy/sdk";
 import type { CSSProperties } from "react";
-import getProgressBarLayoutText from "../../src/helpers/getProgressBarLayoutText";
-import { type Currency, GoalTextPosition, GoalType } from "../enums";
-import type { IGoal } from "../types";
 import computePXSize from "../utils/computePXSize";
+import getProgressBarLayoutText from "../utils/getProgressBarLayoutText";
 
 const GoalView = ({
 	goal,

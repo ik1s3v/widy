@@ -1,12 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { AppEvent } from "../../shared/enums";
-import useAppEvents from "../../shared/hooks/useAppEvents";
 import type {
 	IClientMessage,
 	IMediaSettings,
 	ISettings,
 	MessageId,
-} from "../../shared/types";
+} from "@widy/sdk";
+import { AppEvent } from "@widy/sdk";
+import { useCallback, useEffect, useRef, useState } from "react";
+import useAppEvents from "../../shared/hooks/useAppEvents";
 
 const usePlayMedia = () => {
 	const eventsService = useAppEvents();

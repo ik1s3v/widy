@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import type { ILot } from "../../../../../../shared/types";
+import type { ILot } from "../@widy/sdk";
 
 const LotsTotal = ({ lots }: { lots: ILot[] }) => {
 	const { t } = useTranslation();

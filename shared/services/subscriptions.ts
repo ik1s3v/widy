@@ -1,4 +1,4 @@
-import type { EventCallback, ISubscriber, ISubscriptions } from "../types";
+import type { EventCallback, ISubscriber, ISubscriptions } from "@widy/sdk";
 
 export default class Subscriptions implements ISubscriptions {
 	subscribers: ISubscriber[];

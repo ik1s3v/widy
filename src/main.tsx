@@ -6,16 +6,7 @@ import { type AppState, store } from "./store";
 import "../shared/i18n/i18n";
 import { CssBaseline, createTheme, ThemeProvider } from "@mui/material";
 import { appLocalDataDir } from "@tauri-apps/api/path";
-import { BrowserRouter } from "react-router";
-import { EventsContext } from "../shared/contexts/EventsContext";
-import { AppEvent, MessageType, ServiceType } from "../shared/enums";
-import EventsProvider from "../shared/providers/EventsProvider";
-import { WebsocketEventsService } from "../shared/services/websocketEventsService";
-import { setPlayingAlertId } from "../shared/slices/alertsSlice";
-import {
-	setPausedMediaId,
-	setPlayingMediaId,
-} from "../shared/slices/mediaSlice";
+import { BridgeContext } from "@widy/react";
 import type {
 	IAucFighterMatchWinner,
 	IClientMessage,
@@ -23,7 +14,22 @@ import type {
 	ITwitchEventPayload,
 	ITwitchIntegrationSettings,
 	ITwitchRedemptionEvent,
-} from "../shared/types";
+} from "@widy/sdk";
+import {
+	AppEvent,
+	MessageType,
+	ServiceType,
+	WidgetOutboundBridge,
+} from "@widy/sdk";
+import { BrowserRouter } from "react-router";
+import { EventsContext } from "../shared/contexts/EventsContext";
+import EventsProvider from "../shared/providers/EventsProvider";
+import { WebsocketEventsService } from "../shared/services/websocketEventsService";
+import { setPlayingAlertId } from "../shared/slices/alertsSlice";
+import {
+	setPausedMediaId,
+	setPlayingMediaId,
+} from "../shared/slices/mediaSlice";
 import { messagesApi } from "./api/messagesApi";
 import { servicesApi } from "./api/servicesApi";
 import { settingsApi } from "./api/settingsApi";
@@ -181,6 +187,8 @@ eventsService.subscribe<IAucFighterMatchWinner>(
 
 const streamElementsSocketService = new StreamElementsSocketService();
 
+const bridge = new WidgetOutboundBridge();
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>
 		<StreamElementsSocketServiceProvider
@@ -188,14 +196,16 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 			streamElementsSocketService={streamElementsSocketService}
 		>
 			<EventsProvider context={EventsContext} eventsService={eventsService}>
-				<BrowserRouter>
-					<ThemeProvider theme={createTheme(dark)}>
-						<Provider store={store}>
-							<CssBaseline />
-							<App />
-						</Provider>
-					</ThemeProvider>
-				</BrowserRouter>
+				<BridgeContext.Provider value={bridge}>
+					<BrowserRouter>
+						<ThemeProvider theme={createTheme(dark)}>
+							<Provider store={store}>
+								<CssBaseline />
+								<App />
+							</Provider>
+						</ThemeProvider>
+					</BrowserRouter>
+				</BridgeContext.Provider>
 			</EventsProvider>
 		</StreamElementsSocketServiceProvider>
 	</React.StrictMode>,

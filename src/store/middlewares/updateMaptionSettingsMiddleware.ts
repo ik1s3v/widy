@@ -3,7 +3,7 @@ import type {
 	SerializedError,
 	UnknownAction,
 } from "@reduxjs/toolkit";
-import { AlertSeverity } from "../../../shared/enums";
+import { AlertSeverity } from "@widy/sdk";
 import { showSnackBar } from "../../../shared/slices/snackBarSlice";
 import { maptionApi } from "../../api/maptionApi";
 import type { AppDispatch, AppState } from "..";

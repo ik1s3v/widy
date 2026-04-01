@@ -1,6 +1,4 @@
-import { Context, createContext } from "react";
-import { IEventsService } from "../types";
+import { IEventsService } from "@widy/sdk";
+import { createContext } from "react";
 
-export const EventsContext = createContext(
-	null,
-) as Context<IEventsService | null>;
+export const EventsContext = createContext<IEventsService | null>(null);

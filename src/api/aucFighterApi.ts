@@ -1,4 +1,4 @@
-import type { IAucFighterSettings } from "../../shared/types";
+import type { IAucFighterSettings } from "@widy/sdk";
 import { api } from ".";
 
 export const aucFighterApi = api.injectEndpoints({

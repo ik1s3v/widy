@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { IAuctionSettings } from "../../../shared/types";
+import type { IAuctionSettings } from "@widy/sdk";
 
 interface AuctionSettingsState {
 	auctionSettings: IAuctionSettings | null;

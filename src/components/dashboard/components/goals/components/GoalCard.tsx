@@ -13,8 +13,8 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import dayjs from "../../../../../../shared/dayjs";
-import type { IGoal } from "../../../../../../shared/types";
 import WidgetUrl from "../../alerts/components/WidgetUrl";
+import type { IGoal } from "../@widy/sdk";
 import FinishGoalDialog from "./FinishGoalDialog";
 
 const GoalCard = ({ goal }: { goal: IGoal }) => {

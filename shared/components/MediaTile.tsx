@@ -2,11 +2,11 @@ import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import { IconButton } from "@mui/material";
+import type { IDonation, MessageId } from "@widy/sdk";
+import { AppEvent } from "@widy/sdk";
 import { useSelector } from "react-redux";
 import type { AppState } from "../../src/store";
-import { AppEvent } from "../enums";
 import useAppEvents from "../hooks/useAppEvents";
-import type { IDonation, MessageId } from "../types";
 import getColorByMediaType from "../utils/getColorByMediaType";
 import MessageDate from "./MessageDate";
 

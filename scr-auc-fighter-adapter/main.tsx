@@ -1,15 +1,15 @@
-import { StrictMode } from "react";
-import ReactDOM from "react-dom/client";
-import { Provider } from "react-redux";
-import { AppEvent } from "../shared/enums";
-import { WebsocketEventsService } from "../shared/services/websocketEventsService";
-import { fighterTimerSlice } from "../shared/slices/timerSlice";
 import type {
 	IAucFighterMatch,
 	IAucFighterMatchWinner,
 	IAucFighterSettings,
 	MatchId,
-} from "../shared/types";
+} from "@widy/sdk";
+import { AppEvent } from "@widy/sdk";
+import { StrictMode } from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import { WebsocketEventsService } from "../shared/services/websocketEventsService";
+import { fighterTimerSlice } from "../shared/slices/timerSlice";
 import App from "./App";
 import updatePlayersEnergybar from "./helpers/updatePlayersEnergybar";
 import updatePlayersHealthbar from "./helpers/updatePlayersHealthbar";

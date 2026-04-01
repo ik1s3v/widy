@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { ILot } from "../../../shared/types";
+import type { ILot } from "@widy/sdk";
 
 interface LotsState {
 	lots: ILot[];

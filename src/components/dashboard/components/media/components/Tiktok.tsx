@@ -1,5 +1,5 @@
 import { setTikTokSettings } from "../../../../../../shared/slices/mediaSlice";
-import type { IMediaSettings } from "../../../../../../shared/types";
+import type { IMediaSettings } from "../@widy/sdk";
 import MediaPlatformSettings from "./MediaPlatformSettings";
 
 const Tiktok = ({ mediaSettings }: { mediaSettings: IMediaSettings }) => {

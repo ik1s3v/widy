@@ -1,7 +1,7 @@
+import { AlertSeverity } from "@widy/sdk";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { AlertSeverity } from "../../../../../shared/enums";
 import { showSnackBar } from "../../../../../shared/slices/snackBarSlice";
 import { useGetAlertsQuery } from "../../../../api/alertsApi";
 import groupAlertsByGroupId from "../../../../utils/groupAlertsByGroupId";

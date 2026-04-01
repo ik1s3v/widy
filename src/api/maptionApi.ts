@@ -1,4 +1,4 @@
-import type { IMaptionSettings } from "../../shared/types";
+import type { IMaptionSettings } from "@widy/sdk";
 import { api } from ".";
 
 export const maptionApi = api.injectEndpoints({

@@ -1,7 +1,7 @@
+import type { IGoal, ISettings } from "@widy/sdk";
+import { AppEvent, GoalType } from "@widy/sdk";
 import { useEffect, useState } from "react";
-import { AppEvent, GoalType } from "../../shared/enums";
 import useAppEvents from "../../shared/hooks/useAppEvents";
-import type { IGoal, ISettings } from "../../shared/types";
 import { useGetNotEndedGoalQuery } from "../api/goalsApi";
 
 const useGoal = () => {

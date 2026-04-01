@@ -1,4 +1,4 @@
-import type { ILot } from "../../shared/types";
+import type { ILot } from "@widy/sdk";
 
 const findLotsMinMaxAmount = (lots: ILot[]) => {
 	const sorted = lots

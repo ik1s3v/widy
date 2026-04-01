@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ServiceType, WidyNetwork } from "../enums";
+import { ServiceType, WidyNetwork } from "@widy/sdk";
 
 interface ServicesState {
 	services: Record<

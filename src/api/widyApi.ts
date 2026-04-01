@@ -1,4 +1,4 @@
-import { WidyNetwork } from "./../../shared/enums";
+import { WidyNetwork } from "@widy/sdk";
 import { api } from ".";
 
 export const widyApi = api.injectEndpoints({

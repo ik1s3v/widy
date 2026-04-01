@@ -1,11 +1,7 @@
+import type { IMedia, IMediaPlatformSettings, MessageId } from "@widy/sdk";
+import { AppEvent } from "@widy/sdk";
 import { useEffect, useRef } from "react";
-import { AppEvent } from "../../../shared/enums";
 import useAppEvents from "../../../shared/hooks/useAppEvents";
-import type {
-	IMedia,
-	IMediaPlatformSettings,
-	MessageId,
-} from "../../../shared/types";
 
 const Twitch = ({
 	mediaPlatformSettings,

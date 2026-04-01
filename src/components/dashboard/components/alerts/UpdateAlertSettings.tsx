@@ -1,9 +1,9 @@
 import type { SerializedError } from "@reduxjs/toolkit";
+import { AlertSeverity } from "@widy/sdk";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { AlertSeverity } from "../../../../../shared/enums";
 import { setAlert } from "../../../../../shared/slices/alertsSlice";
 import { showSnackBar } from "../../../../../shared/slices/snackBarSlice";
 import {

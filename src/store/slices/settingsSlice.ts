@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { ISettings } from "../../../shared/types";
+import type { ISettings } from "@widy/sdk";
 
 interface SettingsState {
 	duration: number;

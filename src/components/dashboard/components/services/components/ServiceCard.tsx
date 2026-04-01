@@ -2,17 +2,17 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Box, Button, Card, IconButton } from "@mui/material";
 import type { SerializedError } from "@reduxjs/toolkit";
+import { AlertSeverity } from "@widy/sdk";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { AlertSeverity } from "../../../../../../shared/enums";
 import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
-import type { IService } from "../../../../../../shared/types";
 import { useGetServicesQuery } from "../../../../../api/servicesApi";
 import useSignOut from "../../../../../hooks/useSignOut";
 import type { AppState } from "../../../../../store";
 import WarningDialog from "../../../../WarningDialog";
+import type { IService } from "../@widy/sdk";
 
 const ServiceCard = ({ service }: { service: IService<unknown, unknown> }) => {
 	const { t } = useTranslation();

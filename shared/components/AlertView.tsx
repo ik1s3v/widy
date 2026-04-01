@@ -1,5 +1,3 @@
-import { useTranslation } from "react-i18next";
-import { MessageType } from "../enums";
 import type {
 	IAlert,
 	IClientMessage,
@@ -7,7 +5,9 @@ import type {
 	IFollow,
 	IRaid,
 	ISubscription,
-} from "../types";
+} from "@widy/sdk";
+import { MessageType } from "@widy/sdk";
+import { useTranslation } from "react-i18next";
 import getCurrencySymbol from "../utils/getCurrencySymbol";
 import Alert from "./Alert";
 

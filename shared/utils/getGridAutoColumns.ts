@@ -1,4 +1,4 @@
-import { ViewType } from "../enums";
+import { ViewType } from "@widy/sdk";
 
 const getGridAutoColumns = (view_type: ViewType) => {
 	switch (view_type) {

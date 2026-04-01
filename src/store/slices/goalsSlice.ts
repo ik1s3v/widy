@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IGoal, ITextStyle } from "../../../shared/types";
+import { IGoal, ITextStyle } from "@widy/sdk";
 
 interface GoalsState {
 	goal: IGoal | null;

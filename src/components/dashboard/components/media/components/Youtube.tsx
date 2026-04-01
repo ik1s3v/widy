@@ -1,5 +1,5 @@
 import { setYoutubeSettings } from "../../../../../../shared/slices/mediaSlice";
-import type { IMediaSettings } from "../../../../../../shared/types";
+import type { IMediaSettings } from "../@widy/sdk";
 import MediaPlatformSettings from "./MediaPlatformSettings";
 
 const Youtube = ({ mediaSettings }: { mediaSettings: IMediaSettings }) => {

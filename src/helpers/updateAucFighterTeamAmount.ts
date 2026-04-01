@@ -1,9 +1,9 @@
-import { AppEvent } from "../../shared/enums";
 import {
+	AppEvent,
 	IAucFighterMatch,
 	IDonation,
 	IEventsService,
-} from "../../shared/types";
+} from "@widy/sdk";
 import { AppState, store } from "../store";
 import { updateMatches } from "../store/slices/aucFighterSlice";
 

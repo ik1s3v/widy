@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { IMediaPlatformSettings, IMediaSettings } from "../types";
+import type { IMediaPlatformSettings, IMediaSettings } from "@widy/sdk";
 
 interface MediaState {
 	mediaSettings: IMediaSettings | null;

@@ -1,4 +1,4 @@
-import { ITextStyle } from "../shared/types";
+import { ITextStyle } from "@widy/sdk";
 
 export const MENU_WIDTH = 260;
 export const MENU_WIDTH_MD = 64;

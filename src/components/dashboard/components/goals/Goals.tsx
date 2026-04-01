@@ -1,14 +1,10 @@
 import AddIcon from "@mui/icons-material/Add";
 import { Box, Button, useTheme } from "@mui/material";
+import { GoalProgressLayout, GoalTextPosition, GoalType } from "@widy/sdk";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import {
-	GoalProgressLayout,
-	GoalTextPosition,
-	GoalType,
-} from "../../../../../shared/enums";
 import { useGetNotEndedGoalsQuery } from "../../../../api/goalsApi";
 import { TEXT_STYLE } from "../../../../constants";
 import { setGoal } from "../../../../store/slices/goalsSlice";

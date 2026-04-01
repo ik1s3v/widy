@@ -1,4 +1,4 @@
-import { Language } from "../enums";
+import { Language } from "@widy/sdk";
 
 export const languages = [
 	{ locale: Language.en, name: "English" },

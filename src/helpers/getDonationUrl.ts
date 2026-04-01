@@ -1,4 +1,4 @@
-import { WidyNetwork } from "../../shared/enums";
+import { WidyNetwork } from "@widy/sdk";
 
 const getDonationUrl = ({
 	network,

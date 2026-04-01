@@ -1,9 +1,9 @@
 import { Skeleton } from "@mui/material";
+import { AlertSeverity } from "@widy/sdk";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroller";
 import { useDispatch } from "react-redux";
-import { AlertSeverity } from "../../../../../../shared/enums";
 import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
 import { useGetGoalsInfiniteQuery } from "../../../../../api/goalsApi";
 import GoalCard from "./GoalCard";

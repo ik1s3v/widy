@@ -1,5 +1,5 @@
+import { WidyNetwork } from "@widy/sdk";
 import { Route, Routes } from "react-router";
-import { WidyNetwork } from "../../../shared/enums";
 import AuthorizationView from "../AuthorizationView";
 import CreateDonationAccount from "./components/CreateDonationAccount";
 

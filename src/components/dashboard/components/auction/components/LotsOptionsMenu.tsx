@@ -3,17 +3,17 @@ import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { IconButton, Tooltip } from "@mui/material";
 import { open } from "@tauri-apps/plugin-dialog";
 import { readTextFile } from "@tauri-apps/plugin-fs";
+import { AlertSeverity } from "@widy/sdk";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { AlertSeverity } from "../../../../../../shared/enums";
 import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
-import type { IImportedLot, ILot } from "../../../../../../shared/types";
 import calculateLotProbability from "../../../../../helpers/calculateLotProbability";
 import findLotsMinMaxAmount from "../../../../../helpers/findLotsMinMaxAmount";
 import getRandomColor from "../../../../../helpers/getRandomColor";
 import lotsTotalAmount from "../../../../../helpers/lotsTotalAmount";
 import type { AppState } from "../../../../../store";
 import { setLots } from "../../../../../store/slices/lotsSlice";
+import type { IImportedLot, ILot } from "../@widy/sdk";
 
 const LotsOptionsMenu = () => {
 	const { colors } = useSelector((state: AppState) => state.mainState);

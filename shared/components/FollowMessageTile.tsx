@@ -1,10 +1,9 @@
 import { Box, Button, Card, Typography } from "@mui/material";
+import { useBridge } from "@widy/react";
+import type { IClientMessage, MessageId } from "@widy/sdk";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import type { AppState } from "../../src/store";
-import { AppEvent } from "../enums";
-import useAppEvents from "../hooks/useAppEvents";
-import type { IClientMessage, MessageId } from "../types";
 import getColorByMessageType from "../utils/getColorByMessageType";
 import MessageDate from "./MessageDate";
 
@@ -16,7 +15,7 @@ const FollowMessageTile = ({
 	isAlertPlaying: boolean;
 }) => {
 	const { t } = useTranslation();
-	const eventsService = useAppEvents();
+	const bridge = useBridge();
 	const { services } = useSelector((state: AppState) => state.servicesState);
 	const follow = message.follow;
 
@@ -73,10 +72,10 @@ const FollowMessageTile = ({
 										fontSize: 12,
 									}}
 									onClick={() => {
-										eventsService.send<IClientMessage>({
-											event: AppEvent.ReplayAlert,
-											data: message,
-										});
+										bridge.send<IClientMessage>(
+											"widgets:alert:replay.send",
+											message,
+										);
 									}}
 								>
 									{t("message.replay")}
@@ -90,10 +89,7 @@ const FollowMessageTile = ({
 									fontSize: 12,
 								}}
 								onClick={() => {
-									eventsService.send<MessageId>({
-										event: AppEvent.SkipAlert,
-										data: message.id,
-									});
+									bridge.send<MessageId>("widgets:alert:skip.send", message.id);
 								}}
 							>
 								{t("message.skip")}
