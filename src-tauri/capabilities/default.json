@@ -23,6 +23,9 @@
         },
         {
           "url": "https://sol.widy.fun/create-donation-account?nonce=*"
+        },
+        {
+          "url": "https://github.com/*"
         }
       ]
     },

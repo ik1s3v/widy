@@ -1,7 +1,7 @@
 import { Box, Chip } from "@mui/material";
+import type { IAucFighterTeam } from "@widy/sdk";
 import getCurrencySymbol from "../../../../../../shared/utils/getCurrencySymbol";
 import { useGetSettingsQuery } from "../../../../../api/settingsApi";
-import type { IAucFighterTeam } from "../@widy/sdk";
 
 const TeamTile = ({ team }: { team: IAucFighterTeam }) => {
 	const { data: settings } = useGetSettingsQuery();

@@ -10,6 +10,7 @@ pub struct Model {
     pub name: String,
     pub manifest: Manifest,
     pub dev_path: Option<String>,
+    pub storage: Option<String>,
 }
 
 impl ActiveModelBehavior for ActiveModel {}
@@ -18,6 +19,7 @@ impl ActiveModelBehavior for ActiveModel {}
 
 pub struct Manifest {
     pub manifest_version: u32,
+    pub id: String,
     pub name: String,
     pub version: String,
     pub authors: Vec<String>,

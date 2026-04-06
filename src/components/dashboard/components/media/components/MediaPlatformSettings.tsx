@@ -1,10 +1,10 @@
 import type { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import type { IMediaPlatformSettings } from "@widy/sdk";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import InputSlider from "../../../../InputSlider";
 import OnOffSwitch from "../../../../OnOffSwitch";
 import styles from "../../settings/Settings.module.css";
-import type { IMediaPlatformSettings } from "../@widy/sdk";
 import MinInput from "./MinInput";
 
 const MediaPlatformSettings = ({

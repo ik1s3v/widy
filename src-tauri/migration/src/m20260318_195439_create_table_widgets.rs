@@ -14,6 +14,7 @@ impl MigrationTrait for Migration {
                     .col(string(Widgets::Name))
                     .col(string(Widgets::Manifest))
                     .col(string_null(Widgets::DevPath))
+                    .col(string_null(Widgets::Storage))
                     .to_owned(),
             )
             .await?;
@@ -36,4 +37,5 @@ pub enum Widgets {
     Name,
     Manifest,
     DevPath,
+    Storage,
 }

@@ -2,6 +2,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Box, Button, Card, IconButton } from "@mui/material";
 import type { SerializedError } from "@reduxjs/toolkit";
+import type { IService } from "@widy/sdk";
 import { AlertSeverity } from "@widy/sdk";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -12,7 +13,6 @@ import { useGetServicesQuery } from "../../../../../api/servicesApi";
 import useSignOut from "../../../../../hooks/useSignOut";
 import type { AppState } from "../../../../../store";
 import WarningDialog from "../../../../WarningDialog";
-import type { IService } from "../@widy/sdk";
 
 const ServiceCard = ({ service }: { service: IService<unknown, unknown> }) => {
 	const { t } = useTranslation();
@@ -29,7 +29,7 @@ const ServiceCard = ({ service }: { service: IService<unknown, unknown> }) => {
 				open={dialogOpen}
 				setOpen={setDialogOpen}
 				title={t("services.sign_out")}
-				text={t("services.confirm_sign_out")}
+				warning={t("services.confirm_sign_out")}
 				onClick={async () => {
 					try {
 						await signOut();

@@ -101,7 +101,10 @@ pub fn run() {
             stream_labs_connect,
             stream_labs_sign_out,
             get_widget_by_name,
-            upload_widget,
+            add_widget,
+            get_widgets,
+            delete_widget,
+            install_widget,
             init
         ])
         .run(tauri::generate_context!())

@@ -23,8 +23,6 @@ const eventsService = new WebsocketEventsService("ws://127.0.0.1:12553/ws");
 
 eventsService.connect();
 
-store.dispatch(messagesApi.util.invalidateTags(["Messages"]));
-
 eventsService.subscribe<IClientMessage>(AppEvent.Message, (_) => {
 	store.dispatch(messagesApi.util.invalidateTags(["Messages"]));
 });

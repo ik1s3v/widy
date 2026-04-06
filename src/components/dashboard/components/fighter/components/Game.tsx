@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import type { IAucFighterMatch, MatchId } from "@widy/sdk";
 import { AppEvent } from "@widy/sdk";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
@@ -12,7 +13,6 @@ import {
 	setGameWinner,
 	setIsGameStarted,
 } from "../../../../../store/slices/aucFighterSlice";
-import type { IAucFighterMatch, MatchId } from "../@widy/sdk";
 import GameWinner from "./GameWinner";
 import MatchCard from "./MatchCard";
 

@@ -6,7 +6,7 @@ import {
 	DialogContentText,
 	DialogTitle,
 } from "@mui/material";
-import type { Dispatch, SetStateAction } from "react";
+import type { Dispatch, ReactNode, SetStateAction } from "react";
 import { useTranslation } from "react-i18next";
 
 const WarningDialog = ({
@@ -14,12 +14,12 @@ const WarningDialog = ({
 	setOpen,
 	onClick,
 	title,
-	text,
+	warning,
 }: {
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
 	title: string;
-	text: string;
+	warning: ReactNode;
 	onClick: () => void;
 }) => {
 	const handleClose = () => {
@@ -31,7 +31,7 @@ const WarningDialog = ({
 		<Dialog open={open} onClose={handleClose}>
 			<DialogTitle>{title}</DialogTitle>
 			<DialogContent>
-				<DialogContentText>{text}</DialogContentText>
+				<DialogContentText>{warning}</DialogContentText>
 			</DialogContent>
 			<DialogActions>
 				<Button onClick={onClick}>{t("ok")}</Button>

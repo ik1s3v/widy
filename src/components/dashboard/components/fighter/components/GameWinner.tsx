@@ -1,5 +1,5 @@
+import type { IAucFighterTeam } from "@widy/sdk";
 import { useTranslation } from "react-i18next";
-import type { IAucFighterTeam } from "../@widy/sdk";
 
 const GameWinner = ({ gameWinner }: { gameWinner: IAucFighterTeam | null }) => {
 	const { t } = useTranslation();

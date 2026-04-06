@@ -1,6 +1,6 @@
 import { Card, Divider } from "@mui/material";
+import type { ILot } from "@widy/sdk";
 import { AutoSizer, List } from "react-virtualized";
-import type { ILot } from "../@widy/sdk";
 
 const AuctionWheelLots = ({
 	lots,

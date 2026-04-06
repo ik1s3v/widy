@@ -1,14 +1,15 @@
+import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import en from "../translation/en.json";
-import ru from "../translation/ru.json";
-import ua from "../translation/ua.json";
 import de from "../translation/de.json";
+import en from "../translation/en.json";
 import es from "../translation/es.json";
 import fr from "../translation/fr.json";
 import hi from "../translation/hi.json";
 import pt from "../translation/pt.json";
+import ru from "../translation/ru.json";
+import ua from "../translation/ua.json";
 import zh from "../translation/zh.json";
-import i18n from "i18next";
+
 i18n.use(initReactI18next).init({
 	resources: {
 		en: {
@@ -41,5 +42,6 @@ i18n.use(initReactI18next).init({
 	},
 	lng: "en",
 	fallbackLng: "en",
+	nsSeparator: false,
 });
 export default i18n;

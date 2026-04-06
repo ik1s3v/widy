@@ -5,6 +5,7 @@ import {
 	ToggleButton,
 	ToggleButtonGroup,
 } from "@mui/material";
+import type { ILot } from "@widy/sdk";
 import { WheelVariant } from "@widy/sdk";
 import { memo, useCallback, useRef, useState } from "react";
 import { Wheel } from "react-custom-roulette";
@@ -17,7 +18,6 @@ import wheelDataFromLots, {
 	type WheelDataWithFastId,
 } from "../../../../../helpers/wheelDataFromLots";
 import InputSlider from "../../../../InputSlider";
-import type { ILot } from "../@widy/sdk";
 import AuctionWheelLots from "./AuctionWheelLots";
 
 const Container = styled("div")(({ theme }) => ({

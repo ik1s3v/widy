@@ -1,6 +1,6 @@
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
-import type { IDonation } from "../@widy/sdk";
+import type { IDonation } from "@widy/sdk";
 import AuctionDonationCard from "./AuctionDonationCard";
 
 const DraggableDonationCard = ({ donation }: { donation: IDonation }) => {

@@ -10,6 +10,7 @@ import {
 	MenuItem,
 	Typography,
 } from "@mui/material";
+import type { IDonation, ILot } from "@widy/sdk";
 import { AlertSeverity } from "@widy/sdk";
 import { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -21,7 +22,6 @@ import getRandomColor from "../../../../../helpers/getRandomColor";
 import type { AppState } from "../../../../../store";
 import { auctionDonationsSlice } from "../../../../../store/slices/donationsSlice.ts";
 import { addLot, updateLot } from "../../../../../store/slices/lotsSlice";
-import type { IDonation, ILot } from "../@widy/sdk.ts";
 
 const AuctionDonationCard = ({ donation }: { donation: IDonation }) => {
 	const { t } = useTranslation();

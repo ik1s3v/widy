@@ -9,6 +9,7 @@ import { showSnackBar } from "../shared/slices/snackBarSlice";
 import { useInitMutation } from "./api";
 import { useGetSettingsQuery } from "./api/settingsApi";
 import { AppSnackBar } from "./components/AppSnackBar";
+import WidgetControl from "./components/dashboard/components/widgets/components/WidgetControl";
 import Dashboard from "./components/dashboard/Dashboard";
 import Donatello from "./components/donatello/Donatello";
 import Donatik from "./components/donatik/Donatik";
@@ -109,6 +110,7 @@ function App() {
 					<Route path="/donatik/*" element={<Donatik />} />
 					<Route path="/dashboard/*" element={<Dashboard />} />
 					<Route path="/services-settings/*" element={<ServicesSettings />} />
+					<Route path="/widget/:widgetName" element={<WidgetControl />} />
 				</Routes>
 			)}
 		</main>

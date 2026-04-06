@@ -16,6 +16,7 @@ pub struct ConfigService {
     pub api_hash: String,
     pub client_id: String,
     pub widy_sol_program_id: String,
+    pub tmp_path: PathBuf,
 }
 
 impl ConfigService {
@@ -67,6 +68,10 @@ impl ConfigService {
             .path()
             .resolve("assets", BaseDirectory::Resource)
             .map_err(|e| format!("Failed to resolve assets path: {}", e))?;
+        let tmp_path = app
+            .path()
+            .temp_dir()
+            .map_err(|e| format!("Failed to resolve tmp path: {}", e))?;
         Ok(Self {
             db_path,
             widget_path,
@@ -78,6 +83,7 @@ impl ConfigService {
             client_id,
             widy_sol_program_id,
             widgets_path,
+            tmp_path,
         })
     }
 }

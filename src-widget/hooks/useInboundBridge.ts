@@ -169,7 +169,7 @@ const useInboundBridge = () => {
 						break;
 					case "widgets:messages.read": {
 						const { data } = await dispatch(
-							messagesApi.endpoints.getMessages.initiate(
+							messagesApi.endpoints.messages.initiate(
 								payload as { filter: IMessagesFilter } & IPageParm,
 							),
 						);

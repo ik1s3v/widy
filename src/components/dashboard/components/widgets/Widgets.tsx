@@ -1,28 +1,58 @@
-import { Button } from "@mui/material";
-import { open } from "@tauri-apps/plugin-dialog";
-import { readFile } from "@tauri-apps/plugin-fs";
-import { useUploadWidgetMutation } from "../../../../api/widgetApi";
+import AppsIcon from "@mui/icons-material/Apps";
+import InstallDesktopIcon from "@mui/icons-material/InstallDesktop";
+import { Box, Tab, Tabs } from "@mui/material";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import TabPanel from "../../../TabPanel";
+import AllWidgets from "./components/AllWidgets";
+import InstalledWidgets from "./components/InstalledWidgets";
 
 const Widgets = () => {
-	const [uploadWidget] = useUploadWidgetMutation();
+	const { t } = useTranslation();
+	const [value, setValue] = useState(0);
 
 	return (
-		<Button
-			onClick={() => {
-				open({
-					multiple: false,
-					directory: true,
-				}).then((path) => {
-					if (!path) return;
-					readFile(`${path}/manifest.json`).then((data) => {
-						const manifest = JSON.parse(new TextDecoder().decode(data));
-						uploadWidget({ devPath: path, manifest }).unwrap();
-					});
-				});
-			}}
-		>
-			Widget folder
-		</Button>
+		<>
+			<h1>{t("widgets.title")}</h1>
+			<Box
+				sx={{
+					borderBottom: 1,
+					borderColor: "divider",
+					background: "wh",
+					display: "grid",
+					placeContent: "center",
+				}}
+			>
+				<Tabs
+					value={value}
+					variant="scrollable"
+					allowScrollButtonsMobile
+					onChange={(_, value) => setValue(value)}
+					slotProps={{
+						indicator: { style: { transition: "none" } },
+					}}
+				>
+					<Tab
+						icon={<InstallDesktopIcon />}
+						iconPosition="start"
+						label={t("widgets.installed")}
+					/>
+					<Tab
+						icon={<AppsIcon />}
+						iconPosition="start"
+						label={t("widgets.all")}
+					/>
+				</Tabs>
+			</Box>
+			<div style={{ marginTop: 20 }}>
+				<TabPanel index={0} value={value}>
+					<InstalledWidgets />
+				</TabPanel>
+				<TabPanel index={1} value={value}>
+					<AllWidgets />
+				</TabPanel>
+			</div>
+		</>
 	);
 };
 export default Widgets;

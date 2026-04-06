@@ -7,6 +7,7 @@ import {
 	useSensors,
 } from "@dnd-kit/core";
 import { restrictToWindowEdges } from "@dnd-kit/modifiers";
+import type { IDonation } from "@widy/sdk";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	AutoSizer,
@@ -17,7 +18,6 @@ import {
 import type { AppState } from "../../../../../store";
 import { auctionDonationsSlice } from "../../../../../store/slices/donationsSlice.ts";
 import { updateLot } from "../../../../../store/slices/lotsSlice";
-import type { IDonation } from "../@widy/sdk.ts";
 import AuctionDonationCard from "./AuctionDonationCard";
 import DraggableDonationCard from "./DraggableDonationCard";
 import LotCard from "./LotCard";

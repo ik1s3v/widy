@@ -34,6 +34,7 @@ export const api = createApi({
 		"Maption-Settings",
 		"Media-Settings",
 		"Messages",
+		"Widgets",
 	],
 	endpoints: (builder) => ({
 		init: builder.mutation<void, void>({

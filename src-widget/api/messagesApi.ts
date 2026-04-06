@@ -3,7 +3,7 @@ import { api } from ".";
 
 export const messagesApi = api.injectEndpoints({
 	endpoints: (builder) => ({
-		getMessages: builder.query<
+		messages: builder.query<
 			IClientMessage,
 			{ filter: IMessagesFilter } & IPageParm
 		>({
@@ -13,6 +13,40 @@ export const messagesApi = api.injectEndpoints({
 			}),
 			providesTags: ["Messages"],
 		}),
+		getMessages: builder.infiniteQuery<
+			IClientMessage[],
+			{ filter: IMessagesFilter },
+			IPageParm
+		>({
+			infiniteQueryOptions: {
+				initialPageParam: {
+					offset: 0,
+					limit: 100,
+				},
+				getNextPageParam: (
+					lastPage,
+					_allPages,
+					lastPageParam,
+					_allPageParams,
+				) => {
+					const nextOffset = lastPageParam.offset + lastPageParam.limit;
+
+					if (lastPage?.length < lastPageParam.limit) {
+						return undefined;
+					}
+
+					return {
+						...lastPageParam,
+						offset: nextOffset,
+					};
+				},
+			},
+			query: ({ pageParam, queryArg }) => ({
+				url: "/messages",
+				params: { ...pageParam, ...queryArg.filter },
+			}),
+			providesTags: ["Messages"],
+		}),
 	}),
 });
-export const { useGetMessagesQuery } = messagesApi;
+export const { useGetMessagesInfiniteQuery } = messagesApi;

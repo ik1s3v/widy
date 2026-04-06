@@ -1,10 +1,8 @@
 import type { IWidyAuth } from "@widy/sdk";
 import { ServiceType, WidyNetwork } from "@widy/sdk";
-import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import InfiniteMessages from "../../../../../shared/components/InfiniteMessages";
-import useInboundBridge from "../../../../../src-widget/hooks/useInboundBridge";
 import { useGetMessagesInfiniteQuery } from "../../../../api/messagesApi";
 import { useGetServiceWithAuthByIdQuery } from "../../../../api/servicesApi";
 import getDonationUrl from "../../../../helpers/getDonationUrl";
@@ -21,7 +19,6 @@ const Messages = () => {
 		id: ServiceType.WidyTon,
 	});
 	const { services } = useSelector((state: AppState) => state.servicesState);
-	const iframeRef = useInboundBridge();
 
 	return (
 		<>
@@ -72,23 +69,10 @@ const Messages = () => {
 
 			<div>{t("skip_alert")} - ctrl+F1</div>
 			<div>{t("skip_media")} - ctrl+F2</div>
-			<iframe
-				ref={iframeRef}
-				src={`http://localhost:12553/widgets/dock-messages/obs/index.html`}
-				title="Widget"
-				sandbox="allow-scripts"
-				// scrolling="no"
-				style={{
-					width: "100%",
-					height: "100%",
-					border: "none",
-					display: "block",
-				}}
-			/>
 
-			{/* <InfiniteMessages
+			<InfiniteMessages
 				useGetMessagesInfiniteQuery={useGetMessagesInfiniteQuery}
-			></InfiniteMessages> */}
+			></InfiniteMessages>
 		</>
 	);
 };

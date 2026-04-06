@@ -9,13 +9,17 @@ import {
 	IconButton,
 	Typography,
 } from "@mui/material";
+import type { SerializedError } from "@reduxjs/toolkit";
+import { AlertSeverity, type IGoal } from "@widy/sdk";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import dayjs from "../../../../../../shared/dayjs";
+import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
+import { useFinishGoalMutation } from "../../../../../api/goalsApi";
+import WarningDialog from "../../../../WarningDialog";
 import WidgetUrl from "../../alerts/components/WidgetUrl";
-import type { IGoal } from "../@widy/sdk";
-import FinishGoalDialog from "./FinishGoalDialog";
 
 const GoalCard = ({ goal }: { goal: IGoal }) => {
 	const { t } = useTranslation();
@@ -26,13 +30,36 @@ const GoalCard = ({ goal }: { goal: IGoal }) => {
 	const currentAmount = goal.current_amount + goal.start_raising;
 	const progressPercent = Math.floor((currentAmount / goal.amount_raise) * 100);
 	const [dialogOpen, setDialogOpen] = useState(false);
+	const [finishGoal] = useFinishGoalMutation();
+	const dispatch = useDispatch();
 
 	return (
 		<>
-			<FinishGoalDialog
+			<WarningDialog
 				open={dialogOpen}
 				setOpen={setDialogOpen}
-				goalId={goal.id}
+				title={t("goal.finish_goal")}
+				warning={t("goal.sure_finish")}
+				onClick={async () => {
+					try {
+						await finishGoal({ id: goal.id }).unwrap();
+						dispatch(
+							showSnackBar({
+								message: t("success"),
+								alertSeverity: AlertSeverity.success,
+							}),
+						);
+					} catch (error) {
+						const err = error as SerializedError;
+						dispatch(
+							showSnackBar({
+								message: err.message as string,
+								alertSeverity: AlertSeverity.error,
+							}),
+						);
+					}
+					setDialogOpen(true);
+				}}
 			/>
 			<Card sx={{ marginBottom: 1 }}>
 				<CardContent>

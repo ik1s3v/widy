@@ -1,9 +1,9 @@
 import type { IClientMessage } from "@widy/sdk";
 import { MessageType } from "@widy/sdk";
-import DonationMessageTile from "../../shared/components/DonationMessageTile";
-import FollowMessageTile from "../../shared/components/FollowMessageTile";
-import RaidMessageTile from "../../shared/components/RaidMessageTile";
-import SubscriptionMessageTile from "../../shared/components/SubscriptionMessageTile";
+import DonationMessageCard from "../../shared/components/DonationMessageCard";
+import FollowMessageCard from "../../shared/components/FollowMessageCard";
+import RaidMessageCard from "../../shared/components/RaidMessageCard";
+import SubscriptionMessageCard from "../../shared/components/SubscriptionMessageCard";
 
 const getMessageComponentByMessageType = ({
 	message,
@@ -17,7 +17,7 @@ const getMessageComponentByMessageType = ({
 	switch (message.type) {
 		case MessageType.Donation:
 			return (
-				<DonationMessageTile
+				<DonationMessageCard
 					message={message}
 					isAlertPlaying={isAlertPlaying}
 					isMediaPlaying={isMediaPlaying}
@@ -25,18 +25,18 @@ const getMessageComponentByMessageType = ({
 			);
 		case MessageType.Follow:
 			return (
-				<FollowMessageTile message={message} isAlertPlaying={isAlertPlaying} />
+				<FollowMessageCard message={message} isAlertPlaying={isAlertPlaying} />
 			);
 		case MessageType.Subscription:
 			return (
-				<SubscriptionMessageTile
+				<SubscriptionMessageCard
 					message={message}
 					isAlertPlaying={isAlertPlaying}
 				/>
 			);
 		case MessageType.Raid:
 			return (
-				<RaidMessageTile message={message} isAlertPlaying={isAlertPlaying} />
+				<RaidMessageCard message={message} isAlertPlaying={isAlertPlaying} />
 			);
 
 		default:

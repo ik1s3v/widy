@@ -50,6 +50,7 @@ const InfiniteMessages = ({
 			);
 		}
 	}, [error, dispatch]);
+
 	return (
 		<>
 			<MessagesFilter />

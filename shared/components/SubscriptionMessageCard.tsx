@@ -1,0 +1,123 @@
+import { Box, Button, Card, Typography } from "@mui/material";
+import { AppEvent, type IClientMessage, type MessageId } from "@widy/sdk";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import type { AppState } from "../../src/store";
+import useAppEvents from "../hooks/useAppEvents";
+import getColorByMessageType from "../utils/getColorByMessageType";
+import MessageDate from "./MessageDate";
+
+const SubscriptionMessageCard = ({
+	message,
+	isAlertPlaying,
+}: {
+	message: IClientMessage;
+	isAlertPlaying: boolean;
+}) => {
+	const { t } = useTranslation();
+	const eventsService = useAppEvents();
+	const { services } = useSelector((state: AppState) => state.servicesState);
+	const subscription = message.subscription;
+
+	return (
+		<>
+			{subscription && (
+				<Card
+					sx={(theme) => ({
+						display: "flex",
+						position: "relative",
+						border: "2px solid",
+						borderRadius: 3,
+						boxSizing: "border-box",
+						borderColor: isAlertPlaying
+							? theme.palette.primary.main
+							: theme.palette.background.default,
+						marginBottom: "5px",
+						minHeight: "5.3rem",
+						overflow: "hidden",
+					})}
+				>
+					<Box
+						sx={{
+							width: "3rem",
+							display: "grid",
+							placeItems: "center",
+							background: getColorByMessageType(message.type),
+							minHeight: "100%",
+						}}
+					></Box>
+
+					<div style={{ width: "100%", padding: 15 }}>
+						<div style={{ float: "right" }}>
+							<MessageDate createdAt={message.created_at} />
+						</div>
+						<div>
+							<Typography
+								sx={(theme) => ({
+									color: theme.palette.primary.main,
+								})}
+							>
+								{!subscription.is_gift
+									? t("message.subscribed", {
+											user_name: subscription.user_name,
+										})
+									: t("message.gifted_subscriptions", {
+											user_name: subscription.user_name,
+											total: subscription.total,
+										})}
+							</Typography>
+						</div>
+
+						<div
+							style={{ display: "grid", gridAutoFlow: "column", marginTop: 10 }}
+						>
+							{!isAlertPlaying && (
+								<Button
+									size="small"
+									sx={{
+										justifySelf: "start",
+										fontSize: 12,
+									}}
+									onClick={() => {
+										eventsService.send<IClientMessage>({
+											event: AppEvent.ReplayAlert,
+											data: message,
+										});
+									}}
+								>
+									{t("message.replay")}
+								</Button>
+							)}
+
+							<Button
+								size="small"
+								sx={{
+									justifySelf: "end",
+									fontSize: 12,
+								}}
+								onClick={() => {
+									eventsService.send<MessageId>({
+										event: AppEvent.SkipAlert,
+										data: message.id,
+									});
+								}}
+							>
+								{t("message.skip")}
+							</Button>
+						</div>
+					</div>
+					<Box
+						sx={{
+							width: "3rem",
+							display: "grid",
+							placeItems: "center",
+							background: services[subscription.service].color,
+							minHeight: "100%",
+						}}
+					/>
+				</Card>
+			)}
+		</>
+	);
+};
+export default SubscriptionMessageCard;

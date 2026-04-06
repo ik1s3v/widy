@@ -25,7 +25,6 @@
 	"include": [
 		"src",
 		"src-widget",
-		// "src-widget/services",
 		"shared/utils/getGridTemplateAreas.ts",
 		"shared/utils/getGridAutoRows.ts",
 		"shared/utils/getGridAutoColumns.ts",
@@ -35,7 +34,7 @@
 		"shared/contexts",
 		"shared/providers",
 		"shared/i18n",
-		// "scr-auc-fighter-adapter",
+		"scr-auc-fighter-adapter",
 		"shared/components/*.tsx",
 		"shared/utils/getColorByMediaType.ts",
 		"shared/dayjs",
@@ -46,7 +45,6 @@
 		"shared/utils/getRandomWinnerIndex.ts",
 		"widgets/**/*.ts",
 		"widgets/**/*.tsx",
-		"src-widget/hooks/useInboundBridge.ts"
 	],
 	"references": [
 		{

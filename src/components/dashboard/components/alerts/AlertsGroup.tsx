@@ -2,7 +2,7 @@ import { Card } from "@mui/material";
 import type { IAlertsGroup } from "@widy/sdk";
 import { useTranslation } from "react-i18next";
 import AddNewAlertVariantButton from "./components/AddNewAlertVariantButton";
-import AlertTile from "./components/AlertTile";
+import AlertCard from "./components/AlertCard";
 import WidgetUrl from "./components/WidgetUrl";
 
 const AlertsGroup = ({ alertsGroup }: { alertsGroup: IAlertsGroup }) => {
@@ -26,7 +26,7 @@ const AlertsGroup = ({ alertsGroup }: { alertsGroup: IAlertsGroup }) => {
 			<WidgetUrl widgetUrl={widgetUrl} text={t("widget.url")} />
 			<div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
 				{alertsGroup.items.map((alert) => (
-					<AlertTile alert={alert} key={alert.id} />
+					<AlertCard alert={alert} key={alert.id} />
 				))}
 				<AddNewAlertVariantButton group_id={alertsGroup.group_id} />
 			</div>
