@@ -162,7 +162,7 @@ const usePlayAlert = () => {
 	const handleAlertAudioEnd = useCallback(() => {
 		const audio = currentMessage?.donation?.audio;
 		if (audio && settingsRef.current) {
-			messageAudioRef.current.src = `static/${audio}`;
+			messageAudioRef.current.src = `static/audio/${audio}`;
 			messageAudioRef.current.volume = settingsRef.current.tts_volume / 100;
 			messageAudioRef.current.play();
 		} else {

@@ -17,6 +17,7 @@ pub struct ConfigService {
     pub client_id: String,
     pub widy_sol_program_id: String,
     pub tmp_path: PathBuf,
+    pub audio_path: PathBuf,
 }
 
 impl ConfigService {
@@ -64,6 +65,10 @@ impl ConfigService {
             .path()
             .resolve(format!("{}", STATIC_DIR), BaseDirectory::AppLocalData)
             .map_err(|e| format!("Failed to resolve static directory path: {}", e))?;
+        let audio_path = app
+            .path()
+            .resolve(format!("{}/audio", STATIC_DIR), BaseDirectory::AppLocalData)
+            .map_err(|e| format!("Failed to resolve audio directory path: {}", e))?;
         let assets_path = app
             .path()
             .resolve("assets", BaseDirectory::Resource)
@@ -84,6 +89,7 @@ impl ConfigService {
             widy_sol_program_id,
             widgets_path,
             tmp_path,
+            audio_path,
         })
     }
 }

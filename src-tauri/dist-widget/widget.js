@@ -38715,7 +38715,7 @@ const io = i2({
     [S]
   ), j = D.useCallback(() => {
     const T = f?.donation?.audio;
-    T && u.current ? (o.current.src = `static/${T}`, o.current.volume = u.current.tts_volume / 100, o.current.play()) : y({ message: f });
+    T && u.current ? (o.current.src = `static/audio/${T}`, o.current.volume = u.current.tts_volume / 100, o.current.play()) : y({ message: f });
   }, [f, y]);
   return D.useEffect(() => (o.current.onended = () => y({ message: f }), o.current.onerror = () => y({ message: f }), () => {
     o.current.onended = null, o.current.onerror = null;

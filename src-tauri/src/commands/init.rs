@@ -68,7 +68,7 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     app.manage(language_detector);
 
     //tts
-    let tts_service = TtsService::new(&config_service.static_path);
+    let tts_service = TtsService::new(&config_service.audio_path);
     app.manage(tts_service);
 
     //media
