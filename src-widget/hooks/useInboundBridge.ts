@@ -25,7 +25,8 @@ import { goalsApi } from "../api/goalsApi";
 import { messagesApi } from "../api/messagesApi";
 import { settingsApi } from "../api/settingsApi";
 
-const useInboundBridge = () => {
+const useInboundBridge = (widgetId?: string) => {
+	console.log("widgetId:", widgetId);
 	const iframeRef = useRef<HTMLIFrameElement>(null);
 	const eventsService = useAppEvents();
 	const dispatch = useDispatch<AppDispatch>();

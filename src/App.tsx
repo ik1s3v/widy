@@ -110,7 +110,7 @@ function App() {
 					<Route path="/donatik/*" element={<Donatik />} />
 					<Route path="/dashboard/*" element={<Dashboard />} />
 					<Route path="/services-settings/*" element={<ServicesSettings />} />
-					<Route path="/widget/:widgetName" element={<WidgetControl />} />
+					<Route path="/widget/:widgetId" element={<WidgetControl />} />
 				</Routes>
 			)}
 		</main>

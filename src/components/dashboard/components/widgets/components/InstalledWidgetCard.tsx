@@ -51,7 +51,7 @@ const InstalledWidgetCard = ({ widget }: { widget: IWidget }) => {
 						variant="contained"
 						size="small"
 						onClick={() => {
-							navigate(`/widget/${widget.name}`);
+							navigate(`/widget/${widget.manifest.id}`);
 						}}
 					>
 						{t("widgets.control")}
