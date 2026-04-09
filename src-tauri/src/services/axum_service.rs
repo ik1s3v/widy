@@ -42,10 +42,6 @@ pub struct DonationsQuery {
 pub struct GoalsQuery {
     pub r#type: GoalType,
 }
-#[derive(Debug, Deserialize)]
-pub struct WidgetsQuery {
-    pub widget_id: String,
-}
 
 #[derive(Clone)]
 struct AxumState {

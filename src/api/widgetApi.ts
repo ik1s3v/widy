@@ -3,7 +3,7 @@ import { api } from ".";
 
 export const widgetApi = api.injectEndpoints({
 	endpoints: (builder) => ({
-		getWidgetByWidgetId: builder.query<IWidget, { widget_id: string }>({
+		getWidgetByWidgetId: builder.query<IWidget, { widgetId: string }>({
 			query: (args) => ({
 				command: "get_widget_by_widget_id",
 				args,

@@ -14,8 +14,10 @@ pub async fn delete_widget(
     widget: widget::Model,
 ) -> Result<(), String> {
     database_service.delete_widget_by_id(widget.id).await?;
-    fs::remove_dir_all(config_service.widgets_path.join(widget.manifest.id))
-        .await
-        .map_err(|e| e.to_string())?;
+    if widget.dev_path.is_none() {
+        fs::remove_dir_all(config_service.widgets_path.join(widget.manifest.id))
+            .await
+            .map_err(|e| e.to_string())?;
+    }
     Ok(())
 }
