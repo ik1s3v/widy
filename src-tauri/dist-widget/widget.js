@@ -37767,7 +37767,6 @@ const Wo = a2({
     })
   })
 }), c2 = (t) => {
-  console.log("widgetId:", t);
   const r = D.useRef(null), a = wa(), o = Cg(), s = D.useCallback(
     async (u) => {
       const { id: c, scope: f, payload: m } = u.data;
@@ -38134,7 +38133,7 @@ const Wo = a2({
       };
   }, []), r;
 }, d2 = ({ type: t }) => {
-  const { widgetId: r } = Yq(), [a] = LW(), o = c2(r);
+  const { widgetId: r } = Yq(), [a] = LW(), o = c2();
   return /* @__PURE__ */ oe.jsxDEV(
     "iframe",
     {

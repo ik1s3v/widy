@@ -103,7 +103,7 @@ pub fn run() {
             donation_alerts_sign_out,
             stream_labs_connect,
             stream_labs_sign_out,
-            get_widget_by_name,
+            get_widget_by_widget_id,
             add_widget,
             get_widgets,
             delete_widget,

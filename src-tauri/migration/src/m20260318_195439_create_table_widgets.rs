@@ -11,7 +11,7 @@ impl MigrationTrait for Migration {
                     .table(Widgets::Table)
                     .if_not_exists()
                     .col(pk_uuid(Widgets::Id))
-                    .col(string(Widgets::Name))
+                    .col(string(Widgets::WidgetId))
                     .col(string(Widgets::Manifest))
                     .col(string_null(Widgets::DevPath))
                     .col(string_null(Widgets::Storage))
@@ -34,7 +34,7 @@ pub enum Widgets {
     #[sea_orm(iden = "widgets")]
     Table,
     Id,
-    Name,
+    WidgetId,
     Manifest,
     DevPath,
     Storage,

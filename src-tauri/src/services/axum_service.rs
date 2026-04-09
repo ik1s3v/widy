@@ -42,6 +42,10 @@ pub struct DonationsQuery {
 pub struct GoalsQuery {
     pub r#type: GoalType,
 }
+#[derive(Debug, Deserialize)]
+pub struct WidgetsQuery {
+    pub widget_id: String,
+}
 
 #[derive(Clone)]
 struct AxumState {
@@ -78,6 +82,10 @@ impl AxumService {
             .route("/api/settings", get(AxumService::get_settings))
             .route("/api/messages", get(AxumService::get_messages))
             .route("/api/goals", get(AxumService::get_not_ended_goal))
+            .route(
+                "/api/widgets/{widget_id}",
+                get(AxumService::get_widget_by_widget_id),
+            )
             .route(
                 "/api/auc-fighter-settings",
                 get(AxumService::get_auc_fighter_settings),
@@ -128,11 +136,11 @@ impl AxumService {
         State(state): State<AxumState>,
     ) -> Result<Response, StatusCode> {
         let database_service = state.app.state::<DatabaseService>();
-        if let Ok(Some(widget)) = database_service.get_widget_by_name(widget_name).await {
+        if let Ok(Some(widget)) = database_service.get_widget_by_widget_id(widget_name).await {
             let config_service = state.app.state::<ConfigService>();
             let widget_path = match widget.dev_path {
                 Some(dev_path) => PathBuf::new().join(&dev_path),
-                None => config_service.widgets_path.clone().join(&widget.name),
+                None => config_service.widgets_path.clone().join(&widget.widget_id),
             };
             let base_path = widget_path.join(&widget_type).join(file_path);
 
@@ -200,6 +208,19 @@ impl AxumService {
             .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
 
         Ok(Json(goal))
+    }
+
+    async fn get_widget_by_widget_id(
+        Path(widget_id): Path<String>,
+        State(state): State<AxumState>,
+    ) -> Result<Json<Option<entity::widget::Model>>, StatusCode> {
+        let database_service = state.app.state::<DatabaseService>();
+        let widget = database_service
+            .get_widget_by_widget_id(widget_id)
+            .await
+            .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+
+        Ok(Json(widget))
     }
 
     async fn get_auc_fighter_settings(
