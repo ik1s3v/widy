@@ -1,11 +1,11 @@
 import { useParams, useSearchParams } from "react-router";
-import { useGetWidgetByWidgetIdQuery } from "../../src-widget/api/widgetsApi";
+import { useGetWidgetByIdQuery } from "../../src-widget/api/widgetsApi";
 import useInboundBridge from "../../src-widget/hooks/useInboundBridge";
 
 const Widget = ({ type }: { type: "view" | "control" }) => {
-	const { widgetId } = useParams();
+	const { id } = useParams();
 	const [urlParams] = useSearchParams();
-	const { data } = useGetWidgetByWidgetIdQuery({ widgetId });
+	const { data } = useGetWidgetByIdQuery({ id });
 	const iframeRef = useInboundBridge(data);
 
 	return (
@@ -13,7 +13,7 @@ const Widget = ({ type }: { type: "view" | "control" }) => {
 			{data && (
 				<iframe
 					ref={iframeRef}
-					src={`http://localhost:12553/widgets/${widgetId}/${type}/index.html?${urlParams.toString()}`}
+					src={`http://localhost:12553/widgets/${data.id}/${type}/index.html?${urlParams.toString()}`}
 					title="Widget"
 					sandbox="allow-scripts"
 					style={{

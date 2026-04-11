@@ -401,8 +401,8 @@ const useInboundBridge = (widget?: IWidget) => {
 							break;
 						case "widgets:storage.read":
 							const { data } = await dispatch(
-								widgetsApi.endpoints.getWidgetByWidgetId.initiate({
-									widgetId: widget.widget_id,
+								widgetsApi.endpoints.getWidgetById.initiate({
+									id: widget.id,
 								}),
 							);
 							iframeRef.current?.contentWindow?.postMessage(

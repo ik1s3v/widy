@@ -13,7 +13,7 @@ const App = () => {
 			<Route path="/alert" element={<Alert />} />
 			<Route path="/media" element={<Media />} />
 			<Route path="/goal" element={<Goal />} />
-			<Route path="/widget/:widgetId" element={<Widget type="view" />} />
+			<Route path="/widget/:id" element={<Widget type="view" />} />
 			<Route
 				path="/obs-dock-messages"
 				element={

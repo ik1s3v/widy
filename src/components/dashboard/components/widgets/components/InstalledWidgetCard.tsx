@@ -14,7 +14,7 @@ const InstalledWidgetCard = ({ widget }: { widget: IWidget }) => {
 	const [deleteWidget] = useDeleteWidgetMutation();
 	const navigate = useNavigate();
 	const [warningOpen, setWarningOpen] = useState(false);
-	const widgetUrl = `http://localhost:12553/widget/${widget.widget_id}`;
+	const widgetUrl = `http://localhost:12553/widget/${widget.id}`;
 
 	const handleDelete = () => {
 		deleteWidget({ widget }).unwrap();
@@ -40,7 +40,10 @@ const InstalledWidgetCard = ({ widget }: { widget: IWidget }) => {
 					minHeight: 150,
 				}}
 			>
-				<WidgetDescription manifest={widget.manifest} />
+				<WidgetDescription
+					manifest={widget.manifest}
+					isDev={!!widget.dev_path}
+				/>
 				<WidgetUrl widgetUrl={widgetUrl} text={t("widgets.view_url")} />
 				<Box
 					sx={{
@@ -53,7 +56,7 @@ const InstalledWidgetCard = ({ widget }: { widget: IWidget }) => {
 						variant="contained"
 						size="small"
 						onClick={() => {
-							navigate(`/widget/${widget.manifest.id}`);
+							navigate(`/widget/${widget.id}`);
 						}}
 					>
 						{t("widgets.control")}

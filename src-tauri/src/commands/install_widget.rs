@@ -2,6 +2,7 @@ use entity::widget::Manifest;
 use futures::StreamExt;
 use tauri::State;
 use tokio::{fs, io::AsyncWriteExt};
+use uuid::Uuid;
 
 use crate::{
     repositories::WidgetsRepository,
@@ -53,8 +54,8 @@ pub async fn install_widget(
             e.to_string()
         })?;
     }
-
-    let extract_path = config_service.widgets_path.join(&manifest.id);
+    let id = Uuid::new_v4().to_string();
+    let extract_path = config_service.widgets_path.join(&manifest.id).join(&id);
     let zip_path_clone = zip_path.clone();
     tokio::task::spawn_blocking(move || -> Result<(), String> {
         let file = std::fs::File::open(&zip_path_clone).map_err(|e| {
@@ -78,6 +79,6 @@ pub async fn install_widget(
         log::error!("Filed to remove tmp zip file: {}", e);
         e.to_string()
     })?;
-    database_service.add_widget(None, manifest).await?;
+    database_service.add_widget(None, manifest, id).await?;
     Ok(())
 }

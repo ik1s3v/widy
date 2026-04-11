@@ -3,9 +3,9 @@ import { api } from ".";
 
 export const widgetApi = api.injectEndpoints({
 	endpoints: (builder) => ({
-		getWidgetByWidgetId: builder.query<IWidget, { widgetId: string }>({
+		getWidgetById: builder.query<IWidget, { id: string }>({
 			query: (args) => ({
-				command: "get_widget_by_widget_id",
+				command: "get_widget_by_id",
 				args,
 			}),
 			providesTags: ["Widgets"],
@@ -43,7 +43,7 @@ export const widgetApi = api.injectEndpoints({
 	}),
 });
 export const {
-	useGetWidgetByWidgetIdQuery,
+	useGetWidgetByIdQuery,
 	useAddWidgetMutation,
 	useGetWidgetsQuery,
 	useDeleteWidgetMutation,

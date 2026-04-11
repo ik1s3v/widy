@@ -3,9 +3,9 @@ use entity::widget::*;
 use tauri::State;
 
 #[tauri::command]
-pub async fn get_widget_by_widget_id(
+pub async fn get_widget_by_id(
     database_service: State<'_, DatabaseService>,
-    widget_id: String,
+    id: String,
 ) -> Result<Option<Model>, String> {
-    database_service.get_widget_by_widget_id(widget_id).await
+    database_service.get_widget_by_id(id).await
 }

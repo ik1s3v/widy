@@ -79,17 +79,14 @@ impl AxumService {
             .route("/api/settings", get(AxumService::get_settings))
             .route("/api/messages", get(AxumService::get_messages))
             .route("/api/goals", get(AxumService::get_not_ended_goal))
-            .route(
-                "/api/widgets/{widget_id}",
-                get(AxumService::get_widget_by_widget_id),
-            )
+            .route("/api/widgets/{id}", get(AxumService::get_widget_by_id))
             .route("/api/widgets", put(AxumService::update_widget))
             .route(
                 "/api/auc-fighter-settings",
                 get(AxumService::get_auc_fighter_settings),
             )
             .route(
-                "/widgets/{widget_name}/{widget_type}/{*file_path}",
+                "/widgets/{id}/{widget_type}/{*file_path}",
                 get(AxumService::widgets_handler),
             )
             .nest_service("/static", ServeDir::new(&static_path))
@@ -130,15 +127,19 @@ impl AxumService {
     }
 
     async fn widgets_handler(
-        Path((widget_name, widget_type, file_path)): Path<(String, String, String)>,
+        Path((id, widget_type, file_path)): Path<(String, String, String)>,
         State(state): State<AxumState>,
     ) -> Result<Response, StatusCode> {
         let database_service = state.app.state::<DatabaseService>();
-        if let Ok(Some(widget)) = database_service.get_widget_by_widget_id(widget_name).await {
+        if let Ok(Some(widget)) = database_service.get_widget_by_id(id).await {
             let config_service = state.app.state::<ConfigService>();
             let widget_path = match widget.dev_path {
                 Some(dev_path) => PathBuf::new().join(&dev_path),
-                None => config_service.widgets_path.clone().join(&widget.widget_id),
+                None => config_service
+                    .widgets_path
+                    .clone()
+                    .join(&widget.manifest.id)
+                    .join(widget.id),
             };
             let base_path = widget_path.join(&widget_type).join(file_path);
 
@@ -208,13 +209,13 @@ impl AxumService {
         Ok(Json(goal))
     }
 
-    async fn get_widget_by_widget_id(
-        Path(widget_id): Path<String>,
+    async fn get_widget_by_id(
+        Path(id): Path<String>,
         State(state): State<AxumState>,
     ) -> Result<Json<Option<entity::widget::Model>>, StatusCode> {
         let database_service = state.app.state::<DatabaseService>();
         let widget = database_service
-            .get_widget_by_widget_id(widget_id)
+            .get_widget_by_id(id)
             .await
             .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
 

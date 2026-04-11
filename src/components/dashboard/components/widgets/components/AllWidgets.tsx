@@ -23,7 +23,9 @@ const AllWidgets = () => {
 						<WidgetCard
 							key={id}
 							manifest={manifest}
-							installed={!!data.find((w) => w.manifest.id === id)}
+							installed={
+								!!data.find((w) => w.manifest.id === id && !w.dev_path)
+							}
 						/>
 					))}
 				</Box>
