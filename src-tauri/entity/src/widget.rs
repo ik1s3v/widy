@@ -25,4 +25,5 @@ pub struct Manifest {
     pub description: String,
     pub repository: String,
     pub scopes: Vec<String>,
+    pub connect_src: Vec<String>,
 }
