@@ -368,6 +368,8 @@
 		"widgets:media:error.subscription": "Subscribe media error",
 		"widgets:media:pause.subscription": "Subscribe media pause",
 		"widgets:media:play.subscription": "Subscribe media play",
-		"widgets:alert:played.subscription": "Subscribe alert played"
+		"widgets:alert:played.subscription": "Subscribe alert played",
+		"widgets:storage.read": "Read widget storage",
+		"widgets:storage.write": "Write to widget storage"
 	}
 }

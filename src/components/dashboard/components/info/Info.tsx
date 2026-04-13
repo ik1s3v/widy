@@ -1,6 +1,7 @@
 import { Box, Button, Card, CardContent, Typography } from "@mui/material";
 import { openUrl } from "@tauri-apps/plugin-opener";
 import { useTranslation } from "react-i18next";
+import { version } from "../../../../../package.json";
 
 const Info = () => {
 	const { t } = useTranslation();
@@ -20,7 +21,7 @@ const Info = () => {
 							Widy
 						</Typography>
 						<Typography variant="body1" color="text.secondary" gutterBottom>
-							{t("version")}: 0.2.4
+							{t("version")}: {version}
 						</Typography>
 						<Box sx={{ mt: 2 }}>
 							<Button

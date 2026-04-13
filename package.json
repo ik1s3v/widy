@@ -1,7 +1,7 @@
 {
 	"name": "widy",
 	"private": true,
-	"version": "0.2.4",
+	"version": "0.2.5",
 	"type": "module",
 	"license": "AGPL-3.0-only",
 	"scripts": {
@@ -38,8 +38,8 @@
 		"@tauri-apps/plugin-process": "^2.2.1",
 		"@tauri-apps/plugin-updater": "^2.6.1",
 		"@vis.gl/react-google-maps": "^1.5.4",
-		"@widy/react": "^1.0.3",
-		"@widy/sdk": "^1.0.1",
+		"@widy/react": "^1.0.4",
+		"@widy/sdk": "^1.0.7",
 		"cross-env": "^7.0.3",
 		"dayjs": "^1.11.13",
 		"react": "^18.3.1",

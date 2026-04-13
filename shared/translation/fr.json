@@ -3,23 +3,23 @@
 	"off": "Désactivé",
 	"select": "Sélectionner",
 	"success": "Succès",
-	"ok": "OK",
+	"ok": "Ok",
 	"cancel": "Annuler",
-	"sound_volume": "Volume sonore",
-	"skip_media": "Raccourci passer média",
-	"skip_alert": "Raccourci passer alerte",
+	"sound_volume": "Volume du son",
+	"skip_media": "Raccourci pour passer le média",
+	"skip_alert": "Raccourci pour passer l'alerte",
 	"authorization": {
-		"title": "Connexion / Autorisation",
-		"code": "Code de vérification",
+		"title": "Autorisation",
+		"code": "Demander un code",
 		"sign_in": "Se connecter",
 		"phone": "Numéro de téléphone",
-		"telegram_code": "Code Telegram",
+		"telegram_code": "Code de Telegram",
 		"your_code": "Votre code",
-		"2fa_password": "Mot de passe à deux facteurs",
+		"2fa_password": "Mot de passe 2FA",
 		"password": "Mot de passe",
-		"streamelements": "Vous devez d'abord connecter votre compte StreamElements avec le JWT",
-		"you_can_find_by_url": "Vous pouvez le récupérer via ce lien",
-		"set_id_and_jwt": "Veuillez renseigner l'ID de compte StreamElements et le JWT pour {{service}}"
+		"streamelements": "Vous devez d'abord connecter StreamElements avec un JWT",
+		"you_can_find_by_url": "Vous pouvez le trouver à cette URL",
+		"set_id_and_jwt": "Vous devez définir l'ID de compte StreamElements et le JWT pour {{service}}"
 	},
 	"error": {
 		"wrong_lots_format": "Format des lots incorrect",
@@ -28,23 +28,23 @@
 	},
 	"updater": {
 		"title": "Mise à jour",
-		"description": "Une nouvelle version de l'application est disponible. Souhaitez-vous mettre à jour ?",
+		"description": "Une nouvelle version de l'application est disponible. Voulez-vous mettre à jour ?",
 		"update": "Mettre à jour",
 		"later": "Plus tard",
 		"downloading": "Téléchargement en cours..."
 	},
 	"media": {
-		"title": "Médias",
+		"title": "Média",
 		"youtube": "YouTube",
 		"twitch": "Twitch",
 		"tiktok": "TikTok"
 	},
 	"integration": {
-		"tribute": "Afficher les messages de remerciement"
+		"tribute": "Afficher les messages de tribut"
 	},
 	"auction": {
 		"lots": "Lots",
-		"wheel": "Roue",
+		"wheel": "Roulette",
 		"settings": "Paramètres"
 	},
 	"maption": {
@@ -59,7 +59,7 @@
 	"media_settings": {
 		"enabled": "Activé",
 		"min_amount": "Montant minimum",
-		"video_volume": "Volume vidéo",
+		"video_volume": "Volume de la vidéo",
 		"min_views": "Vues minimum"
 	},
 	"dashboard": {
@@ -67,11 +67,13 @@
 		"settings": "Paramètres",
 		"services": "Services",
 		"alerts": "Alertes",
-		"media": "Médias",
+		"media": "Média",
 		"goals": "Objectifs",
 		"auction": "Enchères",
 		"maption": "Maption",
-		"fighter": "Combattant"
+		"fighter": "Combattant",
+		"widgets": "Widgets",
+		"info": "Info"
 	},
 	"messages": {
 		"title": "Derniers messages"
@@ -80,15 +82,15 @@
 		"skip": "Passer",
 		"replay": "Rejouer",
 		"donated": "{{user_name}} a donné {{amount}}{{currency}}",
-		"followed": "{{user_name}} a suivi",
+		"followed": "{{user_name}} s'est abonné",
 		"subscribed": "{{user_name}} s'est abonné",
 		"gifted_subscriptions": "{{user_name}} a offert {{total}} abonnements",
-		"raided_with": "{{user_name}} a raid avec {{viewers}} spectateurs"
+		"raided_with": "{{user_name}} a raidé avec {{viewers}} viewers"
 	},
 	"filter": {
 		"title": "Filtrer les messages",
 		"exclude_donations": "Exclure les dons",
-		"exclude_follows": "Exclure les suivis",
+		"exclude_follows": "Exclure les follows",
 		"exclude_subscriptions": "Exclure les abonnements",
 		"exclude_raids": "Exclure les raids"
 	},
@@ -99,7 +101,7 @@
 		"black_list": "Liste noire",
 		"remove_links": "Supprimer les liens",
 		"language": "Langue",
-		"sec": "sec",
+		"sec": "Sec",
 		"currency": "Devise",
 		"tts_type": "Type de TTS"
 	},
@@ -115,26 +117,26 @@
 		"reset": "Réinitialiser",
 		"add_time": "Ajouter du temps",
 		"reduce_time": "Réduire le temps",
-		"add_timex2": "Ajouter temps ×2"
+		"add_timex2": "Ajouter du temps x2"
 	},
 	"fighter": {
 		"title": "Combattant",
 		"match": "Match",
-		"final": "Final",
+		"final": "Finale",
 		"game": "Partie",
 		"cancel": "Annuler la partie",
-		"winner": "Vainqueur",
+		"winner": "Gagnant",
 		"settings": "Paramètres",
 		"create_game": "Créer une partie à partir des lots",
 		"start": "Démarrer",
 		"pause": "Pause",
-		"rematch": "Rejouer",
+		"rematch": "Revanche",
 		"resume": "Reprendre"
 	},
 	"lot": {
 		"name": "Nom",
 		"delete": "Supprimer",
-		"add": "Ajouter montant"
+		"add": "Ajouter un montant"
 	},
 	"bid": {
 		"delete": "Supprimer",
@@ -154,13 +156,13 @@
 		"new_donation": "Nouveau don",
 		"show_odds": "Afficher les cotes",
 		"show_total_sum": "Afficher la somme totale",
-		"greater_timer_adding_time": "Ajout de temps plus important au minuteur",
+		"greater_timer_adding_time": "Ajout de temps pour le timer supérieur",
 		"not_add_time_if": "Ne pas ajouter de temps si",
-		"adding_time": "Temps ajouté"
+		"adding_time": "Temps"
 	},
 	"lots_options": {
 		"import_lots": "Importer des lots",
-		"clear_lots": "Vider les lots"
+		"clear_lots": "Effacer les lots"
 	},
 	"auc_fighter_settings": {
 		"round_duration": "Durée du round",
@@ -172,7 +174,7 @@
 	},
 	"services": {
 		"title": "Services",
-		"tribute": "Remerciements",
+		"tribute": "Tribute",
 		"streamelements": "StreamElements",
 		"connect": "Connecter",
 		"integrations": "Intégrations",
@@ -180,7 +182,7 @@
 		"confirm_sign_out": "Êtes-vous sûr de vouloir vous déconnecter de ce service ?"
 	},
 	"twitch": {
-		"device_code_expired": "Le code de l'appareil a expiré. Veuillez réessayer.",
+		"device_code_expired": "Code appareil expiré. Veuillez réessayer.",
 		"user_code": "Code utilisateur",
 		"authorize_with_code": "Autoriser avec le code",
 		"waiting_authorization": "En attente d'autorisation..."
@@ -189,8 +191,8 @@
 		"donation_account_name": "Nom du compte de dons",
 		"donation_url": "URL de don",
 		"create_donation_account": "Créer un compte de dons Widy",
-		"connect_to_existing_account": "Connecter à un compte existant",
-		"create_donation_account_pending": "Création du compte de dons en cours..."
+		"connect_to_existing_account": "Se connecter à un compte existant",
+		"create_donation_account_pending": "Création du compte de dons..."
 	},
 	"twitch_service_settings": {
 		"title": "Paramètres Twitch",
@@ -211,22 +213,22 @@
 		"test_text": "Ceci est une alerte de test !",
 		"configure": "Configurer",
 		"test": "Tester",
-		"add_new_variant": "Ajouter un nouveau variant",
-		"new_variant": "Nouveau variant",
-		"variant_title": "Titre du variant",
-		"variant_group": "Groupe du variant",
+		"add_new_variant": "Ajouter une nouvelle variante",
+		"new_variant": "Nouvelle variante",
+		"variant_title": "Titre de la variante",
+		"variant_group": "Groupe de la variante",
 		"status": "Statut",
-		"variation_condition": "Condition du variant",
+		"variation_condition": "Condition de variation",
 		"group": "Groupe",
 		"Random": "Aléatoire",
-		"AmountIsGreater": "Le montant est supérieur à",
-		"AmountIsEqual": "Le montant est égal à",
+		"AmountIsGreater": "Le montant est supérieur",
+		"AmountIsEqual": "Le montant est égal",
 		"delete": "Supprimer",
-		"sure_delete": "Êtes-vous sûr de vouloir supprimer ce variant ?",
+		"sure_delete": "Êtes-vous sûr de vouloir supprimer cette variation ?",
 		"type": "Type",
 		"Donation": "Don",
 		"Subscription": "Abonnement",
-		"Follow": "Suivi",
+		"Follow": "Follow",
 		"Raid": "Raid"
 	},
 	"general": "Général",
@@ -236,39 +238,39 @@
 	},
 	"goal": {
 		"new": "Nouvel objectif",
-		"goal": "Voir",
+		"goal": "Objectif",
 		"type": "Type",
 		"elements": "Éléments",
 		"progress": "Progression",
 		"goal_title": "Titre de l'objectif",
-		"amount_raise": "Montant à atteindre",
-		"start_raising": "Commencer à partir de",
+		"amount_raise": "Montant à collecter",
+		"start_raising": "Commencer la collecte à partir de",
 		"end_date": "Date de fin de l'objectif",
 		"bar_height": "Hauteur de la barre",
-		"rounding_radius": "Rayon de coin arrondi",
+		"rounding_radius": "Rayon d'arrondi",
 		"bar_stroke_thickness": "Épaisseur du contour de la barre",
-		"background_bar_color": "Couleur de la barre de fond",
+		"background_bar_color": "Couleur de la barre d'arrière-plan",
 		"progress_bar_color": "Couleur de la barre de progression",
 		"goal_progress_bar": "Barre de progression de l'objectif",
 		"progress_bar_layout": "Disposition de la barre de progression",
 		"remaining_time": "Temps restant",
-		"goal_amount_limits": "Limites du montant de l'objectif",
-		"widget_background": "Fond du widget",
-		"background_color": "Couleur de fond",
-		"OnTop": "En haut",
+		"goal_amount_limits": "Limites de montant de l'objectif",
+		"widget_background": "Arrière-plan du widget",
+		"background_color": "Couleur d'arrière-plan",
+		"OnTop": "Au-dessus",
 		"Inside": "À l'intérieur",
 		"Below": "En dessous",
 		"DoNotDisplay": "Ne pas afficher",
 		"title": "Titre",
 		"limits": "limites",
-		"raised": "Atteint",
+		"raised": "Collecté",
 		"days_left": "Jours restants",
 		"finish_goal": "Terminer l'objectif",
 		"sure_finish": "Êtes-vous sûr de vouloir terminer cet objectif ?",
 		"Donation": "Don",
 		"TwitchSubscription": "Abonnement Twitch",
-		"TwitchFollow": "Suivi Twitch",
-		"goal_not_finished": "Vous avez un objectif de ce type non terminé."
+		"TwitchFollow": "Follow Twitch",
+		"goal_not_finished": "Vous avez un objectif non terminé de ce type."
 	},
 	"save": "Enregistrer",
 	"back": "Retour",
@@ -290,7 +292,7 @@
 	},
 	"text": {
 		"font": "Police",
-		"font_size": "Taille de la police",
+		"font_size": "Taille de police",
 		"text_color": "Couleur du texte",
 		"bold": "Gras",
 		"italics": "Italique",
@@ -304,7 +306,70 @@
 		"name": "Nom"
 	},
 	"audio": {
-		"play": "Lire",
+		"play": "Jouer",
 		"stop": "Arrêter"
+	},
+	"version": "Version",
+	"widgets": {
+		"title": "Widgets",
+		"add": "Ajouter un widget",
+		"install": "Installer",
+		"delete": "Supprimer",
+		"installed": "Installé",
+		"all": "Tous",
+		"settings": "Paramètres",
+		"control": "Contrôle",
+		"delete_confirm": "Êtes-vous sûr de vouloir supprimer ce widget ?",
+		"invalid_manifest": "Manifeste du widget invalide",
+		"add_confirm": "L'ajout permettra à {{widget_name}} de :",
+		"installing": "Installation en cours...",
+		"view_url": "URL de visualisation"
+	},
+	"scopes": {
+		"widgets:messages.read": "Lire les messages",
+		"widgets:goals.read": "Lire les objectifs",
+		"widgets:auc-fighter:settings.read": "Lire les paramètres auc-fighter",
+		"widgets:settings.read": "Lire les paramètres du widget",
+		"widgets:alerts.read": "Lire les alertes",
+		"widgets:media:settings.read": "Lire les paramètres média",
+		"widgets:auc-fighter:match-playing.send": "Envoyer match en cours",
+		"widgets:auc-fighter:match-winner.send": "Envoyer gagnant du match",
+		"widgets:auc-fighter:match-paused.send": "Envoyer match en pause",
+		"widgets:auc-fighter:match-id.send": "Envoyer l'ID du match",
+		"widgets:alert:played.send": "Envoyer alerte jouée",
+		"widgets:alert:playing.send": "Envoyer alerte en cours",
+		"widgets:media:played.send": "Envoyer média joué",
+		"widgets:media:end.send": "Envoyer fin du média",
+		"widgets:media:playing.send": "Envoyer média en cours",
+		"widgets:media:paused.send": "Envoyer média en pause",
+		"widgets:media:error.send": "Envoyer erreur média",
+		"widgets:media:replay.send": "Envoyer relecture média",
+		"widgets:alert:replay.send": "Envoyer relecture alerte",
+		"widgets:alert:skip.send": "Envoyer passer alerte",
+		"widgets:messages.subscription": "S'abonner aux messages",
+		"widgets:goal.subscription": "S'abonner à l'objectif",
+		"widgets:settings.subscription": "S'abonner aux paramètres",
+		"widgets:auc-fighter:start-match.subscription": "S'abonner au démarrage du match",
+		"widgets:auc-fighter:pause-match.subscription": "S'abonner à la pause du match",
+		"widgets:auc-fighter:resume-match.subscription": "S'abonner à la reprise du match",
+		"widgets:auc-fighter:cancel-match.subscription": "S'abonner à l'annulation du match",
+		"widgets:auc-fighter:update-match.subscription": "S'abonner à la mise à jour du match",
+		"widgets:auc-fighter:settings.subscription": "S'abonner aux paramètres auc-fighter",
+		"widgets:alert:replay.subscription": "S'abonner à la relecture d'alerte",
+		"widgets:alert:skip.subscription": "S'abonner au passage d'alerte",
+		"widgets:alert:test.subscription": "S'abonner au test d'alerte",
+		"widgets:alert:skip-playing.subscription": "S'abonner au passage d'alerte en cours",
+		"widgets:alert:alerts.subscription": "S'abonner aux alertes",
+		"widgets:media:replay.subscription": "S'abonner à la relecture média",
+		"widgets:media:settings.subscription": "S'abonner aux paramètres média",
+		"widgets:media:skip.subscription": "S'abonner au passage média",
+		"widgets:media:skip-playing-media.subscription": "S'abonner au passage du média en cours",
+		"widgets:media:end.subscription": "S'abonner à la fin du média",
+		"widgets:media:error.subscription": "S'abonner à l'erreur média",
+		"widgets:media:pause.subscription": "S'abonner à la pause média",
+		"widgets:media:play.subscription": "S'abonner à la lecture média",
+		"widgets:alert:played.subscription": "S'abonner à l'alerte jouée",
+		"widgets:storage.read": "Lire le stockage du widget",
+		"widgets:storage.write": "Écrire dans le stockage du widget"
 	}
 }

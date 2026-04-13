@@ -25,15 +25,15 @@ jobs:
 
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 
 
       - name: setup node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 
         with:
           node-version: lts/*
 
       - name: install Rust stable
-        uses: dtolnay/rust-toolchain@stable
+        uses: dtolnay/rust-toolchain@29eef336d9b2848a0b548edc03f92a220660cdb8
         with:
           # Those targets are only used on macos runners so it's in an `if` to slightly speed up windows and linux builds.
           targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
@@ -65,7 +65,7 @@ jobs:
         run: npm run widget:build
       - name: build auc-fighter-adapter
         run: npm run auc-fighter-adapter:build
-      - uses: tauri-apps/tauri-action@v0
+      - uses: tauri-apps/tauri-action@84b9d35b5fc46c1e45415bdb6144030364f7ebc5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           API_ID: ${{ secrets.API_ID }}
@@ -79,12 +79,12 @@ jobs:
         with:
           tagName: v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
           releaseName: "v__VERSION__"
-          releaseBody: "Add edge tts"
+          releaseBody: "Add widgets."
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
           
-      - uses: tauri-apps/tauri-action@v0
+      - uses: tauri-apps/tauri-action@84b9d35b5fc46c1e45415bdb6144030364f7ebc5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           API_ID: ${{ secrets.API_ID }}
@@ -98,7 +98,7 @@ jobs:
         with:
           tagName: latest # the action automatically replaces \_\_VERSION\_\_ with the app version.
           releaseName: "latest"
-          releaseBody: "Add edge tts"
+          releaseBody: "Add widgets."
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
