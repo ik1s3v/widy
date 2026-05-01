@@ -18,4 +18,4 @@ The **Widy** application is designed with user privacy in mind. This program doe
 ### Changes to This Policy
 This privacy policy may be updated in the future. Any changes will be reflected in this document.
 
-If you have any questions or concerns about this privacy policy, please contact us via Discord: **ik1s3v**.
+If you have any questions or concerns about this privacy policy, please contact us via Discord: [**Widy**](https://discord.gg/UCdUBBrAA).

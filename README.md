@@ -21,7 +21,7 @@ To install and run the project locally, follow these steps:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/ik1s3v/widy.git
+   git clone https://github.com/widy-fun/widy.git
    cd widy
    ```
 
@@ -46,7 +46,7 @@ To install and run the project locally, follow these steps:
 The production-ready files will be available in the `src-tauri/target/release` directory.
 
 ## License
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [AGPL License](LICENSE-AGPL).
 
 ## Contact
-For questions or feedback, please contact Discord ik1s3v.
+For questions or feedback, please contact Discord [Widy](https://discord.gg/UCdUBBrAA).
