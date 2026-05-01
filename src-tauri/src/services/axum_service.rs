@@ -8,6 +8,7 @@ use crate::services::{ConfigService, DatabaseService, EventMessage, WebSocketBro
 use axum::extract::ws::{Message, WebSocket};
 use axum::extract::{Path, Query};
 use axum::http::HeaderValue;
+use axum::http::StatusCode;
 use axum::routing::patch;
 use axum::Json;
 use axum::{
@@ -20,14 +21,11 @@ use entity::goal::GoalType;
 use entity::message::ClientMessage;
 use futures::{sink::SinkExt, stream::StreamExt};
 use http::header;
-#[cfg(debug_assertions)]
-use reqwest::StatusCode;
 use serde::Deserialize;
 use std::path::PathBuf;
 use tauri::{AppHandle, Manager};
 use tokio::fs;
 use tokio::sync::mpsc;
-#[cfg(debug_assertions)]
 use tower_http::cors::Any;
 use tower_http::cors::CorsLayer;
 use tower_http::services::{ServeDir, ServeFile};
